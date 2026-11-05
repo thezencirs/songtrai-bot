@@ -63,51 +63,51 @@ SONGTRAI_AGENT_TEAM_ROSTER: List[Dict[str, Any]] = [
         "status": "ACTIVE",
     },
     {
-        "agent_id": "remotion-lyric-graphmotion-engineer",
-        "role_tr": "2K QHD+ GraphMotion & Remotion Yay Fiziği Başmühendisi",
-        "role_en": "2K QHD+ Lyric GraphMotion & Remotion Spring Physics Engineer",
-        "department": "Optical Physics & 2K BT.709 Video Mastering",
+        "agent_id": "era-audio-deck-choreographer",
+        "role_tr": "Dönem & Müzikal Baskınlık Bazlı 4 Ses İcadı Tasarım Ajanı",
+        "role_en": "Era & Dominance-Based 4 Audio Decks Choreographer Agent",
+        "department": "Industrial Audio Hardware & Real-Time Rotation Physics",
         "mission": (
-            "Remotion yay fiziği (damping=14, stiffness=120, mass=0.8), 180 derece obtüratör hareket "
-            "bulanıklığı, organik el kamerası nefes alışı, Kodak Portra 400 kağıt/film dokusu ve satır-satır "
-            "altın vurgu akışını 1440x2560 @ 30fps (CRF 12, 22 Mbps) kalitesinde işler."
+            "Şarkının çıkış dönemine ve bas/ritim baskınlığına göre üst sahnede dönecek ses icadını seçer "
+            "ve gerçek zamanlı ses enerjisiyle döndürür: Dönen 12\" Vinil Plak & Pikap Kolu (vinyl_turntable), "
+            "Modern Dönen DJ Mix Jog-Wheel + Bas LED Halka + CUE Pad + 16-Bant Spektrum (dj_mix_deck), "
+            "80'ler/90'lar Çift Çarklı Dönen Kaset (retro_cassette) ve 2000'ler İridyum Dönen Optik CD (optical_cd_deck)."
         ),
         "tools_and_skills": [
             "songtrai-white-studio-lyric-graphmotion",
-            "universal-reels-telegram-engine",
-            "remotion-spring-physics-solver",
+            "era-audio-decks-engine",
+            "fft-bass-spectrum-analyzer",
         ],
         "status": "ACTIVE",
     },
     {
-        "agent_id": "chorus-timestamp-sync-director",
-        "role_tr": "Sosyal Medya Nakarat Saniyesi & Müzik Eşleştirme Rejisörü",
-        "role_en": "Social Media Chorus Timestamp & Native Audio Sync Director",
-        "department": "Instagram Reels & TikTok Native Audio Alignment",
+        "agent_id": "whisper-lrclib-karaoke-sync-director",
+        "role_tr": "Gerçek Şarkı Sesi & Kelime-Kelime Karaoke Senkronizasyon Rejisörü",
+        "role_en": "Real Song Audio & Whisper/LRCLIB Word-by-Word Karaoke Sync Director",
+        "department": "Vocal Offset Locking & Word-Level Karaoke Timing",
         "mission": (
-            "Kullanıcı videoyu Instagram Reels veya TikTok'ta paylaşırken müziği platform içinden saniyeler "
-            "içinde ekleyebilsin diye şarkının tam nakarat saniye aralığını (Örn: 0:42 - 0:56) ve "
-            "platform içi müzik arama terimini hazırlar."
+            "Şarkının gerçek 256kbps resmi sesini iTunes/Deezer üzerinden indirir, faster-whisper "
+            "(word_timestamps=True) ve LRCLIB syncedLyrics ile milisaniyelik vokal ofsetini kilitler, "
+            "saf beyaz fon üzerinde siyah yazı ve şarkıya özel vurgu rengiyle kelime-kelime karaoke akışını yönetir."
         ),
         "tools_and_skills": [
-            "chorus-timestamp-matcher",
-            "native-social-audio-guide",
+            "faster-whisper-word-aligner",
+            "lrclib-synced-lyrics-matcher",
         ],
         "status": "ACTIVE",
     },
     {
-        "agent_id": "studio-vinyl-acoustics-maestro",
-        "role_tr": "Saf Stüdyo Plak Dokusu & Mekanik Geçiş Akustik Tasarımcısı",
-        "role_en": "Studio Vinyl Texture & Editorial Transition Foley Maestro",
-        "department": "Psychoacoustics & 320kbps AAC Mastering",
+        "agent_id": "pure-real-audio-mastering-maestro",
+        "role_tr": "Sıfır Yapay Efekt & Saf Gerçek Şarkı Sesi Mastering Mühendisi",
+        "role_en": "Zero-Foley & Pure Official Song Audio Mastering Maestro",
+        "department": "Pure Musical Audio & 320kbps AAC Mastering",
         "mission": (
-            "Telegram önizlemesinde videonun sessiz kalmaması ve dokunsal bir his vermesi için "
-            "dize kartlarının giriş anlarına milisaniye uyumlu yumuşak vinil plak/sayfa geçiş "
-            "akustiği (320 kbps AAC) sentezler."
+            "Yapay ses efektlerini (bip, chime, deklanşör) tamamen yasaklar; yalnızca gerçek şarkı sesini "
+            "yumuşak fade-in/fade-out ve 320 kbps AAC stüdyo kalitesiyle videoya gömer."
         ),
         "tools_and_skills": [
-            "vinyl-room-tone-synthesizer",
-            "editorial-shutter-foley",
+            "pure-song-audio-trimmer",
+            "aac-320kbps-mastering",
         ],
         "status": "ACTIVE",
     },
