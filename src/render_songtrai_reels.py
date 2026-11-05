@@ -855,11 +855,13 @@ def render_songtrai_graphmotion_reel(
                 S(7),
                 S(13),
             )
+            hdr_full = f"{artist} — “{title}”"
+            f_hdr_fit = f_hdr_title if _text_width(cdraw, hdr_full, f_hdr_title) <= S(720) else get_script_font(title, 21, bold=True, serif=True)
             cdraw.text(
                 (tx_center, S(158)),
-                f"{artist} — “{title[:24]}”",
+                hdr_full,
                 fill=(18, 16, 22, 255),
-                font=f_hdr_title,
+                font=f_hdr_fit,
                 anchor="mm",
             )
             cdraw.text(
@@ -951,11 +953,13 @@ def render_songtrai_graphmotion_reel(
                 font=f_hdr_artist,
                 anchor="mm",
             )
+            t_disp = f"“{title}”"
+            f_t_fit = f_hdr_title if _text_width(cdraw, t_disp, f_hdr_title) <= S(620) else get_script_font(title, 20, bold=True, serif=True)
             cdraw.text(
                 (info_cx, S(226)),
-                f"“{title[:22]}”",
+                t_disp,
                 fill=(18, 16, 22, 255),
-                font=f_hdr_title,
+                font=f_t_fit,
                 anchor="mm",
             )
 
