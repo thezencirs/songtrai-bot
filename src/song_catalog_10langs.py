@@ -1334,30 +1334,24 @@ def select_next_song_concept(
 
 def build_explanatory_music_guide(song: Dict[str, Any]) -> str:
     """
-    Mesaj 1 (Video Altı / Reji & Sosyal Medya Müzik Ekleme Rehberi):
-    Kullanıcı videoyu Instagram Reels / TikTok'ta paylaşırken şarkıyı saniyeler içinde
-    ekleyebilsin diye tam nakarat saniyesini ve arama adını verir.
+    Mesaj 1 (Video Altı / Reji & Karaoke Senkron Bilgisi):
+    Gerçek şarkı sesinin ve kelime-kelime karaoke çevirisinin videoya milisaniye hassasiyetinde
+    gömüldüğünü ve kullanılan dönemsel ses icadını özetler.
     """
     flag = song.get("flag", "🎵")
     lang_tr = song.get("language_tr", "İngilizce")
     artist = song.get("artist", "")
     title = song.get("title", "")
-    ts = song.get("chorus_timestamp", "0:42 - 0:57")
-    audio_q = song.get("social_audio_search", f"{artist} - {title}")
 
     lines = [
-        f"🎬 <b>ŞARKILARIN ANLAMI (@songtraibot) — 2K SAF BEYAZ STÜDYO REELS HAZIR</b>",
+        f"🎬 <b>ŞARKILARIN ANLAMI (@songtraibot) — GERÇEK SES & KARAOKE REELS HAZIR</b>",
         f"━━━━━━━━━━━━━━━━━━━━━━",
         f"🌍 <b>Dil:</b> {flag} {lang_tr} ({song.get('language_code', 'EN')})",
         f"🎵 <b>Şarkı:</b> {artist} — <i>{title}</i> ({song.get('release_year', '')})",
-        f"🎨 <b>Görsel Stil:</b> Saf Beyaz Stüdyo (#FFFFFF) • Sıfır Uzay/AI İzi • 2K 30FPS GraphMotion",
+        f"🔊 <b>Ses & Senkron:</b> %100 Gerçek Şarkı Sesi (Sıfır Efekt) + Whisper/LRCLIB Kelime Vurgulu Karaoke",
+        f"🎨 <b>Stüdyo & İcat:</b> Saf Beyaz Fon (#FFFFFF) • Siyah Tipografi • Dönemsel Ses İcadı (Plak / DJ Mix / Kaset / CD)",
         f"",
-        f"📲 <b>SOSYAL MEDYADA PAYLAŞIRKEN MÜZİK EKLEME REHBERİ:</b>",
-        f"1️⃣ Instagram/TikTok'ta <b>Ses Ekle (Müzik)</b> kısmına dokunun ve şunu aratın:",
-        f"   🔎 <code>{audio_q}</code>",
-        f"2️⃣ Şarkının şu nakarat aralığını seçin:",
-        f"   ⏱️ <b>{ts}</b>",
-        f"3️⃣ Hemen alttaki <b>Saf Kopyala-Yapıştır Açıklama</b> mesajını tek dokunuşla kopyalayıp yapıştırın!",
+        f"📲 <b>Doğrudan Paylaşıma Hazır:</b> Videoda gerçek şarkı sesi ve kelime-kelime Türkçe çeviri senkronu hazırdır; alttaki <b>Saf Kopyala-Yapıştır Açıklama</b> mesajını tek dokunuşla kopyalayıp paylaşabilirsiniz!",
     ]
     return "\n".join(lines)
 
