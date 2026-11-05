@@ -1,0 +1,144 @@
+name: "🎵 Şarkıların Anlamı (@songtraibot) — 10 Dil 2K Saf Beyaz Stüdyo Reels & 7/24 Saatlik Stok Otomasyonu"
+
+on:
+  schedule:
+    # 1) Her saat başı (günün 24 saati, 00:00 - 23:00) otomatik olarak 10 dil arasında sıradaki popüler şarkının
+    #    2K Saf Beyaz Stüdyo Türkçe Çeviri videosunu üretip @songtraibot üzerinden Telegram'a stok olarak gönderir.
+    # 2) Ayrıca her 5 dakikada bir @songtraibot kuyruğunu kontrol eder; kullanıcı şarkı adı veya dil komutu
+    #    gönderdiyse anında üretip teslim eder.
+    - cron: "*/5 * * * *"
+  workflow_dispatch:
+    inputs:
+      language:
+        description: "Şarkı Dili Seçimi (10 Global Dil veya Otomatik Döngü)"
+        required: false
+        default: "otomatik"
+        type: choice
+        options:
+          - otomatik
+          - ingilizce
+          - fransizca
+          - rusca
+          - japonca
+          - ispanyolca
+          - korece
+          - italyanca
+          - almanca
+          - cince
+          - hintce
+      custom_query:
+        description: "Özel Şarkı / Sanatçı Adı (Boş bırakılırsa katalogdan sıradaki popüler hit seçilir)"
+        required: false
+        default: ""
+        type: string
+      batch_count:
+        description: "Tek Seferde Üretilecek Stok Video Sayısı (1 - 10)"
+        required: false
+        default: "1"
+        type: choice
+        options:
+          - "1"
+          - "2"
+          - "3"
+          - "5"
+          - "10"
+
+permissions:
+  contents: write
+
+concurrency:
+  group: songtraibot-hourly-reels-pipeline
+  cancel-in-progress: false
+
+jobs:
+  produce-and-deliver-songtrai-reel:
+    runs-on: ubuntu-latest
+    timeout-minutes: 25
+
+    steps:
+      - name: "📥 Depoyu İndir (Checkout)"
+        uses: actions/checkout@v4
+        with:
+          token: ${{ secrets.GH_PAT || secrets.GITHUB_TOKEN }}
+
+      - name: "🐍 Python 3.11 Kurulumu"
+        uses: actions/setup-python@v5
+        with:
+          python-version: "3.11"
+          cache: "pip"
+
+      - name: "🎬 FFmpeg ve 10 Dil Unicode Font Kütüphanelerini (Latin/Kiril/CJK/Devanagari) Kur"
+        run: |
+          sudo apt-get update
+          sudo apt-get install -y ffmpeg fonts-dejavu-core fonts-liberation fonts-noto-cjk fonts-noto-core
+
+      - name: "📦 Python Bağımlılıklarını Yükle"
+        run: |
+          pip install --upgrade pip
+          pip install -r requirements.txt
+
+      - name: "🎵 @songtraibot Saatlik 2K Saf Beyaz Stüdyo Şarkı Çevirisi Üretimi & Telegram Teslimatı"
+        env:
+          TELEGRAM_BOT_TOKEN: ${{ secrets.TELEGRAM_BOT_TOKEN || '8824304361:AAFeGn-3yjGbd_YA-80GHo3wS6p2v-b-pRA' }}
+          TELEGRAM_CHAT_ID: ${{ secrets.TELEGRAM_CHAT_ID || '995164733' }}
+          GH_TOKEN: ${{ secrets.GH_PAT || secrets.GITHUB_TOKEN }}
+          SONGTRAI_LANGUAGE: ${{ github.event.inputs.language || 'otomatik' }}
+          SONGTRAI_QUERY: ${{ github.event.inputs.custom_query || '' }}
+          SONGTRAI_BATCH_COUNT: ${{ github.event.inputs.batch_count || '1' }}
+          EVENT_NAME: ${{ github.event_name }}
+        run: |
+          MIN_NUM=$((10#$(date -u +%M)))
+          IS_HOURLY_SLOT=0
+          # Günün her saati (her saatin ilk 5 dakikası) otomatik stok üret!
+          if [ "$MIN_NUM" -lt 5 ]; then
+            IS_HOURLY_SLOT=1
+          fi
+
+          if [ "$EVENT_NAME" = "workflow_dispatch" ] || [ "$IS_HOURLY_SLOT" = "1" ]; then
+            python src/main.py \
+              --language "$SONGTRAI_LANGUAGE" \
+              --query "$SONGTRAI_QUERY" \
+              --batch-count "$SONGTRAI_BATCH_COUNT" \
+              --output output/songtrai_reel_final.mp4 \
+              --setup-bot
+          else
+            python src/main.py \
+              --language "$SONGTRAI_LANGUAGE" \
+              --output output/songtrai_reel_final.mp4 \
+              --only-if-telegram-pending
+          fi
+
+      - name: "📤 Üretilen 2K Şarkı Çeviri Videosu, Kapak ve Kopyala-Yapıştır Metinlerini Artifact Olarak Kaydet"
+        if: always() && hashFiles('output/*.mp4') != ''
+        uses: actions/upload-artifact@v4
+        with:
+          name: songtraibot-2k-reel-${{ github.run_number }}
+          path: |
+            output/*.mp4
+            output/hook_cover.jpg
+            output/1_music_sync_guide.txt
+            output/2_social_caption_copypaste.txt
+            output/song_concept_metadata.json
+            output/zero_repeat_ledger.json
+          retention-days: 7
+
+      - name: "💾 Aboneleri, Kuyruğu ve Sıfır-Tekrar Defterini Depoya Kaydet"
+        if: always()
+        shell: bash
+        run: |
+          git config user.name "SongtraiBot"
+          git config user.email "bot@songtrai.com"
+          for f in \
+            assets/telegram_subscribers.json \
+            output/zero_repeat_ledger.json \
+            output/telegram_pending_queue.json \
+            output/telegram_update_offset.json; do
+            if [ -e "$f" ]; then
+              git add -f "$f" || true
+            fi
+          done
+          if ! git diff --staged --quiet; then
+            git commit -m "chore(songtraibot): sync subscribers, queue and zero-repeat ledger [skip ci]" || true
+            git pull --rebase -X theirs origin main || true
+            git push origin main || true
+          fi
