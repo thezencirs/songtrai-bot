@@ -84,29 +84,17 @@ jobs:
           GH_TOKEN: ${{ secrets.GH_PAT || secrets.GITHUB_TOKEN }}
           SONGTRAI_LANGUAGE: ${{ github.event.inputs.language || 'otomatik' }}
           SONGTRAI_QUERY: ${{ github.event.inputs.custom_query || '' }}
-          SONGTRAI_BATCH_COUNT: ${{ github.event.inputs.batch_count || '1' }}
+          SONGTRAI_BATCH_COUNT: ${{ github.event.inputs.batch_count || '2' }}
           EVENT_NAME: ${{ github.event_name }}
         run: |
-          MIN_NUM=$((10#$(date -u +%M)))
-          IS_HOURLY_SLOT=0
-          # Günün her saati (her saatin ilk 5 dakikası) otomatik stok üret!
-          if [ "$MIN_NUM" -lt 5 ]; then
-            IS_HOURLY_SLOT=1
-          fi
-
-          if [ "$EVENT_NAME" = "workflow_dispatch" ] || [ "$IS_HOURLY_SLOT" = "1" ]; then
-            python src/main.py \
-              --language "$SONGTRAI_LANGUAGE" \
-              --query "$SONGTRAI_QUERY" \
-              --batch-count "$SONGTRAI_BATCH_COUNT" \
-              --output output/songtrai_reel_final.mp4 \
-              --setup-bot
-          else
-            python src/main.py \
-              --language "$SONGTRAI_LANGUAGE" \
-              --output output/songtrai_reel_final.mp4 \
-              --only-if-telegram-pending
-          fi
+          # GitHub Actions schedule tetiklemeleri dakikayı kaydırabildiği için her zamanlanmış
+          # çalışmada hem Telegram kuyruğunu erit hem de 2 adet uzun (26.5sn) vurucu stok video üret!
+          python src/main.py \
+            --language "$SONGTRAI_LANGUAGE" \
+            --query "$SONGTRAI_QUERY" \
+            --batch-count "$SONGTRAI_BATCH_COUNT" \
+            --output output/songtrai_reel_final.mp4 \
+            --setup-bot
 
       - name: "📤 Üretilen 2K Şarkı Çeviri Videosu, Kapak ve Kopyala-Yapıştır Metinlerini Artifact Olarak Kaydet"
         if: always() && hashFiles('output/*.mp4') != ''
