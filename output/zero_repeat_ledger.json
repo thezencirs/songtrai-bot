@@ -1,8 +1,8 @@
 {
-  "updated_at": "2026-11-06T17:36:30.096742Z",
-  "total_used": 11,
-  "last_song_id": "ru_jony_kometa",
-  "last_language": "rusca",
+  "updated_at": "2026-11-06T17:38:47.491321Z",
+  "total_used": 12,
+  "last_song_id": "ja_miki_matsubara_stay_with_me",
+  "last_language": "japonca",
   "used_ids": [
     "fr_indila_derniere_danse",
     "ru_rauf_faik_detstvo",
@@ -14,6 +14,7 @@
     "hi_arijit_singh_tum_hi_ho",
     "en_arctic_monkeys_i_wanna_be_yours",
     "fr_stromae_papaoutai",
-    "ru_jony_kometa"
+    "ru_jony_kometa",
+    "ja_miki_matsubara_stay_with_me"
   ]
 }
