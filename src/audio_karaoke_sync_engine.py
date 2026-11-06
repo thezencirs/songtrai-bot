@@ -157,12 +157,42 @@ def _normalize_lyric_key(s: str) -> str:
     return re.sub(r"\s+", " ", s_low).strip()
 
 
+_CATALOG_STANZAS_LOADED = False
+
+
+def _ensure_catalog_translations_loaded() -> None:
+    global _CATALOG_STANZAS_LOADED
+    if _CATALOG_STANZAS_LOADED:
+        return
+    _CATALOG_STANZAS_LOADED = True
+    try:
+        from song_catalog_10langs import SONG_MASTER_CATALOG
+        for s_obj in SONG_MASTER_CATALOG:
+            for st in (s_obj.get("stanzas") or []):
+                o_txt = _normalize_lyric_key(st.get("orig", ""))
+                t_txt = (st.get("tr") or "").strip()
+                if o_txt and t_txt and o_txt not in CURATED_POETIC_TRANSLATIONS:
+                    CURATED_POETIC_TRANSLATIONS[o_txt] = t_txt
+                # Virgülle ayrılmış yarı-dizeleri de indeksle
+                if "," in st.get("orig", "") and "," in t_txt:
+                    o_parts = [p.strip() for p in st["orig"].split(",") if len(p.strip()) >= 6]
+                    t_parts = [p.strip() for p in t_txt.split(",") if len(p.strip()) >= 6]
+                    if len(o_parts) == len(t_parts):
+                        for op, tp in zip(o_parts, t_parts):
+                            ok = _normalize_lyric_key(op)
+                            if ok and ok not in CURATED_POETIC_TRANSLATIONS:
+                                CURATED_POETIC_TRANSLATIONS[ok] = tp
+    except Exception:
+        pass
+
+
 def translate_line_to_poetic_turkish(orig_line: str, src_lang_code: str = "auto") -> str:
     """
     Orijinal şarkı dizesini:
-    1) Önce küratörlü şiirsel Türkçe çeviri hafızasında arar,
+    1) Önce küratörlü şiirsel Türkçe çeviri hafızasında ve `SONG_MASTER_CATALOG` içinde arar,
     2) Bulamazsa çevirip doğal/edebi Türkçe akışına göre rötuşlar.
     """
+    _ensure_catalog_translations_loaded()
     norm_k = _normalize_lyric_key(orig_line)
     if norm_k in CURATED_POETIC_TRANSLATIONS:
         return CURATED_POETIC_TRANSLATIONS[norm_k]
@@ -366,9 +396,62 @@ def _build_word_timings(
     return words_out
 
 
+def _extract_chorus_climax_lines_from_lrc(
+    lrc_lines: List[Dict[str, Any]],
+    song: Dict[str, Any],
+    desired_count: int = 7,
+) -> List[Dict[str, str]]:
+    """
+    LRCLIB zamanlı sözleri içinden şarkının en vurucu nakarat/zirve bloğunu (6-8 benzersiz satır) seçer.
+    Önce şarkının küratörlü `stanzas` satırlarıyla eşleşen nakarat bölgesini arar; bulamazsa
+    şarkının en yoğun duygusal zirve penceresini (35% - 75% aralığı) seçer.
+    """
+    if not lrc_lines:
+        return []
+
+    stanzas = song.get("stanzas") or []
+    stanza_map = {_normalize_lyric_key(s.get("orig", "")): s for s in stanzas if s.get("orig")}
+
+    start_idx = max(0, int(len(lrc_lines) * 0.30))
+    for i, item in enumerate(lrc_lines):
+        k = _normalize_lyric_key(item.get("text", ""))
+        if k in stanza_map or any(sk and (sk in k or k in sk) for sk in stanza_map.keys()):
+            start_idx = i
+            break
+
+    picked: List[Dict[str, str]] = []
+    seen_norm = set()
+    lang_code = song.get("language_code", "auto")
+
+    for item in lrc_lines[start_idx:] + lrc_lines[:start_idx]:
+        orig_txt = (item.get("text") or "").strip()
+        norm_k = _normalize_lyric_key(orig_txt)
+        if len(norm_k) < 3 or norm_k in seen_norm:
+            continue
+        seen_norm.add(norm_k)
+
+        matched_st = stanza_map.get(norm_k)
+        if matched_st:
+            tr_txt = matched_st.get("tr", "")
+            pron_txt = matched_st.get("pron", "")
+        else:
+            tr_txt = translate_line_to_poetic_turkish(orig_txt, src_lang_code=lang_code)
+            pron_txt = ""
+
+        picked.append({
+            "orig": orig_txt,
+            "pron": pron_txt if pron_txt.lower() != orig_txt.lower() else "",
+            "tr": tr_txt,
+        })
+        if len(picked) >= desired_count:
+            break
+
+    return picked
+
+
 def synchronize_song_karaoke_timeline(
     song: Dict[str, Any],
-    target_duration: float = 17.5,
+    target_duration: float = 26.5,
 ) -> Dict[str, Any]:
     """
     1) Gerçek şarkı sesini indirir (`raw_audio_path`).
@@ -415,6 +498,7 @@ def synchronize_song_karaoke_timeline(
     # Whisper segmentleri ile LRCLIB resmi zamanlı sözlerini eşleştirerek tam `t_offset` bul
     matched_events: List[Dict[str, Any]] = []
     audio_trim_start = 0.0
+    actual_duration = target_duration
 
     if lrc_lines and whisper_segs:
         try:
@@ -425,7 +509,7 @@ def synchronize_song_karaoke_timeline(
         best_offset = None
         best_score = -1.0
 
-        for w_seg in whisper_segs[:4]:
+        for w_seg in whisper_segs[:6]:
             w_norm = _normalize_lyric_key(w_seg["text"])
             if len(w_norm) < 4:
                 continue
@@ -446,30 +530,31 @@ def synchronize_song_karaoke_timeline(
                     # Bu offset ile pencere içindeki diğer satırların uyumunu puanla
                     window_lines = [
                         x for x in lrc_lines
-                        if (cand_offset - 0.8) <= x["time"] <= (cand_offset + target_duration + 4.0)
+                        if (cand_offset - 0.8) <= x["time"] <= (cand_offset + target_duration + 3.0)
                     ]
                     score = sim + len(window_lines) * 4.5
-                    if score > best_score and len(window_lines) >= 3:
+                    if score > best_score and len(window_lines) >= 4:
                         best_score = score
                         best_offset = cand_offset
 
         if best_offset is not None:
-            # İlk vokal cümlesinin 0.6sn öncesinden sesi başlat ki başında boşluk olmasın
+            # İlk vokal cümlesinin 0.5sn öncesinden sesi başlat ki başında boşluk olmasın
             window_lrc = [
                 x for x in lrc_lines
-                if (best_offset - 0.5) <= x["time"] <= (best_offset + 28.5)
+                if (best_offset - 0.5) <= x["time"] <= (best_offset + 29.2)
             ]
             if window_lrc:
                 first_lrc_in_clip = max(0.0, window_lrc[0]["time"] - best_offset)
-                audio_trim_start = max(0.0, min(8.0, first_lrc_in_clip - 0.65))
+                audio_trim_start = max(0.0, min(3.5, first_lrc_in_clip - 0.50))
+                actual_duration = round(min(target_duration, max(24.0, 29.4 - audio_trim_start)), 2)
                 clip_start_in_full_song = best_offset + audio_trim_start
 
                 for x in lrc_lines:
                     rel_s = x["time"] - clip_start_in_full_song
                     rel_e = x["end_time"] - clip_start_in_full_song
-                    if -0.2 <= rel_s <= (target_duration - 0.8):
+                    if -0.2 <= rel_s <= (actual_duration - 0.8):
                         s_clamped = max(0.25, rel_s)
-                        e_clamped = min(target_duration - 0.15, max(s_clamped + 1.6, rel_e))
+                        e_clamped = min(actual_duration - 0.15, max(s_clamped + 1.6, rel_e))
                         orig_txt = x["text"]
                         tr_txt = translate_line_to_poetic_turkish(
                             orig_txt,
@@ -485,38 +570,52 @@ def synchronize_song_karaoke_timeline(
                             "tr_words": _build_word_timings(tr_txt, s_clamped, e_clamped),
                         })
 
-    # Eğer LRC eşleşmesi 3 satırdan azsa (örn. Kiril/Kanji/Hangul alfabesiyle Whisper Latin yazdıysa),
-    # Whisper'ın gerçek vokal başlangıç/bitiş saniyelerini (`whisper_segs`) şarkının küratörlü/LRC
-    # dizelerine birebir oturt!
-    if len(matched_events) < 3:
+    # Eğer LRC eşleşmesi 4 satırdan azsa (örn. Kiril/Kanji/Hangul alfabesiyle Whisper farklı alfabede yazdıysa),
+    # LRCLIB nakarat bloğu + küratörlü `stanzas` dizelerini birleştirip 6-7 benzersiz vurucu dizeyi
+    # Whisper'ın gerçek vokal başlangıç/bitiş saniyelerine (`whisper_segs`) birebir oturt!
+    if len(matched_events) < 4:
         matched_events = []
-        stanzas = song.get("stanzas") or []
+        base_stanzas = list(song.get("stanzas") or [])
+        lrc_climax = _extract_chorus_climax_lines_from_lrc(lrc_lines, song, desired_count=7)
+
+        combined_stanzas: List[Dict[str, str]] = []
+        seen_orig = set()
+        for s_item in base_stanzas + lrc_climax:
+            k_o = _normalize_lyric_key(s_item.get("orig", ""))
+            if k_o and k_o not in seen_orig:
+                seen_orig.add(k_o)
+                combined_stanzas.append(s_item)
+
+        if not combined_stanzas:
+            combined_stanzas = base_stanzas
+
         if whisper_segs:
             first_v = whisper_segs[0]["start"]
-            audio_trim_start = max(0.0, min(6.0, first_v - 0.65))
+            audio_trim_start = max(0.0, min(3.2, first_v - 0.50))
         else:
             audio_trim_start = 0.0
 
-        # Vokal pencerelerini belirle
-        n_lines = max(4, min(6, len(stanzas)))
-        usable_dur = target_duration - 1.0
+        actual_duration = round(min(target_duration, max(24.0, 29.4 - audio_trim_start)), 2)
+
+        # Vokal pencerelerini belirle (26.5sn boyunca 6-7 vurucu dize)
+        n_lines = max(5, min(7, len(combined_stanzas)))
+        usable_dur = actual_duration - 0.9
         slot_dur = usable_dur / float(n_lines)
 
         for idx in range(n_lines):
-            st = stanzas[idx % len(stanzas)]
-            # Eğer whisper segmenti varsa onun gerçek başlangıç anına hizala
+            st = combined_stanzas[idx % len(combined_stanzas)]
             if idx < len(whisper_segs):
-                w_s = max(0.35, whisper_segs[idx]["start"] - audio_trim_start)
-                w_e = max(w_s + 2.2, whisper_segs[idx]["end"] - audio_trim_start)
-                if w_s < target_duration - 1.2:
+                w_s = max(0.30, whisper_segs[idx]["start"] - audio_trim_start)
+                w_e = max(w_s + 2.4, whisper_segs[idx]["end"] - audio_trim_start)
+                if w_s < actual_duration - 1.5 and idx == 0:
                     s_sec = w_s
-                    e_sec = min(target_duration - 0.2, w_e)
+                    e_sec = min(actual_duration - 0.2, max(s_sec + slot_dur * 0.85, w_e))
                 else:
-                    s_sec = 0.55 + idx * slot_dur
-                    e_sec = s_sec + slot_dur - 0.15
+                    s_sec = 0.45 + idx * slot_dur
+                    e_sec = s_sec + slot_dur - 0.12
             else:
-                s_sec = 0.55 + idx * slot_dur
-                e_sec = s_sec + slot_dur - 0.15
+                s_sec = 0.45 + idx * slot_dur
+                e_sec = s_sec + slot_dur - 0.12
 
             orig_txt = st.get("orig", "")
             tr_txt = st.get("tr", "") or translate_line_to_poetic_turkish(orig_txt, song.get("language_code", "auto"))
@@ -553,7 +652,7 @@ def synchronize_song_karaoke_timeline(
     return {
         "raw_audio_path": str(raw_audio_path) if raw_audio_path else "",
         "audio_trim_start": round(audio_trim_start, 3),
-        "duration": target_duration,
+        "duration": actual_duration,
         "events": matched_events,
     }
 
