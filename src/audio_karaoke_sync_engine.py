@@ -130,6 +130,57 @@ CURATED_POETIC_TRANSLATIONS: Dict[str, str] = {
     "wie ein komet der zweimal einschlägt": "Gökyüzünde iki kez iz bırakan bir kuyruklu yıldız gibi",
     "vielleicht tut es weh doch will auf nummer sicher gehen": "Belki canımız yanacak ama izimizin silinmeyeceğinden emin olmak istiyorum",
     "dass ich für immer leb": "Senin hafızanda sonsuza dek yaşayabilmek için",
+    "lass uns nochmal aufdreh'n": "Hadi sesi son bir kez daha sonuna kadar açalım",
+    "lass uns nochmal aufdrehn": "Hadi sesi son bir kez daha sonuna kadar açalım",
+    # Stromae - Papaoutai
+    "dites moi d'où il vient": "Bana onun nereden geldiğini söyleyin",
+    "enfin je saurai où je vais": "Ancak o zaman hayatta nereye gideceğimi bileceğim",
+    "maman dit que lorsqu'on cherche bien": "Annem der ki: İnsan gerçekten dikkatlice ararsa",
+    "on finit toujours par trouver": "Sonunda aradığını mutlaka bulur",
+    "elle dit qu'il n'est jamais très loin": "Asla çok uzakta olmadığını söylüyor",
+    "qu'il part très souvent travailler": "Sadece çalışmak için çok sık gittiğini söylüyor",
+    "maman dit travailler c'est bien": "Annem çalışmanın güzel bir şey olduğunu söyler",
+    "bien mieux qu'être mal accompagné": "Yanlış insanlarla olmaktan çok daha iyidir der",
+    "pas vrai": "Öyle değil mi?",
+    "où est ton papa": "Peki senin baban nerede?",
+    "dis moi où est ton papa": "Söyle bana, baban nerede?",
+    "sans même devoir lui parler": "Ona tek kelime bile söylememe gerek kalmadan",
+    "il sait ce qu'il ne va pas": "İçimde neyin yolunda gitmediğini bakışımdan anlar",
+    "ah sacré papa": "Ah benim canım babam",
+    "dis moi où es tu caché": "Söyle bana, nereye saklandın?",
+    "ça doit faire au moins mille fois que j'ai대": "Parmaklarımı tam bin kez saydım ama hâlâ yoksun",
+    "où t'es papaoutai": "Neredesin baba, söyle neredesin?",
+    "outai outai où papaoutai": "Neredesin, hangi uzaklardasın baba?",
+    # Lady Gaga & Bruno Mars - Die With A Smile
+    "ooh i just woke up from a dream": "Az önce öyle derin bir rüyadan uyandım ki",
+    "where you and i had to say goodbye": "Rüyamda seninle sonsuza dek vedalaşmak zorunda kalıyorduk",
+    "and i don't know what it all means": "Ve bütün bunların ne anlama geldiğini bilmiyorum",
+    "but since i survived i realized": "Ama gözlerimi açtığımda tek bir gerçeği anladım",
+    "wherever you go that's where i'll follow": "Sen nereye gidersen git, adımlarım hep izini takip edecek",
+    "nobody's promised tomorrow": "Kimseye yarının garantisi verilmedi bu hayatta",
+    "so i'ma love you every night like it's the last night": "Bu yüzden seni her gece son gecemizmiş gibi seveceğim",
+    "like it's the last night": "Tıpkı son gecemizmiş gibi...",
+    "if the world was ending": "Eğer bugün dünyanın sonu gelseydi",
+    "i'd wanna be next to you": "Yalnızca senin yanı başında olmak isterdim",
+    "if the party was over": "Eğer bu hayat şöleni sona erseydi",
+    "and our time on earth was through": "Ve bu yeryüzündeki vaktimiz tamamen dolsaydı",
+    "i'd wanna hold you just for a while": "Sana son bir kez sımsıkı sarılmak",
+    "and die with a smile": "Ve yüzümde bir tebessümle gözlerimi yummak isterdim",
+    "if the world was ending i'd wanna be next to you": "Eğer dünyanın sonu gelseydi, yalnızca senin yanında olmak isterdim",
+    "right next to you": "Tam yanı başında, seninle...",
+    # Rosalía - Despechá & FloyyMenor - Gata Only
+    "baby no me llames que yo estoy ocupá olvidando tus males": "Artık beni arama; bana yaşattığın kırgınlıkları unutmakla meşgulüm",
+    "ya decidí que esta noche se sale": "Bu gece tüm kederi geride bırakıp dışarı çıkmaya karar verdim",
+    "con todas mis motomamis con todas mis gyales": "Tüm dostlarımla, kendi gücümle yeniden ayaktayım",
+    "y ando despechá oah alocá": "Kalbim kırık belki ama ruhum artık tamamen özgür",
+    "mami te siento lejana hora de que seas mía": "Seni çok uzakta hissediyorum; artık aradaki mesafeyi kapatma vakti",
+    "pégate baílame que contigo quiero estar": "Yaklaş yanıma ve benimle dans et; yalnızca seninle olmak istiyorum",
+    "tranquila que nadie nos va a encontrar": "İçin rahat olsun; bizim dünyamızda kimse bizi bulamayacak",
+    # Måneskin - Zitti e buoni & Rocco Hunt - A un passo dalla luna
+    "siamo fuori di testa ma diversi da loro": "Belki biraz çılgınız ama onlardan tamamen farklıyız",
+    "e tu sei fuori di testa ma diversa da loro": "Sen de kalıplara sığmıyorsun, herkesten çok farklısın",
+    "parla la gente purtroppo parla non sa di che cosa parla": "İnsanlar ne yazık ki hiç bilmedikleri hayatlar hakkında konuşup duruyor",
+    "tu portami dove sto a galla che qui mi manca l'aria": "Beni nefes alabileceğim bir kıyıya götür; burada havam daralıyor",
 }
 
 
@@ -170,18 +221,17 @@ def _ensure_catalog_translations_loaded() -> None:
         for s_obj in SONG_MASTER_CATALOG:
             for st in (s_obj.get("stanzas") or []):
                 o_txt = _normalize_lyric_key(st.get("orig", ""))
-                t_txt = (st.get("tr") or "").strip()
+                t_txt = (st.get("tr") or "").strip().rstrip(".")
                 if o_txt and t_txt and o_txt not in CURATED_POETIC_TRANSLATIONS:
                     CURATED_POETIC_TRANSLATIONS[o_txt] = t_txt
-                # Virgülle ayrılmış yarı-dizeleri de indeksle
-                if "," in st.get("orig", "") and "," in t_txt:
-                    o_parts = [p.strip() for p in st["orig"].split(",") if len(p.strip()) >= 6]
-                    t_parts = [p.strip() for p in t_txt.split(",") if len(p.strip()) >= 6]
-                    if len(o_parts) == len(t_parts):
-                        for op, tp in zip(o_parts, t_parts):
-                            ok = _normalize_lyric_key(op)
-                            if ok and ok not in CURATED_POETIC_TRANSLATIONS:
-                                CURATED_POETIC_TRANSLATIONS[ok] = tp
+                # Noktalama işaretleriyle (virgül, noktalı virgül, soru işareti) ayrılmış yarı-dizeleri de indeksle
+                o_parts = [p.strip() for p in re.split(r"[,;?!—]+", st.get("orig", "")) if len(p.strip()) >= 5]
+                t_parts = [p.strip() for p in re.split(r"[,;?!—]+", t_txt) if len(p.strip()) >= 5]
+                if len(o_parts) >= 2 and len(o_parts) == len(t_parts):
+                    for op, tp in zip(o_parts, t_parts):
+                        ok = _normalize_lyric_key(op)
+                        if ok and ok not in CURATED_POETIC_TRANSLATIONS:
+                            CURATED_POETIC_TRANSLATIONS[ok] = tp[:1].upper() + tp[1:]
     except Exception:
         pass
 
@@ -198,8 +248,10 @@ def translate_line_to_poetic_turkish(orig_line: str, src_lang_code: str = "auto"
         return CURATED_POETIC_TRANSLATIONS[norm_k]
 
     for k, v in CURATED_POETIC_TRANSLATIONS.items():
-        if len(k) > 10 and (k in norm_k or norm_k in k):
-            return v
+        if len(k) > 10 and len(norm_k) > 8:
+            ratio = float(len(k)) / float(max(1, len(norm_k)))
+            if 0.68 <= ratio <= 1.38 and (k in norm_k or norm_k in k):
+                return v
 
     clean_in = (orig_line or "").strip()
     if not clean_in:
