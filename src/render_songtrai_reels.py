@@ -353,11 +353,12 @@ def render_songtrai_graphmotion_reel(
     shutil.rmtree(frames_dir, ignore_errors=True)
     os.makedirs(frames_dir, exist_ok=True)
 
-    total_duration = 17.5
-    total_frames = int(total_duration * FPS)
+    target_duration = 26.5
 
-    # 1) Gerçek şarkı sesini indir ve Whisper + LRCLIB ile kelime-kelime karaoke zamanlarını hizala
-    sync_data = synchronize_song_karaoke_timeline(song, target_duration=total_duration)
+    # 1) Gerçek şarkı sesini indir ve Whisper + LRCLIB ile en vurucu 25-27sn nakarat/zirve zamanlarını hizala
+    sync_data = synchronize_song_karaoke_timeline(song, target_duration=target_duration)
+    total_duration = float(sync_data.get("duration", target_duration))
+    total_frames = int(round(total_duration * FPS))
     events = sync_data["events"]
     if events:
         song["stanzas"] = [
