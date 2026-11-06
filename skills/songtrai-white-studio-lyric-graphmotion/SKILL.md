@@ -27,3 +27,11 @@ description: 2K QHD+ (1440x2560 @ 30fps) Pure White Studio (#FFFFFF), Real Song 
 
 ## 3. 10 Global Dil Havuzu & Çoklu Alfabe Desteği
 1. **İngilizce (`en`)** 🇬🇧 | 2. **Rusça (`ru`)** 🇷🇺 | 3. **Japonca (`ja`)** 🇯🇵 | 4. **Almanca (`de`)** 🇩🇪 | 5. **İspanyolca (`es`)** 🇪🇸 | 6. **Korece (`ko`)** 🇰🇷 | 7. **Çince (`zh`)** 🇨🇳 | 8. **İtalyanca (`it`)** 🇮🇹 | 9. **Fransızca (`fr`)** 🇫🇷 | 10. **Hintçe (`hi`)** 🇮🇳
+
+---
+
+## 4. Zorunlu Teknik Koruma Kuralları & Uzun Vurucu Kesit Standardı (26.5s)
+- **Uzun Vurucu Nakarat Zirvesi (`target_duration = 26.5s`):** Şarkının resmi 30 saniyelik önizleme kesitindeki en vurucu nakarat/zirve penceresi (`25.0s – 28.0s`, 6–10 senkronize dize) işlenir; kısa (`15-17s`) kesilmez.
+- **Çerçevesiz Aktif Kelime Vurgusu (`_draw_karaoke_word_block`):** Aktif Türkçe kelimede bitişik kelimelere çarpan dış çerçeve (`outline`) çizilmez; yalnızca `accent_soft_rgb` dolgulu pastel vurgu (`pad_x = S(7)`), `accent_rgb` metin rengi ve kelime altında soldan sağa dolan ilerleme barı kullanılır.
+- **Kırpılmasız Temas Gölgesi (`_paste_with_soft_shadow`):** Ses icadı kartları (`dj_mix_deck`, `retro_cassette`, albüm zarfı) tuvale yapıştırılırken GaussianBlur gölgesinin köşelerde dikdörtgen iz bırakmaması için `pad = max(24, elevation_px * 3)` taşma payı bırakılır.
+- **Tofu (`□□`) Koruması (`_strip_canvas_emojis`):** Pillow TrueType fontlarıyla tuvale yazılan hiçbir metinde Unicode bayrak/sembol emojisi bırakılmaz.
