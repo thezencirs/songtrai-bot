@@ -242,7 +242,7 @@ def _draw_karaoke_word_block(
     if not words_list:
         return start_y
 
-    space_px = S(20 if is_hero_turkish else 15)
+    space_px = S(24 if is_hero_turkish else 18)
     rows = _layout_word_lines(draw, words_list, font, max_width_px, space_px)
     ar, ag, ab = accent_rgb
     sr, sg, sb = accent_soft_rgb
@@ -276,32 +276,32 @@ def _draw_karaoke_word_block(
                 else:
                     # TAM ŞU AN SÖYLENEN AKTİF KELİME (Karaoke Vurgusu — Sıfır Kutu Çerçevesi!)
                     w_prog = max(0.0, min(1.0, (t - w_start) / w_dur))
-                    lift_y = int(round(S(6) * math.sin(w_prog * math.pi)))
+                    lift_y = int(round(S(7) * math.sin(w_prog * math.pi)))
 
                     if is_hero_turkish:
-                        pad_x = S(7)
-                        # Soldan sağa akan yumuşak pastel karaoke fosfor vurgusu (çerçevesiz!)
-                        hl_w = max(S(14), int((w_px + pad_x * 2) * (0.35 + 0.65 * w_prog)))
+                        pad_x = S(9)
+                        # Soldan sağa akan yumuşak pastel karaoke fosfor vurgusu (çerçevesiz, %20 büyütülmüş punto uyumlu!)
+                        hl_w = max(S(16), int((w_px + pad_x * 2) * (0.35 + 0.65 * w_prog)))
                         draw.rounded_rectangle(
                             (
                                 cur_x - pad_x,
-                                cur_y - S(26) - lift_y,
+                                cur_y - S(32) - lift_y,
                                 cur_x - pad_x + hl_w,
-                                cur_y + S(26) - lift_y,
+                                cur_y + S(32) - lift_y,
                             ),
-                            radius=S(12),
+                            radius=S(14),
                             fill=(sr, sg, sb, 255),
                         )
                         # Kelimenin altında soldan sağa dolan canlı karaoke ilerleme çizgisi
-                        fill_w = max(S(10), int(w_px * w_prog))
+                        fill_w = max(S(12), int(w_px * w_prog))
                         draw.rounded_rectangle(
                             (
                                 cur_x,
-                                cur_y + S(27) - lift_y,
-                                cur_x + fill_w,
                                 cur_y + S(33) - lift_y,
+                                cur_x + fill_w,
+                                cur_y + S(40) - lift_y,
                             ),
-                            radius=S(3),
+                            radius=S(4),
                             fill=(ar, ag, ab, 255),
                         )
                         draw.text(
@@ -320,9 +320,9 @@ def _draw_karaoke_word_block(
                             font=font,
                             anchor="mm",
                         )
-                        ul_w = max(S(8), int(w_px * w_prog))
+                        ul_w = max(S(10), int(w_px * w_prog))
                         draw.rounded_rectangle(
-                            (cur_x, cur_y + S(22) - lift_y, cur_x + ul_w, cur_y + S(28) - lift_y),
+                            (cur_x, cur_y + S(27) - lift_y, cur_x + ul_w, cur_y + S(34) - lift_y),
                             radius=S(3),
                             fill=(ar, ag, ab, 255),
                         )
@@ -398,12 +398,13 @@ def render_songtrai_graphmotion_reel(
     }
     deck_badge_txt = f"{lang_code} ({lang_tr})  •  {deck_labels.get(deck_type, 'STÜDYO SENKRON')}"
 
-    f_top_tag = get_script_font(deck_badge_txt, 16, bold=True)
-    f_title = get_script_font(title, 30, bold=True)
-    f_artist = get_script_font(artist, 21, bold=False)
-    f_time = get_script_font("0:00", 16, bold=True)
+    f_top_tag = get_script_font(deck_badge_txt, 19, bold=True)
+    f_title = get_script_font(title, 36, bold=True)
+    f_artist = get_script_font(artist, 25, bold=False)
+    f_time = get_script_font("0:00", 19, bold=True)
 
     cover_saved = False
+    first_ev_start = float(events[0]["start"]) if events else 1.2
 
     for f_idx in range(total_frames):
         t = f_idx / float(FPS)
@@ -438,10 +439,10 @@ def render_songtrai_graphmotion_reel(
 
         # 2) ORTA KİMLİK & CANLI ZAMAN ÇUBUĞU (`y: 710 .. 855`)
         title_line = f"{title}"
-        f_t_fit = f_title if _text_width(draw, title_line, f_title) <= W - S(140) else get_script_font(title, 23, bold=True)
-        draw.text((W // 2, S(718)), title_line, fill=(12, 12, 16, 255), font=f_t_fit, anchor="mm")
+        f_t_fit = f_title if _text_width(draw, title_line, f_title) <= W - S(120) else get_script_font(title, 28, bold=True)
+        draw.text((W // 2, S(714)), title_line, fill=(12, 12, 16, 255), font=f_t_fit, anchor="mm")
         draw.text(
-            (W // 2, S(766)),
+            (W // 2, S(770)),
             f"{artist}  •  {year}" if year else artist,
             fill=(112, 112, 122, 255),
             font=f_artist,
@@ -450,7 +451,7 @@ def render_songtrai_graphmotion_reel(
 
         # Minimalist Apple Music tarzı oynatma çubuğu (Scrub Bar)
         bar_left, bar_right = S(135), W - S(135)
-        bar_y = S(822)
+        bar_y = S(826)
         draw.rounded_rectangle(
             (bar_left, bar_y - S(3), bar_right, bar_y + S(3)),
             radius=S(3),
@@ -466,11 +467,10 @@ def render_songtrai_graphmotion_reel(
             (prog_x - S(9), bar_y - S(9), prog_x + S(9), bar_y + S(9)),
             fill=accent_rgb + (255,),
         )
-        draw.text((bar_left, bar_y + S(26)), _fmt_mmss(t), fill=(130, 130, 140, 255), font=f_time, anchor="lm")
-        draw.text((bar_right, bar_y + S(26)), _fmt_mmss(total_duration), fill=(130, 130, 140, 255), font=f_time, anchor="rm")
+        draw.text((bar_left, bar_y + S(28)), _fmt_mmss(t), fill=(130, 130, 140, 255), font=f_time, anchor="lm")
+        draw.text((bar_right, bar_y + S(28)), _fmt_mmss(total_duration), fill=(130, 130, 140, 255), font=f_time, anchor="rm")
 
-        # 3) ALT BÖLÜM (`y: 910 .. 2420`): SAF BEYAZ FON ÜZERİNDE KELİME VURGULU KARAOKE AKIŞI
-        # Aktif dizeyi bul
+        # 3) ALT BÖLÜM (`y: 910 .. 2420`): SAF BEYAZ FON ÜZERİNDE %20 BÜYÜTÜLMÜŞ KELİME VURGULU KARAOKE AKIŞI
         active_idx = 0
         for idx_e, ev in enumerate(events):
             if t >= ev["start"]:
@@ -483,19 +483,19 @@ def render_songtrai_graphmotion_reel(
         sp_scroll = _remotion_spring(dt_line, damping=16.0, stiffness=135.0, mass=0.8)
         slide_offset_y = int(round((1.0 - min(1.0, sp_scroll)) * S(68)))
 
-        # A) ÖNCEKİ DİZE (Üstte soluk gri, yukarı doğru kayarak uzaklaşır)
+        # A) ÖNCEKİ DİZE (Üstte soluk gri, %20 büyütülmüş punto: 24 -> 29)
         if active_idx > 0:
             prev_ev = events[active_idx - 1]
-            f_prev_tr = get_script_font(prev_ev["tr"], 24, bold=True)
+            f_prev_tr = get_script_font(prev_ev["tr"], 29, bold=True)
             _draw_karaoke_word_block(
                 draw=draw,
                 words_list=prev_ev["tr_words"],
                 t=t,
                 center_x=W // 2,
-                start_y=S(945) + slide_offset_y // 2,
+                start_y=S(940) + slide_offset_y // 2,
                 font=f_prev_tr,
-                max_width_px=W - S(160),
-                line_step_px=S(42),
+                max_width_px=W - S(130),
+                line_step_px=S(52),
                 accent_rgb=accent_rgb,
                 accent_soft_rgb=accent_soft_rgb,
                 is_hero_turkish=True,
@@ -503,10 +503,10 @@ def render_songtrai_graphmotion_reel(
             )
 
         # B) ŞU AN SÖYLENEN AKTİF DİZE (Merkez Sahne — Orijinal Söz + Türkçe Çeviri Kelime Kelime Karaoke!)
-        active_top_y = S(1115) + slide_offset_y
+        active_top_y = S(1110) + slide_offset_y
 
-        # B.1: Orijinal Şarkı Sözü (Kelime Kelime Karaoke)
-        f_orig_active = get_script_font(cur_ev["orig"], 28, bold=True)
+        # B.1: Orijinal Şarkı Sözü (%20 büyütülmüş punto: 28 -> 34)
+        f_orig_active = get_script_font(cur_ev["orig"], 34, bold=True)
         after_orig_y = _draw_karaoke_word_block(
             draw=draw,
             words_list=cur_ev["orig_words"],
@@ -514,59 +514,59 @@ def render_songtrai_graphmotion_reel(
             center_x=W // 2,
             start_y=active_top_y,
             font=f_orig_active,
-            max_width_px=W - S(130),
-            line_step_px=S(54),
+            max_width_px=W - S(110),
+            line_step_px=S(66),
             accent_rgb=accent_rgb,
             accent_soft_rgb=accent_soft_rgb,
             is_hero_turkish=False,
             global_alpha=1.0,
         )
 
-        # B.2: Okunuş (Varsa ve orijinalden farklıysa, ince gri)
+        # B.2: Okunuş (Varsa ve orijinalden farklıysa, %20 büyütülmüş punto: 18 -> 22)
         pron_str = _strip_canvas_emojis(cur_ev.get("pron", ""))
         if pron_str:
-            f_pron = get_script_font(pron_str, 18, bold=False)
+            f_pron = get_script_font(pron_str, 22, bold=False)
             draw.text(
-                (W // 2, after_orig_y + S(12)),
+                (W // 2, after_orig_y + S(14)),
                 f"({pron_str})",
                 fill=(136, 136, 146, 255),
                 font=f_pron,
                 anchor="mm",
             )
-            after_orig_y += S(52)
+            after_orig_y += S(58)
         else:
-            after_orig_y += S(24)
+            after_orig_y += S(26)
 
         # İnce zarif vurgu noktası / çizgi
         draw.rounded_rectangle(
-            (W // 2 - S(36), after_orig_y, W // 2 + S(36), after_orig_y + S(5)),
+            (W // 2 - S(42), after_orig_y, W // 2 + S(42), after_orig_y + S(6)),
             radius=S(3),
             fill=accent_rgb + (220,),
         )
 
-        # B.3: ANA ODAK — TERTEMİZ TÜRKÇE ÇEVİRİ (Kelime Kelime Karaoke Kapsül Vurgulu!)
-        f_tr_active = get_script_font(cur_ev["tr"], 38, bold=True)
+        # B.3: ANA ODAK — TERTEMİZ TÜRKÇE ÇEVİRİ (%20 büyütülmüş punto: 38 -> 46!)
+        f_tr_active = get_script_font(cur_ev["tr"], 46, bold=True)
         after_tr_y = _draw_karaoke_word_block(
             draw=draw,
             words_list=cur_ev["tr_words"],
             t=t,
             center_x=W // 2,
-            start_y=after_orig_y + S(62),
+            start_y=after_orig_y + S(72),
             font=f_tr_active,
-            max_width_px=W - S(120),
-            line_step_px=S(74),
+            max_width_px=W - S(100),
+            line_step_px=S(90),
             accent_rgb=accent_rgb,
             accent_soft_rgb=accent_soft_rgb,
             is_hero_turkish=True,
             global_alpha=1.0,
         )
 
-        # C) SIRADAKİ DİZE (Altta soluk gri, sırası geldiğinde yukarı kaymaya hazır)
+        # C) SIRADAKİ DİZE (%20 büyütülmüş punto: 21 -> 25 ve 25 -> 30)
         if active_idx + 1 < len(events):
             next_ev = events[active_idx + 1]
-            next_y = max(after_tr_y + S(65), S(1620))
-            f_next_orig = get_script_font(next_ev["orig"], 21, bold=False)
-            f_next_tr = get_script_font(next_ev["tr"], 25, bold=True)
+            next_y = max(after_tr_y + S(75), S(1680))
+            f_next_orig = get_script_font(next_ev["orig"], 25, bold=False)
+            f_next_tr = get_script_font(next_ev["tr"], 30, bold=True)
 
             y_n1 = _draw_karaoke_word_block(
                 draw=draw,
@@ -575,8 +575,8 @@ def render_songtrai_graphmotion_reel(
                 center_x=W // 2,
                 start_y=next_y,
                 font=f_next_orig,
-                max_width_px=W - S(160),
-                line_step_px=S(38),
+                max_width_px=W - S(130),
+                line_step_px=S(46),
                 accent_rgb=accent_rgb,
                 accent_soft_rgb=accent_soft_rgb,
                 is_hero_turkish=False,
@@ -587,10 +587,10 @@ def render_songtrai_graphmotion_reel(
                 words_list=next_ev["tr_words"],
                 t=t,
                 center_x=W // 2,
-                start_y=y_n1 + S(12),
+                start_y=y_n1 + S(14),
                 font=f_next_tr,
-                max_width_px=W - S(150),
-                line_step_px=S(42),
+                max_width_px=W - S(120),
+                line_step_px=S(52),
                 accent_rgb=accent_rgb,
                 accent_soft_rgb=accent_soft_rgb,
                 is_hero_turkish=True,
@@ -599,8 +599,8 @@ def render_songtrai_graphmotion_reel(
 
         frame_rgb = apply_editorial_paper_film_grain(canvas.convert("RGB"), frame_idx=f_idx)
 
-        # Kapak fotoğrafı olarak en canlı karaoke anını (t ~ 2.4s) kaydet
-        if not cover_saved and t >= 2.4:
+        # Kapak fotoğrafı olarak aktif kelimenin vurgulandığı canlı karaoke anını kaydet
+        if not cover_saved and t >= max(2.2, first_ev_start + 0.55):
             frame_rgb.save(os.path.join(out_dir, "hook_cover.jpg"), "JPEG", quality=96)
             cover_saved = True
 
