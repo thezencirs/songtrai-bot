@@ -1,8 +1,8 @@
 {
-  "updated_at": "2026-11-06T22:17:57.443420Z",
-  "total_used": 12,
-  "last_song_id": "ja_miki_matsubara_stay_with_me",
-  "last_language": "japonca",
+  "updated_at": "2026-11-06T22:20:06.044895Z",
+  "total_used": 13,
+  "last_song_id": "es_manu_chao_me_gustas_tu",
+  "last_language": "ispanyolca",
   "used_ids": [
     "fr_indila_derniere_danse",
     "ru_rauf_faik_detstvo",
@@ -15,6 +15,7 @@
     "en_arctic_monkeys_i_wanna_be_yours",
     "fr_stromae_papaoutai",
     "ru_jony_kometa",
-    "ja_miki_matsubara_stay_with_me"
+    "ja_miki_matsubara_stay_with_me",
+    "es_manu_chao_me_gustas_tu"
   ]
 }
