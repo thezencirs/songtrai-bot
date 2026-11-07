@@ -1,8 +1,8 @@
 {
-  "updated_at": "2026-11-06T22:20:06.044895Z",
-  "total_used": 13,
-  "last_song_id": "es_manu_chao_me_gustas_tu",
-  "last_language": "ispanyolca",
+  "updated_at": "2026-11-07T02:02:02.841529Z",
+  "total_used": 14,
+  "last_song_id": "ko_newjeans_ditto",
+  "last_language": "korece",
   "used_ids": [
     "fr_indila_derniere_danse",
     "ru_rauf_faik_detstvo",
@@ -16,6 +16,7 @@
     "fr_stromae_papaoutai",
     "ru_jony_kometa",
     "ja_miki_matsubara_stay_with_me",
-    "es_manu_chao_me_gustas_tu"
+    "es_manu_chao_me_gustas_tu",
+    "ko_newjeans_ditto"
   ]
 }
