@@ -1,8 +1,8 @@
 {
-  "updated_at": "2026-11-07T02:02:02.841529Z",
-  "total_used": 14,
-  "last_song_id": "ko_newjeans_ditto",
-  "last_language": "korece",
+  "updated_at": "2026-11-07T02:04:31.899019Z",
+  "total_used": 15,
+  "last_song_id": "it_maneskin_torna_a_casa",
+  "last_language": "italyanca",
   "used_ids": [
     "fr_indila_derniere_danse",
     "ru_rauf_faik_detstvo",
@@ -17,6 +17,7 @@
     "ru_jony_kometa",
     "ja_miki_matsubara_stay_with_me",
     "es_manu_chao_me_gustas_tu",
-    "ko_newjeans_ditto"
+    "ko_newjeans_ditto",
+    "it_maneskin_torna_a_casa"
   ]
 }
