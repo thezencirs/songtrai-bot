@@ -1,8 +1,8 @@
 {
-  "updated_at": "2026-11-07T19:28:02.234390Z",
-  "total_used": 21,
-  "last_song_id": "ja_creepy_nuts_bling_bang",
-  "last_language": "japonca",
+  "updated_at": "2026-11-07T22:53:24.535136Z",
+  "total_used": 22,
+  "last_song_id": "es_alvaro_soler_sofia",
+  "last_language": "ispanyolca",
   "used_ids": [
     "fr_indila_derniere_danse",
     "ru_rauf_faik_detstvo",
@@ -24,6 +24,7 @@
     "en_billie_eilish_birds_of_a_feather",
     "fr_slimane_mon_amour",
     "ru_miyagi_i_got_love",
-    "ja_creepy_nuts_bling_bang"
+    "ja_creepy_nuts_bling_bang",
+    "es_alvaro_soler_sofia"
   ]
 }
