@@ -1,8 +1,8 @@
 {
-  "updated_at": "2026-11-07T19:25:01.308798Z",
-  "total_used": 20,
-  "last_song_id": "ru_miyagi_i_got_love",
-  "last_language": "rusca",
+  "updated_at": "2026-11-07T19:28:02.234390Z",
+  "total_used": 21,
+  "last_song_id": "ja_creepy_nuts_bling_bang",
+  "last_language": "japonca",
   "used_ids": [
     "fr_indila_derniere_danse",
     "ru_rauf_faik_detstvo",
@@ -23,6 +23,7 @@
     "hi_arijit_singh_kesariya",
     "en_billie_eilish_birds_of_a_feather",
     "fr_slimane_mon_amour",
-    "ru_miyagi_i_got_love"
+    "ru_miyagi_i_got_love",
+    "ja_creepy_nuts_bling_bang"
   ]
 }
