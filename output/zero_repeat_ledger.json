@@ -1,8 +1,8 @@
 {
-  "updated_at": "2026-11-07T08:32:38.524825Z",
-  "total_used": 16,
-  "last_song_id": "zh_jay_chou_gao_bai_qi_qiu",
-  "last_language": "cince",
+  "updated_at": "2026-11-07T08:35:16.649602Z",
+  "total_used": 17,
+  "last_song_id": "hi_arijit_singh_kesariya",
+  "last_language": "hintce",
   "used_ids": [
     "fr_indila_derniere_danse",
     "ru_rauf_faik_detstvo",
@@ -19,6 +19,7 @@
     "es_manu_chao_me_gustas_tu",
     "ko_newjeans_ditto",
     "it_maneskin_torna_a_casa",
-    "zh_jay_chou_gao_bai_qi_qiu"
+    "zh_jay_chou_gao_bai_qi_qiu",
+    "hi_arijit_singh_kesariya"
   ]
 }
