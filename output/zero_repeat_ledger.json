@@ -1,8 +1,8 @@
 {
-  "updated_at": "2026-11-07T22:55:44.229911Z",
-  "total_used": 23,
-  "last_song_id": "it_andrea_bocelli_con_te_partiro",
-  "last_language": "italyanca",
+  "updated_at": "2026-11-08T01:57:38.934310Z",
+  "total_used": 24,
+  "last_song_id": "en_lady_gaga_bruno_die_with_a_smile",
+  "last_language": "ingilizce",
   "used_ids": [
     "fr_indila_derniere_danse",
     "ru_rauf_faik_detstvo",
@@ -26,6 +26,7 @@
     "ru_miyagi_i_got_love",
     "ja_creepy_nuts_bling_bang",
     "es_alvaro_soler_sofia",
-    "it_andrea_bocelli_con_te_partiro"
+    "it_andrea_bocelli_con_te_partiro",
+    "en_lady_gaga_bruno_die_with_a_smile"
   ]
 }
