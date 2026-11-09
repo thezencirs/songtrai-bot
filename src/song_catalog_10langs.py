@@ -81,10 +81,15 @@ LANGUAGE_ALIASES: Dict[str, str] = {
     "hindi": "hintce",
     "hi": "hintce",
     "in": "hintce",
+    "arapca": "arapca",
+    "arapça": "arapca",
+    "arabic": "arapca",
+    "ar": "arapca",
 }
 
 LANGUAGE_META: Dict[str, Dict[str, str]] = {
     "ingilizce": {"code": "EN", "name_tr": "İngilizce", "flag": "🇬🇧", "tag": "#ingilizceşarkılar #şarkıçevirileri"},
+    "arapca": {"code": "AR", "name_tr": "Arapça", "flag": "🇸🇦", "tag": "#arapçaşarkılar #arapçaceviri"},
     "rusca": {"code": "RU", "name_tr": "Rusça", "flag": "🇷🇺", "tag": "#rusçaşarkılar #rusçaceviri"},
     "japonca": {"code": "JA", "name_tr": "Japonca", "flag": "🇯🇵", "tag": "#japoncaşarkılar #jpop #animeost"},
     "almanca": {"code": "DE", "name_tr": "Almanca", "flag": "🇩🇪", "tag": "#almancaşarkılar #deutschpop"},
@@ -96,14 +101,23 @@ LANGUAGE_META: Dict[str, Dict[str, str]] = {
     "hintce": {"code": "HI", "name_tr": "Hintçe", "flag": "🇮🇳", "tag": "#hintçeşarkılar #bollywoodsongs"},
 }
 
+# İngilizce popüler şarkılara yüksek ağırlık (%50 İngilizce + %50 diğer 10 global dil rotasyonu)
 LANGUAGE_ROTATION_ORDER: List[str] = [
     "ingilizce",
+    "arapca",
+    "ingilizce",
     "fransizca",
+    "ingilizce",
     "rusca",
-    "japonca",
+    "ingilizce",
     "ispanyolca",
+    "ingilizce",
     "korece",
+    "ingilizce",
+    "japonca",
+    "ingilizce",
     "italyanca",
+    "ingilizce",
     "almanca",
     "cince",
     "hintce",
@@ -1320,6 +1334,397 @@ SONG_MASTER_CATALOG: List[Dict[str, Any]] = [
             },
         ],
     },
+    # =========================================================================
+    # 12. ARAPÇA (AR) POPÜLER EFSANELER & VİRAL HİTLER 🇸🇦
+    # =========================================================================
+    {
+        "id": "ar_sherine_kalam_eineh",
+        "language": "arapca",
+        "language_code": "AR",
+        "language_tr": "Arapça",
+        "flag": "🇸🇦",
+        "artist": "Sherine (شيرين)",
+        "title": "Kalam Eineh (كلام عينيه)",
+        "release_year": "2018",
+        "deck_type": "vinyl_turntable",
+        "itunes_query": "Sherine Kalam Eineh",
+        "chorus_timestamp": "0:45 - 1:12 (Nakarat Zirvesi)",
+        "social_audio_search": "Sherine - Kalam Eineh",
+        "cover_kicker": "🇸🇦 TÜRKİYE'DE EN ÇOK SEVİLEN ARAPÇA ŞARKI",
+        "cover_headline": "'GÖZLERİNİN SÖYLEDİĞİ SÖZLER TÜM ŞARKILARDAN DAHA GÜZEL'",
+        "viral_hook": "Milyarlarca kez dinlenen ve sosyal medyada en çok paylaşılan Arapça şarkı olan 'Kalam Eineh', kelimelere ihtiyaç duymadan sadece gözlerin bakışıyla anlatılan büyüleyici bir aşkı anlatır.",
+        "stanzas": [
+            {
+                "orig": "كلام عينيه في الغرام أحلى من الأغاني",
+                "pron": "Kalam eyneyh fil garam ahla min el agani",
+                "tr": "Gözlerinin aşkla söylediği o sessiz sözler, dünyadaki bütün şarkılardan daha güzel.",
+                "highlight": "bütün şarkılardan daha güzel",
+                "note": "Seven bir insanın bakışının en güzel melodiden bile etkileyici olması.",
+            },
+            {
+                "orig": "من كلمتين من سلام ببقى حد تاني",
+                "pron": "Min kelmeteyn min selam bebga had tani",
+                "tr": "Senden gelen iki küçük kelime ve bir selamla bile bambaşka bir insana dönüşüyorum.",
+                "highlight": "bambaşka bir insana dönüşüyorum",
+                "note": "Gerçek aşkın insanın ruhunu bir anda yenilemesi.",
+            },
+            {
+                "orig": "لما يميل قلبي أنا وياخدني الحنين",
+                "pron": "Lemma yemil kalbi ana ve yahudni el hanin",
+                "tr": "Kalbim sana doğru eğildiğinde ve içimi derin bir özlem sardığında...",
+                "highlight": "içimi derin bir özlem sardığında",
+                "note": "Özlemin kalbi sevdiğine doğru çekmesi.",
+            },
+            {
+                "orig": "تغمض عينيا واطير معاه في غمضة عين",
+                "pron": "Tegmad eyneya ve atir maah fi gamdat eyn",
+                "tr": "Gözlerimi kapatıyorum ve göz açıp kapayıncaya dek senin yanına kanatlanıyorum.",
+                "highlight": "senin yanına kanatlanıyorum",
+                "note": "Mesafeleri tek bir hayalle aşan romantik zirve.",
+            },
+        ],
+    },
+    {
+        "id": "ar_amr_diab_tamally_maak",
+        "language": "arapca",
+        "language_code": "AR",
+        "language_tr": "Arapça",
+        "flag": "🇸🇦",
+        "artist": "Amr Diab (عمرو دياب)",
+        "title": "Tamally Maak (تملي معاك)",
+        "release_year": "2000",
+        "deck_type": "retro_cassette",
+        "itunes_query": "Amr Diab Tamally Maak",
+        "chorus_timestamp": "0:38 - 1:05 (Efsane Nakarat)",
+        "social_audio_search": "Amr Diab - Tamally Maak",
+        "cover_kicker": "🇸🇦 YILLARA MEYDAN OKUYAN ARAPÇA KLASİK",
+        "cover_headline": "HERKESİN DUYDUĞU 'TAMALLY MAAK' ŞARKISININ TÜRKÇE ANLAMI",
+        "viral_hook": "Akdeniz ve Orta Doğu müziğinin en unutulmaz gitar melodisine sahip olan 'Tamally Maak', sevdiğinden kilometrelerce uzakta olsa bile ruhunun daima onunla kaldığını anlatır.",
+        "stanzas": [
+            {
+                "orig": "تملي معاك ولو حتى بعيد عني في قلبي هواك",
+                "pron": "Tamalli maak ve lev hatta baid anni fi kalbi hevak",
+                "tr": "Daima seninleyim; benden çok uzaklarda olsan bile aşkın hep kalbimin en içinde.",
+                "highlight": "Daima seninleyim",
+                "note": "Mesafelerin gerçek bağlılığı eksiltemeyeceğini anlatan kült dize.",
+            },
+            {
+                "orig": "تملي معاك تملي في بالي وفي قلبي ولا بنساك",
+                "pron": "Tamalli maak, tamalli fi bali ve fi kalbi vela bensak",
+                "tr": "Her an seninleyim; daima aklımdasın, kalbimdesin ve seni bir an bile unutmuyorum.",
+                "highlight": "seni bir an bile unutmuyorum",
+                "note": "Zihni ve kalbi aynı anda dolduran sadakat.",
+            },
+            {
+                "orig": "تملي واحشني لو حتى بكون وياك",
+                "pron": "Tamalli vahişni lev hatta bekun veyyak",
+                "tr": "Seni o kadar çok seviyorum ki, tam yanımda olduğun anda bile seni özlüyorum.",
+                "highlight": "yanımda olduğun anda bile seni özlüyorum",
+                "note": "Şarkının en ünlü ve en derin aşk dizesi.",
+            },
+            {
+                "orig": "تملي حبيبي بشتاقلك تملي عينيا تندهلك",
+                "pron": "Tamalli habibi beştaglak, tamalli eyneya tendehlak",
+                "tr": "Sevgilim, her nefeste seni arzuluyorum; gözlerim sessizce hep senin adını çağırıyor.",
+                "highlight": "gözlerim sessizce hep senin adını çağırıyor",
+                "note": "Bakışların özlemle sevdiğini araması.",
+            },
+        ],
+    },
+    {
+        "id": "ar_nancy_ajram_ya_tabtab",
+        "language": "arapca",
+        "language_code": "AR",
+        "language_tr": "Arapça",
+        "flag": "🇸🇦",
+        "artist": "Nancy Ajram (نانسي عجرم)",
+        "title": "Ya Tabtab Wa Dalla (يا طبطب ودلع)",
+        "release_year": "2006",
+        "deck_type": "optical_cd_deck",
+        "itunes_query": "Nancy Ajram Ya Tabtab",
+        "chorus_timestamp": "0:35 - 1:02 (Nakarat)",
+        "social_audio_search": "Nancy Ajram - Ya Tabtab Wa Dalla",
+        "cover_kicker": "🇸🇦 2000'LERİN EN POPÜLER ARAPÇA HİTİ • TÜRKÇE ÇEVİRİ",
+        "cover_headline": "ÇOCUKLUĞUMUZDAN BERİ DUYDUĞUMUZ 'YA TABTAB' NE ANLATIYOR?",
+        "viral_hook": "Türkiye'de de yıllarca her yerde çalan bu enerjik şarkı, sevdiği insanın kaprislerinden ve sitemlerinden yorulsa da ondan asla vazgeçemeyen tatlı bir sitemi anlatır.",
+        "stanzas": [
+            {
+                "orig": "يا طبطب ودلع يا يقولي أنا اتغيرت عليه",
+                "pron": "Ya tabtab ve dalla, ya yegulli ana itgayyart aleyh",
+                "tr": "Ya onun gönlünü hoş tutup şımartacağım ya da hemen kendisine karşı değiştiğimi söyleyip küsecek.",
+                "highlight": "gönlünü hoş tutup şımartacağım",
+                "note": "Sevdiği insanın bitmeyen ilgi beklentisine tatlı bir sitem.",
+            },
+            {
+                "orig": "أنا أزعل أولع ما هو كل همه إزاي أرضيه",
+                "pron": "Ana ez'al evalla, ma hu küllü hemmu izzay erdih",
+                "tr": "Ben üzülsem de kahrolsam da fark etmiyor; tek düşündüğü şey onun gönlünü nasıl alacağım.",
+                "highlight": "onun gönlünü nasıl alacağım",
+                "note": "Aşkta hep alttan alan taraf olmanın yorgunluğu.",
+            },
+            {
+                "orig": "قولوله ده أنا برضه ساعات بحالات",
+                "pron": "Gululu de ana bardo saat bi halat",
+                "tr": "Söyleyin ona; benim de bazen kırıldığım, ilgi beklediğim zamanlar oluyor.",
+                "highlight": "benim de bazen kırıldığım",
+                "note": "Karşılıklı anlayış bekleyen samimi çağrı.",
+            },
+            {
+                "orig": "ومهما زعلت أنا قلبي معاه",
+                "pron": "Ve mehma zealt ana kalbi maah",
+                "tr": "Ama ne kadar kızarsam kızayım, kalbim yine de hep onun yanında kalıyor.",
+                "highlight": "kalbim yine de hep onun yanında",
+                "note": "Tüm sitemlere rağmen vazgeçemeyen sevgi.",
+            },
+        ],
+    },
+    # =========================================================================
+    # 13. İNGİLİZCE (EN) YÜKSEK AĞIRLIKLI POPÜLER & KÜLT HİTLER 🇬🇧
+    # =========================================================================
+    {
+        "id": "en_tom_odell_another_love",
+        "language": "ingilizce",
+        "language_code": "EN",
+        "language_tr": "İngilizce",
+        "flag": "🇬🇧",
+        "artist": "Tom Odell",
+        "title": "Another Love",
+        "release_year": "2013",
+        "deck_type": "vinyl_turntable",
+        "itunes_query": "Tom Odell Another Love",
+        "chorus_timestamp": "2:05 - 2:32 (Piyano & Vokal Zirvesi)",
+        "social_audio_search": "Tom Odell - Another Love",
+        "cover_kicker": "🇬🇧 TÜM ZAMANLARIN EN DUYGUSAL İNGİLİZCE ŞARKISI",
+        "cover_headline": "'TÜM GÖZYAŞLARIMI BAŞKA BİR AŞKTA TÜKETTİM'",
+        "viral_hook": "Piyano melodisi başladığı anda herkesin boğazını düğümleyen 'Another Love', geçmişteki bir kalp kırıklığında tüm gözyaşlarını tükettiği için yeni sevdiği insana ağlayacak gücü kalmayan bir kalbin itirafıdır.",
+        "stanzas": [
+            {
+                "orig": "I wanna take you somewhere so you know I care",
+                "pron": "Ay vana teyk yu samver so yu nov ay ker",
+                "tr": "Sana ne kadar değer verdiğimi bilmen için seni çok güzel bir yere götürmek istiyorum.",
+                "highlight": "Sana ne kadar değer verdiğimi bilmen için",
+                "note": "Sevmek isteyen ama geçmişin yükünü taşıyan yorgun bir başlangıç.",
+            },
+            {
+                "orig": "But it's so cold and I don't know where",
+                "pron": "Bat its so kold end ay dont nov ver",
+                "tr": "Ama dışarısı o kadar soğuk ki ve seni nereye götüreceğimi bile bilmiyorum.",
+                "highlight": "nereye götüreceğimi bile bilmiyorum",
+                "note": "İç dünyasındaki çaresizlik ve yönsüzlük.",
+            },
+            {
+                "orig": "And I'doni sing a song that'd be just ours",
+                "pron": "End ayd sing a song det bi cast aurs",
+                "tr": "Sadece ikimize ait olacak o özel şarkıyı sana söylemek isterdim...",
+                "highlight": "Sadece ikimize ait olacak",
+                "note": "Yeni bir hikaye yazma arzusu.",
+            },
+            {
+                "orig": "But I sang 'em all to another heart",
+                "pron": "Bat ay seng em ol tu enadır hart",
+                "tr": "Ama o şarkıların hepsini daha önce başka bir kalbe söyleyip tükettim.",
+                "highlight": "başka bir kalbe söyleyip tükettim",
+                "note": "Şarkının en can yakan kırılma dizesi.",
+            },
+            {
+                "orig": "And if somebody hurts you, I wanna fight",
+                "pron": "End if sambadi hörts yu, ay vana fayt",
+                "tr": "Eğer biri seni incitecek olursa, senin için sonuna kadar savaşmak istiyorum.",
+                "highlight": "senin için sonuna kadar savaşmak",
+                "note": "Koruma ve sahip çıkma içgüdüsü.",
+            },
+            {
+                "orig": "But my hands been broken one too many times",
+                "pron": "Bat may hends bin brokın van tu meni tayms",
+                "tr": "Fakat ellerim geçmişte o kadar çok kez kırıldı ki artık gücüm kalmadı.",
+                "highlight": "ellerim geçmişte o kadar çok kez kırıldı ki",
+                "note": "Geçmiş yaraların bugünkü gücü tüketmesi.",
+            },
+            {
+                "orig": "On another love, all my tears have been used up",
+                "pron": "On enadır lav, ol may tiırs hev bin yuzd ap",
+                "tr": "Başka bir aşk uğruna, içimdeki bütün gözyaşlarım çoktan tükendi.",
+                "highlight": "bütün gözyaşlarım çoktan tükendi",
+                "note": "Nakaratın unutulmaz zirvesi.",
+            },
+        ],
+    },
+    {
+        "id": "en_the_weeknd_blinding_lights",
+        "language": "ingilizce",
+        "language_code": "EN",
+        "language_tr": "İngilizce",
+        "flag": "🇬🇧",
+        "artist": "The Weeknd",
+        "title": "Blinding Lights",
+        "release_year": "2020",
+        "deck_type": "dj_mix_deck",
+        "itunes_query": "The Weeknd Blinding Lights",
+        "chorus_timestamp": "0:48 - 1:15 (Ana Nakarat)",
+        "social_audio_search": "The Weeknd - Blinding Lights",
+        "cover_kicker": "🇬🇧 TARİHİN EN ÇOK DİNLENEN İNGİLİZCE ŞARKISI",
+        "cover_headline": "SPOTIFY REKORU KIRAN 'BLINDING LIGHTS' TÜRKÇE ANLAMI",
+        "viral_hook": "Müzik tarihinde tüm zamanların en çok dinlenen şarkısı olan 'Blinding Lights', gece yarısı şehir ışıklarının altında sevdiği insanın dokunuşu olmadan uyuyamayan bir yalnızlığı anlatır.",
+        "stanzas": [
+            {
+                "orig": "I've been tryna call, I've been on my own for long enough",
+                "pron": "Ayv bin trayna kol, ayv bin on may ovn for long inaf",
+                "tr": "Seni aramaya çalışıyorum; artık yeterince uzun zamandır yapayalnızım.",
+                "highlight": "artık yeterince uzun zamandır yapayalnızım",
+                "note": "Gece yarısı başlayan o tanıdık yalnızlık hissi.",
+            },
+            {
+                "orig": "Maybe you can show me how to love, maybe",
+                "pron": "Meybi yu ken şov mi hav tu lav, meybi",
+                "tr": "Belki de bana yeniden nasıl sevileceğini yalnızca sen öğretebilirsin.",
+                "highlight": "yeniden nasıl sevileceğini",
+                "note": "Soğumuş bir kalbin yeniden ısınma umudu.",
+            },
+            {
+                "orig": "Sin City's cold and empty, no one's around to judge me",
+                "pron": "Sin Sitis kold end empti, no vans eraund tu cac mi",
+                "tr": "Bu koca şehir sensiz buz gibi ve bomboş; etrafta beni yargılayacak kimse bile yok.",
+                "highlight": "sensiz buz gibi ve bomboş",
+                "note": "Kalabalık metropolün sevdiğin yokken ıssızlaşması.",
+            },
+            {
+                "orig": "I look around and Sin City's cold and empty",
+                "pron": "Ay luk eraund end Sin Sitis kold end empti",
+                "tr": "Etrafıma bakıyorum; sensiz her yer soğuk ve anlamsız.",
+                "highlight": "sensiz her yer soğuk",
+                "note": "Şehir ışıkları ne kadar parlasa da iç dünyasının karanlık oluşu.",
+            },
+            {
+                "orig": "I said, ooh, I'm blinded by the lights",
+                "pron": "Ay sed, uuu, aym blayndıd bay dı layts",
+                "tr": "Gözlerim bu sahte ışıklarla kamaşıyor ama aradığım tek ışık sensin.",
+                "highlight": "aradığım tek ışık sensin",
+                "note": "İkonik nakarat dizesi.",
+            },
+            {
+                "orig": "No, I can't sleep until I feel your touch",
+                "pron": "No, ay kent slip antil ay fil yor taç",
+                "tr": "Hayır; senin sıcaklığını ve dokunuşunu hissedene dek gözüme uyku girmeyecek.",
+                "highlight": "dokunuşunu hissedene dek",
+                "note": "Huzuru yalnızca sevdiğinin yanında bulabilme hali.",
+            },
+        ],
+    },
+    {
+        "id": "en_adele_someone_like_you",
+        "language": "ingilizce",
+        "language_code": "EN",
+        "language_tr": "İngilizce",
+        "flag": "🇬🇧",
+        "artist": "Adele",
+        "title": "Someone Like You",
+        "release_year": "2011",
+        "deck_type": "vinyl_turntable",
+        "itunes_query": "Adele Someone Like You",
+        "chorus_timestamp": "1:14 - 1:41 (Nakarat Zirvesi)",
+        "social_audio_search": "Adele - Someone Like You",
+        "cover_kicker": "🇬🇧 İNGİLİZCE AYRILIK ŞARKILARININ ZİRVESİ • TÜRKÇE ÇEVİRİ",
+        "cover_headline": "'ÖNEMİ YOK, SENİN GİBİ BİRİNİ ELBET BULACAĞIM'",
+        "viral_hook": "Adele'in seslendirirken gözyaşlarını tutamadığı bu başyapıt, eski sevdiğinin evlendiğini duyduğunda hem onun adına mutlu olmaya çalışan hem de içten içe yıkılan asil bir vedayı anlatır.",
+        "stanzas": [
+            {
+                "orig": "I heard that you're settled down, that you found a girl and you're married now",
+                "pron": "Ay hörd det yor setıld daun, det yu faund a görl end yor merid nav",
+                "tr": "Duydum ki artık durulmuşsun; kalbine göre birini bulmuş ve evlenmişsin.",
+                "highlight": "kalbine göre birini bulmuş",
+                "note": "Şarkının kalbi durduran ilk cümlesi.",
+            },
+            {
+                "orig": "I heard that your dreams came true, guess she gave you things I didn't give to you",
+                "pron": "Ay hörd det yor drims keym tru, ges şi geyv yu tings ay didnt giv tu yu",
+                "tr": "Hayallerinin gerçekleştiğini duydum; sanırım benim sana veremediğim huzuru o verdi.",
+                "highlight": "benim sana veremediğim huzuru",
+                "note": "Acı bir kabulleniş ve öz eleştiri.",
+            },
+            {
+                "orig": "Never mind, I'll find someone like you",
+                "pron": "Nevır maynd, ayl faynd samvan layk yu",
+                "tr": "Zararı yok, üzülme; elbet bir gün ben de tıpkı senin gibi birini bulacağım.",
+                "highlight": "tıpkı senin gibi birini bulacağım",
+                "note": "Unutmaya çalışırken bile yine ona benzeyen birini arama çelişkisi.",
+            },
+            {
+                "orig": "I wish nothing but the best for you, too",
+                "pron": "Ay viş nating bat dı best for yu tu",
+                "tr": "Senin için de hayatta her zaman en güzelini diliyorum.",
+                "highlight": "her zaman en güzelini diliyorum",
+                "note": "Kırgınlığa rağmen sevdiğinin iyiliğini dileyen olgunluk.",
+            },
+            {
+                "orig": "Don't forget me, I beg, I remember you said",
+                "pron": "Dont forget mi, ay beg, ay rimembır yu sed",
+                "tr": "Yalvarırım beni tamamen unutma; bir zamanlar bana söylediğin o sözü hâlâ hatırlıyorum:",
+                "highlight": "Yalvarırım beni tamamen unutma",
+                "note": "Gururun kırılıp geriye sadece hatıralarda kalma isteğinin kaldığı an.",
+            },
+            {
+                "orig": "Sometimes it lasts in love, but sometimes it hurts instead",
+                "pron": "Samtayms it lasts in lav, bat samtayms it hörts insted",
+                "tr": "Aşk bazen sonsuza dek sürer; ama bazen de geriye sadece derin bir sızı bırakır.",
+                "highlight": "geriye sadece derin bir sızı bırakır",
+                "note": "Tüm zamanların en unutulmaz nakarat kapanışı.",
+            },
+        ],
+    },
+    {
+        "id": "en_sia_unstoppable",
+        "language": "ingilizce",
+        "language_code": "EN",
+        "language_tr": "İngilizce",
+        "flag": "🇬🇧",
+        "artist": "Sia",
+        "title": "Unstoppable",
+        "release_year": "2016",
+        "deck_type": "dj_mix_deck",
+        "itunes_query": "Sia Unstoppable",
+        "chorus_timestamp": "0:46 - 1:13 (Güçlü Nakarat)",
+        "social_audio_search": "Sia - Unstoppable",
+        "cover_kicker": "🇬🇧 ÖZGÜVEN VE GÜÇ VEREN İNGİLİZCE EFSANE",
+        "cover_headline": "GÖZYAŞLARINI GİZLEYİP DÜNYAYA MEYDAN OKUYANLARIN ŞARKISI",
+        "viral_hook": "Milyonlarca insanın motivasyon marşı olan 'Unstoppable', aslında içinde fırtınalar kopsa ve yalnızken ağlasa bile dış dünyaya karşı kırılmaz bir zırh kuşanan güçlü ruhları anlatır.",
+        "stanzas": [
+            {
+                "orig": "I'll smile, I know what it takes to fool this town",
+                "pron": "Ayl smayl, ay nov vat it teyks tu ful dis taun",
+                "tr": "Yüzüme bir gülümseme takınacağım; bu şehri güçlü olduğuma inandırmanın yolunu biliyorum.",
+                "highlight": "güçlü olduğuma inandırmanın yolunu",
+                "note": "İçindeki kırgınlığı dünyadan saklama sanatı.",
+            },
+            {
+                "orig": "I'll do it 'til the sun goes down and all through the night time",
+                "pron": "Ayl du it til dı san goz daun end ol tru dı nayt taym",
+                "tr": "Güneş batana dek ve bütün gece boyunca dimdik durmaya devam edeceğim.",
+                "highlight": "dimdik durmaya devam edeceğim",
+                "note": "Pes etmeyen irade.",
+            },
+            {
+                "orig": "I put my armor on, show you how strong how I am",
+                "pron": "Ay put may armır on, şov yu hav strong hav ay em",
+                "tr": "Görünmez zırhımı kuşanıyorum ve sana ne kadar sarsılmaz olduğumu gösteriyorum.",
+                "highlight": "Görünmez zırhımı kuşanıyorum",
+                "note": "Acıyı güce dönüştüren metafor.",
+            },
+            {
+                "orig": "I'm unstoppable, I'm a Porsche with no brakes",
+                "pron": "Aym anstopıbıl, aym a Porş vit no breyks",
+                "tr": "Ben durdurulamazım; frenleri olmayan, hedefine kilitlenmiş bir fırtına gibiyim.",
+                "highlight": "Ben durdurulamazım",
+                "note": "Nakaratın en enerjik zirvesi.",
+            },
+            {
+                "orig": "I'm invincible, yeah, I win every single game",
+                "pron": "Aym invinsıbıl, ye, ay vin evri singıl geym",
+                "tr": "Ben yenilmezim; hayatın karşıma çıkardığı her mücadeleden zaferle çıkacağım.",
+                "highlight": "her mücadeleden zaferle çıkacağım",
+                "note": "Kendi kendine verilen söz ve motivasyon.",
+            },
+        ],
+    },
 ]
 
 
@@ -1572,19 +1977,17 @@ def select_next_song_concept(
         # Tüm katalog tamamlandıysa ilgili filtrede en baştan temiz rotasyon başlat
         unused = candidates
 
-    # Eğer otomatik moddaysa, son kullanılan dilden farklı bir dili önceliklendir
+    # Otomatik modda İngilizce ağırlıklı (%50 popüler İngilizce + Arapça dahil 11 dil) rotasyon sırasını uygula
     chosen = unused[0]
-    if norm_lang == "otomatik" and LEDGER_PATH.exists():
+    if norm_lang == "otomatik":
         try:
-            last_lang = json.loads(LEDGER_PATH.read_text(encoding="utf-8")).get("last_language", "")
-            if last_lang in LANGUAGE_ROTATION_ORDER:
-                start_idx = (LANGUAGE_ROTATION_ORDER.index(last_lang) + 1) % len(LANGUAGE_ROTATION_ORDER)
-                for offset in range(len(LANGUAGE_ROTATION_ORDER)):
-                    target_l = LANGUAGE_ROTATION_ORDER[(start_idx + offset) % len(LANGUAGE_ROTATION_ORDER)]
-                    match_l = [s for s in unused if s["language"] == target_l]
-                    if match_l:
-                        chosen = match_l[0]
-                        break
+            start_idx = len(used_ids) % len(LANGUAGE_ROTATION_ORDER)
+            for offset in range(len(LANGUAGE_ROTATION_ORDER)):
+                target_l = LANGUAGE_ROTATION_ORDER[(start_idx + offset) % len(LANGUAGE_ROTATION_ORDER)]
+                match_l = [s for s in unused if s["language"] == target_l]
+                if match_l:
+                    chosen = match_l[0]
+                    break
         except Exception:
             pass
 
@@ -1595,7 +1998,7 @@ def build_explanatory_music_guide(song: Dict[str, Any]) -> str:
     """
     Mesaj 1 (Video Altı / Reji & Karaoke Senkron Bilgisi):
     Gerçek şarkı sesinin ve kelime-kelime karaoke çevirisinin videoya milisaniye hassasiyetinde
-    gömüldüğünü ve kullanılan dönemsel ses icadını özetler.
+    gömüldüğünü, dikey 9:16 kapak resmini ve kullanılan dönemsel ses icadını özetler.
     """
     flag = song.get("flag", "🎵")
     lang_tr = song.get("language_tr", "İngilizce")
@@ -1607,45 +2010,64 @@ def build_explanatory_music_guide(song: Dict[str, Any]) -> str:
         f"━━━━━━━━━━━━━━━━━━━━━━",
         f"🌍 <b>Dil:</b> {flag} {lang_tr} ({song.get('language_code', 'EN')})",
         f"🎵 <b>Şarkı:</b> {artist} — <i>{title}</i> ({song.get('release_year', '')})",
-        f"🔊 <b>Ses & Senkron:</b> %100 Gerçek Şarkı Sesi (Sıfır Efekt) + Whisper/LRCLIB Kelime Vurgulu Karaoke",
-        f"🎨 <b>Stüdyo & İcat:</b> Saf Beyaz Fon (#FFFFFF) • Siyah Tipografi • Dönemsel Ses İcadı (Plak / DJ Mix / Kaset / CD)",
+        f"🖼️ <b>Dikey Kapak Resmi (9:16):</b> Paylaşımda kapak olarak seçebileceğiniz şarkıya özel 2K dikey kapak görseli üstte ayrıca gönderildi.",
+        f"🔊 <b>Ses & Senkron:</b> %100 Gerçek Şarkı Sesi (Sıfır Efekt) + Whisper/LRCLIB Kelime Vurgulu Karaoke (26.5 sn Vurucu Nakarat)",
+        f"🎨 <b>Stüdyo & İcat:</b> Saf Beyaz Fon (#FFFFFF) • +20% Büyük Siyah Tipografi • Dönemsel Ses İcadı (Plak / DJ Mix / Kaset / CD)",
         f"",
-        f"📲 <b>Doğrudan Paylaşıma Hazır:</b> Videoda gerçek şarkı sesi ve kelime-kelime Türkçe çeviri senkronu hazırdır; alttaki <b>Saf Kopyala-Yapıştır Açıklama</b> mesajını tek dokunuşla kopyalayıp paylaşabilirsiniz!",
+        f"📲 <b>Doğrudan Paylaşıma Hazır:</b> Alttaki <b>Kısa & SEO Uyumlu Saf Kopyala-Yapıştır Açıklama</b> mesajını tek dokunuşla kopyalayıp paylaşabilirsiniz!",
     ]
     return "\n".join(lines)
 
 
+def _slugify_hashtag(text: str) -> str:
+    base = (text or "").split("(")[0].strip()
+    tr_map = str.maketrans("çğıöşüÇĞİÖŞÜ", "cgiosuCGIOSU")
+    cleaned = base.translate(tr_map).lower()
+    return "".join(ch for ch in cleaned if ("a" <= ch <= "z") or ("0" <= ch <= "9"))
+
+
 def build_pure_copy_paste_caption(song: Dict[str, Any]) -> str:
     """
-    Mesaj 2 (%100 Saf Kopyala-Yapıştır Sosyal Medya Açıklaması):
+    Mesaj 2 (%100 Saf, Kısa ve SEO Uyumlu Kopyala-Yapıştır Sosyal Medya Açıklaması):
     Sıfır sarmalayıcı başlık! Doğrudan kopyalanıp Instagram Reels / TikTok / YouTube Shorts'a yapıştırılır.
     """
     flag = song.get("flag", "🎵")
     lang_tr = song.get("language_tr", "İngilizce")
     artist = song.get("artist", "")
     title = song.get("title", "")
-    hook = song.get("viral_hook", "")
+    hook = (song.get("viral_hook", "") or "").strip()
     lmeta = LANGUAGE_META.get(song.get("language", "ingilizce"), LANGUAGE_META["ingilizce"])
 
+    # En vurucu tek cümlelik Türkçe alıntıyı seç (mırıldanma satırları yerine en anlamlı edebi dize)
+    stanzas = song.get("curated_stanzas") or song.get("stanzas") or []
+    best_tr_quote = ""
+    for st_cand in stanzas:
+        cand_tr = (st_cand.get("tr") or "").strip()
+        if len(cand_tr) >= 24:
+            best_tr_quote = cand_tr
+            break
+    if not best_tr_quote and stanzas:
+        best_tr_quote = max((s.get("tr") or "").strip() for s in stanzas)
+
+    # Hook metnini tek cümlelik kısa SEO özetine indirge
+    short_hook = hook.split(".")[0].strip() + "." if "." in hook else hook
+
+    artist_tag = _slugify_hashtag(artist)
+    title_tag = _slugify_hashtag(title)
+    extra_tags = " ".join(f"#{t}" for t in [artist_tag, title_tag] if t)
+
     lines = [
-        f"{flag} {artist} — “{title}” şarkısının gerçek Türkçe anlamını biliyor muydunuz? 🎶✨",
+        f"{flag} {artist} — “{title}” Türkçe Çeviri ve Anlamı 🎶✨",
         f"",
-        f"{hook}",
-        f"",
-        f"📖 Şarkının En Vurucu Sözleri ve Türkçe Çevirisi:",
     ]
-
-    for idx, st in enumerate(song.get("stanzas") or [], start=1):
-        orig = st.get("orig", "")
-        tr = st.get("tr", "")
-        lines.append(f"{idx}️⃣ “{orig}”")
-        lines.append(f"🇹🇷 Çevirisi: “{tr}”")
-        lines.append("")
-
+    if best_tr_quote:
+        lines.append(f"💬 “{best_tr_quote}”")
+    if short_hook:
+        lines.append(f"{short_hook}")
     lines.extend([
-        f"💬 Sizin bu şarkıda kalbinize en çok dokunan dize hangisi? Yorumlarda buluşalım, bir sonraki çeviri için istediğiniz şarkıyı yazın! 👇",
-        f"📌 Daha sonra tekrar dinlemek ve sözlerini okumak için videoyu kaydetmeyi unutmayın.",
         f"",
-        f"#şarkıçevirileri #türkçeçeviri #şarkılarınhikayesi {lmeta['tag']} #keşfet #reels #lyrics #müzik #songtraibot",
+        f"📌 En sevdiğiniz dize hangisi? Çevirisini istediğiniz şarkıyı yorumlara yazın, kaydetmeyi unutmayın! 👇",
+        f"",
+        f"#şarkıçevirileri #türkçeçeviri #şarkıanlamı {lmeta['tag']} {extra_tags} #keşfet #reels #lyrics #çevirişarkılar".replace("  ", " "),
     ])
     return "\n".join(lines)
