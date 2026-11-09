@@ -47,18 +47,18 @@ def tg_api(
 
 
 def configure_songtrai_bot_profile(token: Optional[str] = None) -> Dict[str, Any]:
-    """@songtraibot profilini, açıklamasını ve 10 dil komutunu Telegram'a kaydeder."""
+    """@songtraibot profilini, açıklamasını ve 11 dil komutunu Telegram'a kaydeder."""
     tok = token or get_bot_token()
     results = {}
     results["setMyName"] = tg_api(
         "setMyName",
-        {"name": "Şarkıların Anlamı • 10 Dil 2K Çeviri (@songtraibot)"},
+        {"name": "Şarkıların Anlamı • 11 Dil 2K Çeviri (@songtraibot)"},
         token=tok,
     )
     results["setMyShortDescription"] = tg_api(
         "setMyShortDescription",
         {
-            "short_description": "🎵 10 Dilde Popüler Şarkıların Edebi Türkçe Çevirisi • 2K Saf Beyaz Stüdyo GraphMotion Reels"
+            "short_description": "🎵 11 Dilde Popüler Şarkıların Edebi Türkçe Çevirisi • 2K Saf Beyaz Stüdyo & Dikey Kapak"
         },
         token=tok,
     )
@@ -66,9 +66,9 @@ def configure_songtrai_bot_profile(token: Optional[str] = None) -> Dict[str, Any
         "setMyDescription",
         {
             "description": (
-                "🎵 Şarkıların Anlamı (@songtraibot) — 10 Dilde Popüler Şarkı Çeviri & 2K Reels Otomasyonu\n\n"
-                "🌍 İngilizce, Rusça, Japonca, Almanca, İspanyolca, Korece, Çince, İtalyanca, Fransızca ve Hintçe "
-                "en popüler şarkıların tertemiz, şiirsel Türkçe çevirilerini Saf Beyaz Stüdyo (#FFFFFF) estetiğiyle hazırlar.\n"
+                "🎵 Şarkıların Anlamı (@songtraibot) — 11 Dilde Popüler Şarkı Çeviri & 2K Reels Otomasyonu\n\n"
+                "🌍 Başta popüler İngilizce hitler olmak üzere; Arapça, Rusça, Japonca, Almanca, İspanyolca, Korece, Çince, İtalyanca, Fransızca ve Hintçe "
+                "en popüler şarkıların tertemiz, şiirsel Türkçe çevirilerini Saf Beyaz Stüdyo (#FFFFFF) estetiğiyle ve şarkıya özel dikey kapak resmiyle hazırlar.\n"
                 "📲 Her saat başı otomatik stok gönderir; ayrıca istediğiniz şarkı adını veya dil komutunu yazarak anında üretebilirsiniz."
             )
         },
@@ -78,9 +78,10 @@ def configure_songtrai_bot_profile(token: Optional[str] = None) -> Dict[str, Any
         "setMyCommands",
         {
             "commands": [
-                {"command": "start", "description": "Komuta merkezini ve 10 dil rehberini aç"},
+                {"command": "start", "description": "Komuta merkezini ve 11 dil rehberini aç"},
                 {"command": "uret", "description": "🎵 Sıradaki popüler şarkıyı 2K çeviriyle üret"},
                 {"command": "ingilizce", "description": "🇬🇧 İngilizce popüler şarkı çevirisi üret"},
+                {"command": "arapca", "description": "🇸🇦 Arapça popüler şarkı çevirisi üret"},
                 {"command": "rusca", "description": "🇷🇺 Rusça popüler şarkı çevirisi üret"},
                 {"command": "japonca", "description": "🇯🇵 Japonca popüler şarkı çevirisi üret"},
                 {"command": "almanca", "description": "🇩🇪 Almanca popüler şarkı çevirisi üret"},
@@ -98,31 +99,32 @@ def configure_songtrai_bot_profile(token: Optional[str] = None) -> Dict[str, Any
 
 
 def build_songtrai_inline_keyboard() -> Dict[str, Any]:
-    """Videonun altına 10 dilde tek tıkla yeni şarkı çevirisi üretme butonları ekler."""
+    """Videonun altına 11 dilde tek tıkla yeni şarkı çevirisi üretme butonları ekler."""
     return {
         "inline_keyboard": [
             [
-                {"text": "🇬🇧 İngilizce Üret", "callback_data": "gen_lang:ingilizce"},
+                {"text": "🇬🇧 İngilizce Hit Üret", "callback_data": "gen_lang:ingilizce"},
+                {"text": "🇸🇦 Arapça Üret", "callback_data": "gen_lang:arapca"},
+            ],
+            [
                 {"text": "🇫🇷 Fransızca Üret", "callback_data": "gen_lang:fransizca"},
-            ],
-            [
                 {"text": "🇷🇺 Rusça Üret", "callback_data": "gen_lang:rusca"},
+            ],
+            [
                 {"text": "🇯🇵 Japonca Üret", "callback_data": "gen_lang:japonca"},
-            ],
-            [
                 {"text": "🇪🇸 İspanyolca Üret", "callback_data": "gen_lang:ispanyolca"},
+            ],
+            [
                 {"text": "🇰🇷 Korece Üret", "callback_data": "gen_lang:korece"},
-            ],
-            [
                 {"text": "🇮🇹 İtalyanca Üret", "callback_data": "gen_lang:italyanca"},
+            ],
+            [
                 {"text": "🇩🇪 Almanca Üret", "callback_data": "gen_lang:almanca"},
-            ],
-            [
                 {"text": "🇨🇳 Çince Üret", "callback_data": "gen_lang:cince"},
-                {"text": "🇮🇳 Hintçe Üret", "callback_data": "gen_lang:hintce"},
             ],
             [
-                {"text": "✨ Otomatik Sıradaki Hit Şarkıyı Üret", "callback_data": "gen_lang:otomatik"},
+                {"text": "🇮🇳 Hintçe Üret", "callback_data": "gen_lang:hintce"},
+                {"text": "✨ Otomatik Hit Üret", "callback_data": "gen_lang:otomatik"},
             ],
         ]
     }
@@ -177,33 +179,70 @@ def deliver_songtrai_package_to_telegram(
     )
 
     v_path = Path(video_mp4_path)
+    cover_path = out_p / "vertical_cover_9x16.jpg"
+    if not cover_path.exists():
+        cover_path = out_p / "hook_cover.jpg"
+
     reply_markup_json = json.dumps(build_songtrai_inline_keyboard())
     chat_ids = load_target_chat_ids(song)
     delivery_report: Dict[str, Any] = {}
 
+    flag = song.get("flag", "🎵")
+    artist = song.get("artist", "")
+    title = song.get("title", "")
+    cover_caption = (
+        f"🖼️ <b>{flag} {artist} — “{title}”</b>\n"
+        f"📐 <b>Paylaşım İçin Özel 9:16 Dikey Kapak Resmi (1440x2560)</b>"
+    )
+
     for cid in chat_ids:
         res_chat: Dict[str, Any] = {}
-        if v_path.exists():
-            with open(v_path, "rb") as vf:
-                r_vid = tg_api(
-                    "sendVideo",
+
+        # Mesaj 1: Şarkıya Özel 9:16 Dikey Kapak Resmi (Paylaşımlarda Kapak Seçimi İçin)
+        if cover_path.exists():
+            with open(cover_path, "rb") as cf:
+                r_cov = tg_api(
+                    "sendPhoto",
                     data={
                         "chat_id": cid,
-                        "caption": guide_msg[:1020],
+                        "caption": cover_caption,
                         "parse_mode": "HTML",
-                        "reply_markup": reply_markup_json,
-                        "supports_streaming": "true",
-                        "width": "1440",
-                        "height": "2560",
                     },
-                    files={"video": vf},
+                    files={"photo": cf},
                     token=tok,
                 )
+                res_chat["vertical_cover_9x16"] = r_cov.get("ok", False)
+
+        # Mesaj 2: 2K Karaoke Video + 11 Dil Butonları
+        if v_path.exists():
+            with open(v_path, "rb") as vf:
+                files_payload: Dict[str, Any] = {"video": vf}
+                cov_fp = open(cover_path, "rb") if cover_path.exists() else None
+                if cov_fp is not None:
+                    files_payload["cover"] = cov_fp
+                try:
+                    r_vid = tg_api(
+                        "sendVideo",
+                        data={
+                            "chat_id": cid,
+                            "caption": guide_msg[:1020],
+                            "parse_mode": "HTML",
+                            "reply_markup": reply_markup_json,
+                            "supports_streaming": "true",
+                            "width": "1440",
+                            "height": "2560",
+                        },
+                        files=files_payload,
+                        token=tok,
+                    )
+                finally:
+                    if cov_fp is not None:
+                        cov_fp.close()
                 res_chat["video"] = r_vid.get("ok", False)
                 if not r_vid.get("ok"):
                     res_chat["video_error"] = r_vid.get("description", "")
 
-        # Mesaj 2: %100 Saf Kopyala-Yapıştır Sosyal Medya Açıklaması (Sıfır Ekstra Başlık!)
+        # Mesaj 3: Kısa ve SEO Uyumlu %100 Saf Kopyala-Yapıştır Sosyal Medya Açıklaması (Sıfır Ekstra Başlık!)
         r_cap = tg_api(
             "sendMessage",
             data={
