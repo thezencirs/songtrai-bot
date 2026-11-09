@@ -29,11 +29,25 @@ from audio_karaoke_sync_engine import (
     prepare_trimmed_song_wav_and_telemetry,
     synchronize_song_karaoke_timeline,
 )
-from era_audio_decks import render_era_audio_deck_on_stage, select_audio_deck_type
+from era_audio_decks import (
+    _make_clean_album_card,
+    _paste_with_soft_shadow,
+    _render_iridescent_cd_disc,
+    render_era_audio_deck_on_stage,
+    select_audio_deck_type,
+)
 from white_studio_optics import (
     apply_editorial_paper_film_grain,
     fetch_official_album_artwork,
+    render_vinyl_record_disc,
 )
+
+try:
+    import arabic_reshaper
+    from bidi.algorithm import get_display as _bidi_get_display
+except Exception:
+    arabic_reshaper = None
+    _bidi_get_display = None
 
 W, H = 1440, 2560
 SCALE = W / 1080.0
@@ -67,6 +81,29 @@ def _remotion_spring(
     return float(max(0.0, min(1.06, val)))
 
 
+def _has_arabic_chars(s: str) -> bool:
+    for ch in (s or ""):
+        cp = ord(ch)
+        if (0x0600 <= cp <= 0x06FF) or (0x0750 <= cp <= 0x077F) or (0xFB50 <= cp <= 0xFDFF) or (0xFE70 <= cp <= 0xFEFF):
+            return True
+    return False
+
+
+def _shape_arabic_text(s: str) -> str:
+    if not s or not _has_arabic_chars(s):
+        return s
+    # Eğer metin zaten sunum formlarına (FE70-FEFF) dönüştürülmüşse tekrar dönüştürme
+    if any(0xFE70 <= ord(ch) <= 0xFEFF for ch in s):
+        return s
+    if arabic_reshaper is not None and _bidi_get_display is not None:
+        try:
+            reshaped = arabic_reshaper.reshape(s)
+            return str(_bidi_get_display(reshaped))
+        except Exception:
+            return s
+    return s
+
+
 def _strip_canvas_emojis(s: str) -> str:
     out_chars = []
     for ch in (s or ""):
@@ -74,7 +111,8 @@ def _strip_canvas_emojis(s: str) -> str:
         if cp >= 0x1F000 or (0x2600 <= cp <= 0x27BF) or cp == 0xFE0F:
             continue
         out_chars.append(ch)
-    return re.sub(r"\s+", " ", "".join(out_chars)).strip()
+    cleaned = re.sub(r"\s+", " ", "".join(out_chars)).strip()
+    return _shape_arabic_text(cleaned)
 
 
 def _tr_upper(s: str) -> str:
@@ -84,6 +122,8 @@ def _tr_upper(s: str) -> str:
 def _detect_script_family(text: str) -> str:
     for ch in (text or ""):
         cp = ord(ch)
+        if (0x0600 <= cp <= 0x06FF) or (0xFB50 <= cp <= 0xFDFF) or (0xFE70 <= cp <= 0xFEFF):
+            return "ar"
         if 0xAC00 <= cp <= 0xD7AF or 0x1100 <= cp <= 0x11FF or 0x3130 <= cp <= 0x318F:
             return "ko"
         if 0x3040 <= cp <= 0x30FF:
@@ -109,7 +149,14 @@ def get_script_font(
     if cache_key in _FONT_CACHE:
         return _FONT_CACHE[cache_key]
 
-    if script == "ko":
+    if script == "ar":
+        candidates = [
+            "C:/Windows/Fonts/segoeuib.ttf" if bold else "C:/Windows/Fonts/segoeui.ttf",
+            "C:/Windows/Fonts/arialbd.ttf" if bold else "C:/Windows/Fonts/arial.ttf",
+            "/usr/share/fonts/truetype/noto/NotoSansArabic-Bold.ttf",
+            "/usr/share/fonts/truetype/dejavu/DejaVuSans-Bold.ttf",
+        ]
+    elif script == "ko":
         candidates = [
             "C:/Windows/Fonts/malgunbd.ttf" if bold else "C:/Windows/Fonts/malgun.ttf",
             "/usr/share/fonts/opentype/noto/NotoSansCJK-Bold.ttc",
@@ -250,10 +297,12 @@ def _draw_karaoke_word_block(
 
     cur_y = start_y
     for row in rows:
-        total_row_w = sum(it["w_px"] for it in row) + space_px * max(0, len(row) - 1)
+        is_rtl_row = any(_has_arabic_chars(it["word"]) for it in row)
+        row_ordered = list(reversed(row)) if is_rtl_row else row
+        total_row_w = sum(it["w_px"] for it in row_ordered) + space_px * max(0, len(row_ordered) - 1)
         cur_x = center_x - (total_row_w // 2)
 
-        for it in row:
+        for it in row_ordered:
             w_str = it["word"]
             w_px = it["w_px"]
             w_start = float(it.get("start", 0.0))
@@ -312,7 +361,7 @@ def _draw_karaoke_word_block(
                             anchor="mm",
                         )
                     else:
-                        # Orijinal sözde aktif kelime: Vurgu rengi + altta sol-sağ karaoke çizgisi
+                        # Orijinal sözde aktif kelime: Vurgu rengi + altta karaoke çizgisi
                         draw.text(
                             (cur_x + w_px // 2, cur_y - lift_y),
                             w_str,
@@ -321,8 +370,10 @@ def _draw_karaoke_word_block(
                             anchor="mm",
                         )
                         ul_w = max(S(10), int(w_px * w_prog))
+                        ul_x1 = (cur_x + w_px - ul_w) if is_rtl_row else cur_x
+                        ul_x2 = (cur_x + w_px) if is_rtl_row else (cur_x + ul_w)
                         draw.rounded_rectangle(
-                            (cur_x, cur_y + S(27) - lift_y, cur_x + ul_w, cur_y + S(34) - lift_y),
+                            (ul_x1, cur_y + S(27) - lift_y, ul_x2, cur_y + S(34) - lift_y),
                             radius=S(3),
                             fill=(ar, ag, ab, 255),
                         )
@@ -337,6 +388,207 @@ def _draw_karaoke_word_block(
 def _fmt_mmss(sec: float) -> str:
     s = max(0, int(round(sec)))
     return f"{s // 60}:{s % 60:02d}"
+
+
+def _wrap_plain_text_lines(
+    draw: ImageDraw.ImageDraw,
+    text: str,
+    font: ImageFont.FreeTypeFont,
+    max_width_px: int,
+) -> List[str]:
+    cleaned = _strip_canvas_emojis(text)
+    if not cleaned:
+        return []
+    words = cleaned.split(" ")
+    lines: List[str] = []
+    cur = ""
+    for w in words:
+        cand = w if not cur else f"{cur} {w}"
+        if _text_width(draw, cand, font) <= max_width_px or not cur:
+            cur = cand
+        else:
+            lines.append(cur)
+            cur = w
+    if cur:
+        lines.append(cur)
+    return lines[:4]
+
+
+def render_songtrai_vertical_cover_9x16(
+    song: Dict[str, Any],
+    album_cover: Image.Image,
+    accent_info: Dict[str, Any],
+    deck_type: str,
+    output_jpg_path: str,
+) -> str:
+    """
+    Paylaşımlarda (Instagram Reels / TikTok / YouTube Shorts) kullanılmak üzere
+    o şarkıya özel, video karesinden FARKLI, dikey (9:16, 1440x2560) editoryal poster kapak resmi üretir.
+    - Tüm ana öğeler 4:5 profil ızgarası güvenli alanı (`y: 280 .. 2280`) içinde hizalanır.
+    - Albüm kılıfından yarı çıkan vinil plak/optik disk kompozisyonu, dev şarkı & sanatçı başlığı,
+      Türkçe kapak manşeti (`cover_headline`) ve şarkının en vurucu Türkçe sözü yer alır.
+    """
+    canvas = _create_pure_white_canvas()
+    draw = ImageDraw.Draw(canvas)
+
+    accent_rgb: Tuple[int, int, int] = accent_info["rgb"]
+    accent_soft_rgb: Tuple[int, int, int] = accent_info["soft_rgb"]
+    ar, ag, ab = accent_rgb
+    sr, sg, sb = accent_soft_rgb
+
+    artist = _strip_canvas_emojis(song.get("artist", "Artist"))
+    title = _strip_canvas_emojis(song.get("title", "Song"))
+    lang_tr = _tr_upper(song.get("language_tr", "İNGİLİZCE"))
+    lang_code = song.get("language_code", "EN")
+    year = str(song.get("release_year", ""))
+    headline = _tr_upper(song.get("cover_headline", "BU ŞARKININ TÜRKÇE ANLAMINI BİLİYOR MUYDUNUZ?"))
+
+    # 1) Üst ve Alt Yumuşak Editoryal Dekoratif Şeritler (Saf Beyaz Stüdyo Estetiği)
+    draw.rounded_rectangle(
+        (S(90), S(290), W - S(90), S(356)),
+        radius=S(33),
+        fill=(sr, sg, sb, 255),
+    )
+    f_badge = get_script_font(lang_tr, 21, bold=True)
+    badge_text = f"{lang_code} • {lang_tr} ŞARKI ÇEVİRİSİ" + (f"   |   {year}" if year else "")
+    draw.text(
+        (W // 2, S(323)),
+        badge_text,
+        fill=(ar, ag, ab, 255),
+        font=f_badge,
+        anchor="mm",
+    )
+
+    # 2) MERKEZ GÖRSEL SAHNE (`y: 410 .. 1060`): Albüm Kılıfı + Yarı Çıkan Vinil Plak / Optik CD
+    sleeve_sz = S(490)
+    disc_sz = S(460)
+    # Plak sağda yarı dışarı çıkmış, albüm kapağı solda önde
+    sleeve_x = (W // 2) - S(320)
+    sleeve_y = S(425)
+    disc_x = sleeve_x + S(215)
+    disc_y = sleeve_y + S(15)
+
+    is_optical = deck_type == "optical_cd_deck"
+    if is_optical:
+        disc_img = _render_iridescent_cd_disc(album_cover, diameter=disc_sz, angle_deg=24.0)
+    else:
+        disc_img = render_vinyl_record_disc(album_cover, diameter=disc_sz, angle_deg=24.0)
+
+    _paste_with_soft_shadow(
+        canvas=canvas,
+        card_rgba=disc_img,
+        x=disc_x,
+        y=disc_y,
+        elevation_px=S(12),
+    )
+
+    # Albüm Kılıfı (Ön Planda, Yuvarlatılmış Köşe + İnce Çerçeve)
+    sleeve_card = _make_clean_album_card(album_cover, sleeve_sz, accent_rgb)
+    _paste_with_soft_shadow(
+        canvas=canvas,
+        card_rgba=sleeve_card,
+        x=sleeve_x,
+        y=sleeve_y,
+        elevation_px=S(14),
+    )
+
+    draw = ImageDraw.Draw(canvas)
+
+    # 3) DEV ŞARKI ADI & SANATÇI KİMLİĞİ (`y: 1005 .. 1165`)
+    f_cov_title = get_script_font(title, 48, bold=True)
+    if _text_width(draw, title, f_cov_title) > W - S(120):
+        f_cov_title = get_script_font(title, 38, bold=True)
+    if _text_width(draw, title, f_cov_title) > W - S(120):
+        f_cov_title = get_script_font(title, 30, bold=True)
+    draw.text((W // 2, S(1025)), title, fill=(10, 10, 14, 255), font=f_cov_title, anchor="mm")
+
+    f_cov_artist = get_script_font(artist, 28, bold=True)
+    draw.text((W // 2, S(1098)), artist, fill=(ar, ag, ab, 255), font=f_cov_artist, anchor="mm")
+
+    # 4) VURUCU KAPAK MANŞETİ (`y: 1170 .. 1350`)
+    f_head = get_script_font(headline, 24, bold=True)
+    head_lines = _wrap_plain_text_lines(draw, headline, f_head, W - S(180))[:2]
+    box_h = S(58) + len(head_lines) * S(42)
+    box_top = S(1168)
+    draw.rounded_rectangle(
+        (S(80), box_top, W - S(80), box_top + box_h),
+        radius=S(22),
+        fill=(ar, ag, ab, 255),
+    )
+    hy = box_top + S(38)
+    for hl in head_lines:
+        draw.text((W // 2, hy), hl, fill=(255, 255, 255, 255), font=f_head, anchor="mm")
+        hy += S(42)
+
+    # 5) ŞARKININ EN VURUCU SÖZÜ & TÜRKÇE ÇEVİRİSİ POSTER BLOĞU (`y: 1365 .. 2110`)
+    stanzas = song.get("curated_stanzas") or song.get("stanzas") or []
+    best_st = stanzas[0] if stanzas else {"orig": "", "tr": ""}
+    for st_cand in stanzas:
+        cand_tr = (st_cand.get("tr") or "").strip()
+        if len(cand_tr) >= 28 and len(cand_tr) > len(best_st.get("tr", "")):
+            best_st = st_cand
+            break
+    hero_orig = best_st.get("orig", "")
+    hero_tr = best_st.get("tr", "")
+
+    quote_top = box_top + box_h + S(48)
+    # Dekoratif tırnak işareti
+    f_qmark = get_script_font("“", 82, bold=True, serif=True)
+    draw.text((W // 2, quote_top + S(12)), "“", fill=(sr, sg, sb, 255), font=f_qmark, anchor="mm")
+
+    # Orijinal dize
+    f_q_orig = get_script_font(hero_orig, 30, bold=True)
+    orig_lines = _wrap_plain_text_lines(draw, hero_orig, f_q_orig, W - S(150))[:2]
+    qy = quote_top + S(62)
+    for ol in orig_lines:
+        draw.text((W // 2, qy), ol, fill=(92, 92, 104, 255), font=f_q_orig, anchor="mm")
+        qy += S(54)
+
+    # İnce vurgu ayırıcı çizgi
+    qy += S(12)
+    draw.rounded_rectangle(
+        (W // 2 - S(55), qy, W // 2 + S(55), qy + S(7)),
+        radius=S(4),
+        fill=(ar, ag, ab, 255),
+    )
+    qy += S(58)
+
+    # Dev Türkçe Çeviri Alıntısı (Net Siyah + Vurgu Rengi Şerit)
+    f_q_tr = get_script_font(hero_tr, 44, bold=True)
+    tr_lines = _wrap_plain_text_lines(draw, f"“{hero_tr}”", f_q_tr, W - S(130))[:3]
+    for idx_tl, tl in enumerate(tr_lines):
+        tw = _text_width(draw, tl, f_q_tr)
+        if idx_tl == len(tr_lines) - 1:
+            # Son satırın altında pastel fosfor şeridi
+            draw.rounded_rectangle(
+                (W // 2 - tw // 2 - S(14), qy - S(26), W // 2 + tw // 2 + S(14), qy + S(28)),
+                radius=S(14),
+                fill=(sr, sg, sb, 255),
+            )
+            draw.text((W // 2, qy), tl, fill=(ar, ag, ab, 255), font=f_q_tr, anchor="mm")
+        else:
+            draw.text((W // 2, qy), tl, fill=(10, 10, 14, 255), font=f_q_tr, anchor="mm")
+        qy += S(78)
+
+    # 6) ALT İMZA ŞERİDİ (`S(1685)` = 2246px, 4:5 güvenli alan sınırında)
+    footer_y = max(qy + S(32), S(1685))
+    f_footer = get_script_font("TÜRKÇE ÇEVİRİ & KARAOKE", 19, bold=True)
+    draw.rounded_rectangle(
+        (W // 2 - S(275), footer_y - S(26), W // 2 + S(275), footer_y + S(26)),
+        radius=S(26),
+        fill=(244, 244, 248, 255),
+    )
+    draw.text(
+        (W // 2, footer_y),
+        "ŞARKILARIN ANLAMI  •  TÜRKÇE ÇEVİRİ",
+        fill=(70, 70, 82, 255),
+        font=f_footer,
+        anchor="mm",
+    )
+
+    cover_rgb = apply_editorial_paper_film_grain(canvas.convert("RGB"), frame_idx=7)
+    cover_rgb.save(output_jpg_path, "JPEG", quality=96)
+    return output_jpg_path
 
 
 def render_songtrai_graphmotion_reel(
@@ -361,6 +613,8 @@ def render_songtrai_graphmotion_reel(
     total_frames = int(round(total_duration * FPS))
     events = sync_data["events"]
     if events:
+        if not song.get("curated_stanzas") and song.get("stanzas"):
+            song["curated_stanzas"] = list(song["stanzas"])
         song["stanzas"] = [
             {"orig": ev["orig"], "pron": ev.get("pron", ""), "tr": ev["tr"]}
             for ev in events
@@ -599,16 +853,20 @@ def render_songtrai_graphmotion_reel(
 
         frame_rgb = apply_editorial_paper_film_grain(canvas.convert("RGB"), frame_idx=f_idx)
 
-        # Kapak fotoğrafı olarak aktif kelimenin vurgulandığı canlı karaoke anını kaydet
-        if not cover_saved and t >= max(2.2, first_ev_start + 0.55):
-            frame_rgb.save(os.path.join(out_dir, "hook_cover.jpg"), "JPEG", quality=96)
-            cover_saved = True
-
         frame_path = os.path.join(frames_dir, f"frame_{f_idx:04d}.jpg")
         frame_rgb.save(frame_path, "JPEG", quality=95)
 
-    if not cover_saved:
-        shutil.copyfile(os.path.join(frames_dir, "frame_0030.jpg"), os.path.join(out_dir, "hook_cover.jpg"))
+    # Paylaşımlarda kullanılacak şarkıya özel FARKLI DİKEY KAPAK RESMİ (9:16, 1440x2560) üret
+    vertical_cover_path = os.path.join(out_dir, "vertical_cover_9x16.jpg")
+    render_songtrai_vertical_cover_9x16(
+        song=song,
+        album_cover=album_cover,
+        accent_info=accent_info,
+        deck_type=deck_type,
+        output_jpg_path=vertical_cover_path,
+    )
+    hook_cover_path = os.path.join(out_dir, "hook_cover.jpg")
+    shutil.copyfile(vertical_cover_path, hook_cover_path)
 
     ffmpeg_exe = get_ffmpeg_exe()
     cmd = [
@@ -643,7 +901,8 @@ def render_songtrai_graphmotion_reel(
 
     return {
         "video_path": output_mp4,
-        "hook_cover_path": os.path.join(out_dir, "hook_cover.jpg"),
+        "hook_cover_path": hook_cover_path,
+        "vertical_cover_path": vertical_cover_path,
         "duration_sec": total_duration,
         "resolution": f"{W}x{H}",
         "fps": FPS,
