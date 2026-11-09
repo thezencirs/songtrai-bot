@@ -360,6 +360,9 @@ def _parse_lrc_lines(synced_lrc: str) -> List[Dict[str, Any]]:
         txt = m.group(3).strip()
         if not txt or txt.startswith("["):
             continue
+        # Sadece mırıldanma/efekt içeren ('Hm-mm-mm', 'Oh-oh-oh', 'Mm-mm') satırları atla
+        if re.match(r"^[\s\-\,\.\!\?hmoaeyuHMOAEYU♪♫]+$", txt) and len(txt.replace("-", "").strip()) <= 16:
+            continue
         t_sec = mins * 60.0 + secs
         parsed.append({"time": t_sec, "text": txt})
 
