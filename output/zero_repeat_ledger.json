@@ -1,7 +1,7 @@
 {
-  "updated_at": "2026-11-09T17:49:32.633402Z",
-  "total_used": 26,
-  "last_song_id": "en_tom_odell_another_love",
+  "updated_at": "2026-11-09T17:51:57.978883Z",
+  "total_used": 27,
+  "last_song_id": "en_the_weeknd_blinding_lights",
   "last_language": "ingilizce",
   "used_ids": [
     "fr_indila_derniere_danse",
@@ -29,6 +29,7 @@
     "it_andrea_bocelli_con_te_partiro",
     "en_lady_gaga_bruno_die_with_a_smile",
     "es_floyymenor_gata_only",
-    "en_tom_odell_another_love"
+    "en_tom_odell_another_love",
+    "en_the_weeknd_blinding_lights"
   ]
 }
