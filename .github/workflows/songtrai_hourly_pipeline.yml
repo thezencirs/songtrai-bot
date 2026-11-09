@@ -1,22 +1,23 @@
-name: "🎵 Şarkıların Anlamı (@songtraibot) — 10 Dil 2K Saf Beyaz Stüdyo Reels & 7/24 Saatlik Stok Otomasyonu"
+name: "🎵 Şarkıların Anlamı (@songtraibot) — 11 Dil (%50 Popüler İngilizce + Arapça) 2K Saf Beyaz Stüdyo Reels & 7/24 Saatlik Stok Otomasyonu"
 
 on:
   schedule:
-    # 1) Her saat başı (günün 24 saati, 00:00 - 23:00) otomatik olarak 10 dil arasında sıradaki popüler şarkının
-    #    2K Saf Beyaz Stüdyo Türkçe Çeviri videosunu üretip @songtraibot üzerinden Telegram'a stok olarak gönderir.
-    # 2) Ayrıca her 5 dakikada bir @songtraibot kuyruğunu kontrol eder; kullanıcı şarkı adı veya dil komutu
+    # 1) Her zamanlanmış çalışmada (%50 popüler İngilizce ağırlıklı + Arapça dahil 11 dil rotasyonuyla)
+    #    2K Saf Beyaz Stüdyo Türkçe Çeviri videosunu ve 9:16 dikey kapak resmini üretip @songtraibot üzerinden Telegram'a stok olarak gönderir.
+    # 2) Ayrıca @songtraibot kuyruğunu kontrol eder; kullanıcı şarkı adı veya dil komutu
     #    gönderdiyse anında üretip teslim eder.
     - cron: "*/5 * * * *"
   workflow_dispatch:
     inputs:
       language:
-        description: "Şarkı Dili Seçimi (10 Global Dil veya Otomatik Döngü)"
+        description: "Şarkı Dili Seçimi (11 Global Dil veya Otomatik Döngü)"
         required: false
         default: "otomatik"
         type: choice
         options:
           - otomatik
           - ingilizce
+          - arapca
           - fransizca
           - rusca
           - japonca
@@ -103,6 +104,7 @@ jobs:
           name: songtraibot-2k-reel-${{ github.run_number }}
           path: |
             output/*.mp4
+            output/vertical_cover_9x16.jpg
             output/hook_cover.jpg
             output/1_music_sync_guide.txt
             output/2_social_caption_copypaste.txt
