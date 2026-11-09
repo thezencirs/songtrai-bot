@@ -218,11 +218,11 @@ def poll_and_enqueue_telegram_requests(acknowledge: bool = True) -> List[Dict[st
                         "parse_mode": "HTML",
                         "text": (
                             "🎵 <b>Şarkıların Anlamı (@songtraibot) — 2K Saf Beyaz Stüdyo Şarkı Çeviri Otomasyonu</b>\n\n"
-                            "🌍 <b>10 Global Dil Desteği:</b> İngilizce, Rusça, Japonca, Almanca, İspanyolca, Korece, Çince, İtalyanca, Fransızca ve Hintçe.\n"
-                            "✨ <b>Görsel Standart:</b> Saf Beyaz Stüdyo (#FFFFFF) • Sıfır Uzay/AI İzi • Gerçek Plak & 2K GraphMotion.\n\n"
+                            "🌍 <b>11 Global Dil Desteği (%50 Popüler İngilizce Ağırlıklı):</b> İngilizce, Arapça, Rusça, Japonca, Almanca, İspanyolca, Korece, Çince, İtalyanca, Fransızca ve Hintçe.\n"
+                            "✨ <b>Görsel Standart:</b> Saf Beyaz Stüdyo (#FFFFFF) • Şarkıya Özel 9:16 Dikey Kapak • Gerçek Ses & Kelime Vurgulu Karaoke.\n\n"
                             "👇 <b>Hemen Üretmek İçin:</b>\n"
                             "• /uret — Sıradaki popüler şarkıyı üret\n"
-                            "• /ingilizce • /rusca • /japonca • /almanca • /ispanyolca\n"
+                            "• /ingilizce • /arapca • /rusca • /japonca • /almanca • /ispanyolca\n"
                             "• /korece • /cince • /italyanca • /fransizca • /hintce\n"
                             "• Veya istediğiniz <b>Sanatçı - Şarkı Adını</b> doğrudan mesaj olarak yazın!"
                         ),
