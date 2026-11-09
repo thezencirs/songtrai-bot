@@ -21,3 +21,13 @@ Bu dizinde (`songtrai-bot`) çalışırken aşağıdaki kurallar istisnasız uyg
    - **Gölge Kırpılması Yasağı:** Yuvarlatılmış köşeli kartların gölgeleri asla kartın `(w, h)` boyutuna kırpılmaz; `_paste_with_soft_shadow` ile `pad = max(24, elevation_px * 3)` boşluk bırakılarak tuvale yapıştırılır.
    - **Tuval Emoji Temizliği:** Pillow TrueType fontlarında `□□` (tofu) kutusu oluşmaması için tuval üstüne yazılan tüm metinler `_strip_canvas_emojis` fonksiyonundan geçirilir (Telegram açıklamalarında emojiler korunur).
    - **Tekil Render Kilidi:** Aynı `output/_songtrai_frames` dizinini kullanan iki FFmpeg/render işlemi asla paralel başlatılmaz; ardışık (sequential) çalıştırılır.
+
+5. **11 Global Dil (%50 Popüler İngilizce Ağırlıklı + Arapça RTL Desteği):**
+   - Otomatik rotasyonda (`LANGUAGE_ROTATION_ORDER`) üretilen videoların ~%50'si popüler İngilizce hitlerden, diğer yarısı ise **Arapça (`arapca` / 🇸🇦)**, Fransızca, Rusça, Japonca, İspanyolca, Korece, İtalyanca, Almanca, Çince ve Hintçe popüler şarkılardan oluşur.
+   - Arapça şarkılarda harflerin birleşik ve sağdan sola (RTL) doğru akması için `arabic-reshaper` + `python-bidi` (`_shape_arabic_text`) ve sağdan sola kelime dizilimi (`is_rtl_row`) zorunludur.
+
+6. **Şarkıya Özel Farklı 9:16 Dikey Kapak Resmi (`output/vertical_cover_9x16.jpg`):**
+   - Her şarkı için video karesinden farklı, `1440x2560` (9:16 dikey, 4:5 profil ızgarası güvenli alanına tam uyumlu) özel bir editoryal poster kapak resmi (`render_songtrai_vertical_cover_9x16`) üretilir ve Telegram'da videoyla birlikte ayrıca `sendPhoto` olarak gönderilir.
+
+7. **Kısa ve SEO Uyumlu Saf Kopyala-Yapıştır Açıklama (`build_pure_copy_paste_caption`):**
+   - Sosyal medya açıklama metni uzun kıta listeleri yerine 5–6 satırlık vurucu, kısa ve SEO uyumlu formatta (Şarkı başlığı + en vurucu Türkçe dize alıntısı + tek cümlelik anlam özeti + yorum/kaydetme çağrısı + hedef odaklı SEO etiketleri) ve sıfır sarmalayıcı başlıkla gönderilir.
