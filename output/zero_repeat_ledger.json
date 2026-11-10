@@ -1,7 +1,7 @@
 {
-  "updated_at": "2026-11-10T03:05:25.866668Z",
-  "total_used": 31,
-  "last_song_id": "ar_amr_diab_tamally_maak",
+  "updated_at": "2026-11-10T11:00:38.959750Z",
+  "total_used": 32,
+  "last_song_id": "ar_nancy_ajram_ya_tabtab",
   "last_language": "arapca",
   "used_ids": [
     "fr_indila_derniere_danse",
@@ -34,6 +34,7 @@
     "en_adele_someone_like_you",
     "en_sia_unstoppable",
     "ar_sherine_kalam_eineh",
-    "ar_amr_diab_tamally_maak"
+    "ar_amr_diab_tamally_maak",
+    "ar_nancy_ajram_ya_tabtab"
   ]
 }
