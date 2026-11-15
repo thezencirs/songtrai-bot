@@ -2820,6 +2820,31 @@ SONG_MASTER_CATALOG: List[Dict[str, Any]] = [
 ]
 
 
+_CACHED_GH_TOKEN: Optional[str] = None
+
+
+def _resolve_gh_token() -> str:
+    global _CACHED_GH_TOKEN
+    if _CACHED_GH_TOKEN is not None:
+        return _CACHED_GH_TOKEN
+    env_tok = os.environ.get("GH_TOKEN", "").strip()
+    if env_tok:
+        _CACHED_GH_TOKEN = env_tok
+        return env_tok
+    gh_exe = r"C:\Users\zenci\.gemini\antigravity\scratch\tools\gh\bin\gh.exe"
+    if os.path.exists(gh_exe):
+        try:
+            import subprocess
+            p = subprocess.run([gh_exe, "auth", "token"], capture_output=True, text=True, timeout=5)
+            if p.returncode == 0 and p.stdout.strip():
+                _CACHED_GH_TOKEN = p.stdout.strip()
+                return _CACHED_GH_TOKEN
+        except Exception:
+            pass
+    _CACHED_GH_TOKEN = ""
+    return ""
+
+
 def load_used_song_ids() -> List[str]:
     """Yerel + GitHub API Sıfır-Tekrar Çift Kilit defterini okur."""
     os.makedirs(LEDGER_PATH.parent, exist_ok=True)
@@ -2833,7 +2858,7 @@ def load_used_song_ids() -> List[str]:
         except Exception:
             pass
 
-    gh_token = os.environ.get("GH_TOKEN", "").strip()
+    gh_token = _resolve_gh_token()
     if gh_token:
         try:
             r = requests.get(
@@ -2870,7 +2895,7 @@ def mark_song_used(song: Dict[str, Any], sync_github: bool = True) -> None:
     raw_json = json.dumps(payload_obj, ensure_ascii=False, indent=2)
     LEDGER_PATH.write_text(raw_json, encoding="utf-8")
 
-    gh_token = os.environ.get("GH_TOKEN", "").strip()
+    gh_token = _resolve_gh_token()
     if sync_github and gh_token:
         try:
             api_url = f"https://api.github.com/repos/{GITHUB_REPO_SLUG}/contents/output/zero_repeat_ledger.json"
