@@ -1,8 +1,8 @@
 {
-  "updated_at": "2026-11-15T22:14:34.071788Z",
-  "total_used": 46,
-  "last_song_id": "de_cro_traum",
-  "last_language": "almanca",
+  "updated_at": "2026-11-15T22:20:36.243735Z",
+  "total_used": 47,
+  "last_song_id": "en_ed_sheeran_perfect",
+  "last_language": "ingilizce",
   "used_ids": [
     "fr_indila_derniere_danse",
     "ru_rauf_faik_detstvo",
@@ -49,6 +49,7 @@
     "ru_polina_gagarina_kukushka",
     "es_rosalia_despecha",
     "ko_jung_kook_seven",
-    "de_cro_traum"
+    "de_cro_traum",
+    "en_ed_sheeran_perfect"
   ]
 }
