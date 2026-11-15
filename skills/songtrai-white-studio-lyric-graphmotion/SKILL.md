@@ -1,9 +1,9 @@
 ---
 name: songtrai-white-studio-lyric-graphmotion
-description: 2K QHD+ (1440x2560 @ 30fps) Pure White Studio (#FFFFFF), Real Song Audio + Whisper/LRCLIB Word-by-Word Karaoke & 4 Era/Dominance Audio Decks (Vinyl Turntable, DJ Mix Deck, Retro Cassette, Optical CD) Engine for @songtraibot. Strictly prohibits artificial sound effects, space/neon/AI templates, or cluttered boxes. Uses pure white background, black text (#0A0A0E), song-specific dynamic accent colors, real 256kbps song audio, and poetic Turkish lyric translations across 10 global languages.
+description: 2K QHD+ (1440x2560 @ 30fps) Pure White Studio (#FFFFFF), +20% Large Black Typography (#0A0A0E), Real Song Audio + Whisper/LRCLIB Word-by-Word Karaoke, Dedicated 9:16 Vertical Cover Poster & 4 Era Audio Decks Engine for @songtraibot. Supports 11 global languages (~50% Popular English weight + connected Arabic RTL, RU, JA, DE, ES, KO, ZH, IT, FR, HI) and short SEO copy-paste captions.
 ---
 
-# Şarkıların Anlamı (@songtraibot) — Saf Beyaz Stüdyo, Gerçek Şarkı Sesi, Kelime Vurgulu Karaoke & 4 Ses İcadı Motoru (`songtrai-white-studio-lyric-graphmotion`)
+# Şarkıların Anlamı (@songtraibot) — Saf Beyaz Stüdyo, +20% Büyük Tipografi, 9:16 Dikey Kapak, Gerçek Şarkı Sesi & Kelime Vurgulu Karaoke Motoru (`songtrai-white-studio-lyric-graphmotion`)
 
 ## 1. Temel Görsel & İşitsel Anayasa: Saf Beyaz Fon (`#FFFFFF`), Siyah Yazı (`#0A0A0E`), Gerçek Şarkı Sesi & Sıfır Yapay Zeka İzi
 `@songtraibot` için üretilen her 2K Reels videosu **Apple Music Sing / Musixmatch Pro / Teenage Engineering** editoryal sadeliğinde işlenir:
@@ -25,13 +25,17 @@ description: 2K QHD+ (1440x2560 @ 30fps) Pure White Studio (#FFFFFF), Real Song 
 
 ---
 
-## 3. 10 Global Dil Havuzu & Çoklu Alfabe Desteği
-1. **İngilizce (`en`)** 🇬🇧 | 2. **Rusça (`ru`)** 🇷🇺 | 3. **Japonca (`ja`)** 🇯🇵 | 4. **Almanca (`de`)** 🇩🇪 | 5. **İspanyolca (`es`)** 🇪🇸 | 6. **Korece (`ko`)** 🇰🇷 | 7. **Çince (`zh`)** 🇨🇳 | 8. **İtalyanca (`it`)** 🇮🇹 | 9. **Fransızca (`fr`)** 🇫🇷 | 10. **Hintçe (`hi`)** 🇮🇳
+## 3. 11 Global Dil Havuzu (%50 Popüler İngilizce Ağırlıklı + Birleşik Arapça RTL) & 180+ Şarkılık Genişletilmiş Katalog
+- **Ağırlıklı Rotasyon (`LANGUAGE_ROTATION_ORDER`):** Otomatik üretimlerin ~%50'si popüler İngilizce (`en` 🇬🇧) hitlerden, diğer %50'si ise **Arapça (`ar` 🇸🇦)**, **Rusça (`ru` 🇷🇺)**, **Japonca (`ja` 🇯🇵)**, **Almanca (`de` 🇩🇪)**, **İspanyolca (`es` 🇪🇸)**, **Korece (`ko` 🇰🇷)**, **Çince (`zh` 🇨🇳)**, **İtalyanca (`it` 🇮🇹)**, **Fransızca (`fr` 🇫🇷)** ve **Hintçe (`hi` 🇮🇳)** şarkılardan seçilir.
+- **Arapça Birleşik Harf & Sağdan Sola (RTL) Karaoke:** Pillow üzerinde Arapça harflerin kopuk görünmemesi için `arabic-reshaper` + `python-bidi` (`_shape_arabic_text`) zorunludur; Arapça satırlarda kelime sırası sağdan sola (`is_rtl_row`) dizilir.
 
 ---
 
-## 4. Zorunlu Teknik Koruma Kuralları & Uzun Vurucu Kesit Standardı (26.5s)
-- **Uzun Vurucu Nakarat Zirvesi (`target_duration = 26.5s`):** Şarkının resmi 30 saniyelik önizleme kesitindeki en vurucu nakarat/zirve penceresi (`25.0s – 28.0s`, 6–10 senkronize dize) işlenir; kısa (`15-17s`) kesilmez.
-- **Çerçevesiz Aktif Kelime Vurgusu (`_draw_karaoke_word_block`):** Aktif Türkçe kelimede bitişik kelimelere çarpan dış çerçeve (`outline`) çizilmez; yalnızca `accent_soft_rgb` dolgulu pastel vurgu (`pad_x = S(7)`), `accent_rgb` metin rengi ve kelime altında soldan sağa dolan ilerleme barı kullanılır.
+## 4. Zorunlu Teknik Koruma Kuralları, +20% Punto, 9:16 Dikey Kapak & Kısa SEO Açıklama
+- **Uzun Vurucu Nakarat Zirvesi (`target_duration = 26.5s`) & Mırıldanma Filtresi:** Şarkının en vurucu `26.5s` nakarat/zirve penceresi işlenir. LRCLIB'den gelen `"Hm-mm-mm"`, `"Oh-oh"` gibi anlamsız mırıldanma satırları (`_parse_lrc_lines`) otomatik filtrelenir.
+- **+%20 Büyütülmüş Tipografi:** Aktif Türkçe çeviri `46pt` (`S(46)`), aktif orijinal söz `34pt` (`S(34)`), şarkı başlığı `36pt`, sanatçı `25pt`, önceki Türkçe dize `29pt`, sonraki Türkçe dize `30pt` ölçeğinde çizilir.
+- **Şarkıya Özel Farklı 9:16 Dikey Kapak Resmi (`output/vertical_cover_9x16.jpg`):** Her şarkı için video karesinden bağımsız, albüm kılıfı + yarı çıkan plak/CD, başlık manşeti ve en anlamlı Türkçe dizeyi (`curated_stanzas`) içeren `1440x2560` dikey kapak (`render_songtrai_vertical_cover_9x16`) üretilir; tüm öğeler `S(200)..S(1710)` (4:5 güvenli alan) içinde tutulur ve Telegram'a `sendPhoto` ile ayrıca iletilir.
+- **Kısa ve SEO Uyumlu Saf Kopyala-Yapıştır Açıklama (`build_pure_copy_paste_caption`):** 5–6 satırlık vurucu format (Başlık + en anlamlı Türkçe dize alıntısı + tek cümlelik anlam özeti + etkileşim çağrısı + temiz SEO etiketleri) kullanılır.
+- **Çerçevesiz Aktif Kelime Vurgusu (`_draw_karaoke_word_block`):** Aktif Türkçe kelimede bitişik kelimelere çarpan dış çerçeve (`outline`) çizilmez; yalnızca `accent_soft_rgb` dolgulu pastel vurgu (`pad_x = S(9)`), `accent_rgb` metin rengi ve kelime altında soldan sağa dolan ilerleme barı kullanılır.
 - **Kırpılmasız Temas Gölgesi (`_paste_with_soft_shadow`):** Ses icadı kartları (`dj_mix_deck`, `retro_cassette`, albüm zarfı) tuvale yapıştırılırken GaussianBlur gölgesinin köşelerde dikdörtgen iz bırakmaması için `pad = max(24, elevation_px * 3)` taşma payı bırakılır.
 - **Tofu (`□□`) Koruması (`_strip_canvas_emojis`):** Pillow TrueType fontlarıyla tuvale yazılan hiçbir metinde Unicode bayrak/sembol emojisi bırakılmaz.
