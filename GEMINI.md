@@ -28,6 +28,9 @@ Bu dizinde (`songtrai-bot`) çalışırken aşağıdaki kurallar istisnasız uyg
 
 6. **Şarkıya Özel Farklı 9:16 Dikey Kapak Resmi (`output/vertical_cover_9x16.jpg`):**
    - Her şarkı için video karesinden farklı, `1440x2560` (9:16 dikey, 4:5 profil ızgarası güvenli alanına tam uyumlu) özel bir editoryal poster kapak resmi (`render_songtrai_vertical_cover_9x16`) üretilir ve Telegram'da videoyla birlikte ayrıca `sendPhoto` olarak gönderilir.
+   - `S(val)` fonksiyonu `1080x1920` koordinat sistemini `1440x2560` tuvale (`x1.333`) ölçeklediği için dikey kapakta tüm öğeler `S(200) .. S(1710)` (`266px .. 2280px`) aralığında kalmalıdır.
 
 7. **Kısa ve SEO Uyumlu Saf Kopyala-Yapıştır Açıklama (`build_pure_copy_paste_caption`):**
    - Sosyal medya açıklama metni uzun kıta listeleri yerine 5–6 satırlık vurucu, kısa ve SEO uyumlu formatta (Şarkı başlığı + en vurucu Türkçe dize alıntısı + tek cümlelik anlam özeti + yorum/kaydetme çağrısı + hedef odaklı SEO etiketleri) ve sıfır sarmalayıcı başlıkla gönderilir.
+   - LRCLIB senkronizasyonunda `"Hm-mm-mm"`, `"Oh-oh"` gibi salt vokal mırıldanma satırları elenir; kapak ve açıklama alıntısında `song["curated_stanzas"]` korunarak en anlamlı edebi dize (`len(tr) >= 24`) seçilir.
+   - GitHub Actions `.github/workflows/songtrai_hourly_pipeline.yml` içinde cron gecikmelerinden etkilenmemek için dakika (`MIN_NUM < 5`) kontrolü konulmaz; her zamanlanmış tetiklemede `batch_count=3` stok üretilir.
