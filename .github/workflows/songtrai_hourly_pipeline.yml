@@ -54,7 +54,7 @@ concurrency:
 jobs:
   produce-and-deliver-songtrai-reel:
     runs-on: ubuntu-latest
-    timeout-minutes: 25
+    timeout-minutes: 35
 
     steps:
       - name: "📥 Depoyu İndir (Checkout)"
@@ -85,11 +85,11 @@ jobs:
           GH_TOKEN: ${{ secrets.GH_PAT || secrets.GITHUB_TOKEN }}
           SONGTRAI_LANGUAGE: ${{ github.event.inputs.language || 'otomatik' }}
           SONGTRAI_QUERY: ${{ github.event.inputs.custom_query || '' }}
-          SONGTRAI_BATCH_COUNT: ${{ github.event.inputs.batch_count || '2' }}
+          SONGTRAI_BATCH_COUNT: ${{ github.event.inputs.batch_count || '3' }}
           EVENT_NAME: ${{ github.event_name }}
         run: |
           # GitHub Actions schedule tetiklemeleri dakikayı kaydırabildiği için her zamanlanmış
-          # çalışmada hem Telegram kuyruğunu erit hem de 2 adet uzun (26.5sn) vurucu stok video üret!
+          # çalışmada hem Telegram kuyruğunu erit hem de 3 adet uzun (26.5sn) vurucu YENİ stok video üret!
           python src/main.py \
             --language "$SONGTRAI_LANGUAGE" \
             --query "$SONGTRAI_QUERY" \
