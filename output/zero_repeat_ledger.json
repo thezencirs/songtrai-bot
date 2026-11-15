@@ -1,8 +1,8 @@
 {
-  "updated_at": "2026-11-15T20:57:18.007868Z",
-  "total_used": 35,
-  "last_song_id": "zh_eric_chou_ni_hao_bu_hao",
-  "last_language": "cince",
+  "updated_at": "2026-11-15T20:59:51.275969Z",
+  "total_used": 36,
+  "last_song_id": "hi_arijit_singh_chaleya",
+  "last_language": "hintce",
   "used_ids": [
     "fr_indila_derniere_danse",
     "ru_rauf_faik_detstvo",
@@ -38,6 +38,7 @@
     "ar_nancy_ajram_ya_tabtab",
     "hi_jubin_nautiyal_raataan_lambiyan",
     "en_lana_del_rey_summertime_sadness",
-    "zh_eric_chou_ni_hao_bu_hao"
+    "zh_eric_chou_ni_hao_bu_hao",
+    "hi_arijit_singh_chaleya"
   ]
 }
