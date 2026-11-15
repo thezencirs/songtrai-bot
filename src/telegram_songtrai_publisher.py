@@ -11,6 +11,7 @@
 
 import json
 import os
+import time
 from pathlib import Path
 from typing import Any, Dict, List, Optional
 
@@ -33,17 +34,41 @@ def tg_api(
     data: Optional[Dict[str, Any]] = None,
     files: Optional[Dict[str, Any]] = None,
     token: Optional[str] = None,
+    max_retries: int = 6,
 ) -> Dict[str, Any]:
     tok = token or get_bot_token()
     url = f"https://api.telegram.org/bot{tok}/{method}"
-    try:
-        if files:
-            resp = requests.post(url, data=data, files=files, timeout=120)
-        else:
-            resp = requests.post(url, json=data or {}, timeout=35)
-        return resp.json()
-    except Exception as e:
-        return {"ok": False, "error": str(e)}
+    last_err: Dict[str, Any] = {"ok": False, "description": "Unknown error"}
+
+    for attempt in range(max_retries):
+        try:
+            if files:
+                for fp in files.values():
+                    if hasattr(fp, "seek"):
+                        try:
+                            fp.seek(0)
+                        except Exception:
+                            pass
+                resp = requests.post(url, data=data, files=files, timeout=150)
+            else:
+                resp = requests.post(url, json=data or {}, timeout=40)
+
+            res_json = resp.json()
+            if res_json.get("ok"):
+                return res_json
+
+            last_err = res_json
+            err_code = int(res_json.get("error_code", resp.status_code or 500))
+            if err_code in (429, 500, 502, 503, 504) and attempt + 1 < max_retries:
+                time.sleep(2.5 * (attempt + 1))
+                continue
+            return res_json
+        except Exception as e:
+            last_err = {"ok": False, "description": str(e)}
+            if attempt + 1 < max_retries:
+                time.sleep(2.5 * (attempt + 1))
+                continue
+    return last_err
 
 
 def configure_songtrai_bot_profile(token: Optional[str] = None) -> Dict[str, Any]:
@@ -216,46 +241,42 @@ def deliver_songtrai_package_to_telegram(
         # Mesaj 2: 2K Karaoke Video + 11 Dil Butonları
         if v_path.exists():
             with open(v_path, "rb") as vf:
-                files_payload: Dict[str, Any] = {"video": vf}
-                cov_fp = open(cover_path, "rb") if cover_path.exists() else None
-                if cov_fp is not None:
-                    files_payload["cover"] = cov_fp
-                try:
-                    r_vid = tg_api(
-                        "sendVideo",
-                        data={
-                            "chat_id": cid,
-                            "caption": guide_msg[:1020],
-                            "parse_mode": "HTML",
-                            "reply_markup": reply_markup_json,
-                            "supports_streaming": "true",
-                            "width": "1440",
-                            "height": "2560",
-                        },
-                        files=files_payload,
-                        token=tok,
-                    )
-                finally:
-                    if cov_fp is not None:
-                        cov_fp.close()
+                r_vid = tg_api(
+                    "sendVideo",
+                    data={
+                        "chat_id": cid,
+                        "caption": guide_msg[:1020],
+                        "parse_mode": "HTML",
+                        "reply_markup": reply_markup_json,
+                        "supports_streaming": "true",
+                        "width": "1440",
+                        "height": "2560",
+                    },
+                    files={"video": vf},
+                    token=tok,
+                )
                 res_chat["video"] = r_vid.get("ok", False)
                 if not r_vid.get("ok"):
                     res_chat["video_error"] = r_vid.get("description", "")
 
-        # Mesaj 3: Kısa ve SEO Uyumlu %100 Saf Kopyala-Yapıştır Sosyal Medya Açıklaması (Sıfır Ekstra Başlık!)
-        r_cap = tg_api(
-            "sendMessage",
-            data={
-                "chat_id": cid,
-                "text": pure_caption[:4000],
-                "disable_web_page_preview": True,
-            },
-            token=tok,
-        )
-        res_chat["caption_copypaste"] = r_cap.get("ok", False)
+        # Mesaj 3: Kısa ve SEO Uyumlu %100 Saf Kopyala-Yapıştır Sosyal Medya Açıklaması (Yalnızca video ulaştıysa gönderilir!)
+        if res_chat.get("video"):
+            r_cap = tg_api(
+                "sendMessage",
+                data={
+                    "chat_id": cid,
+                    "text": pure_caption[:4000],
+                    "disable_web_page_preview": True,
+                },
+                token=tok,
+            )
+            res_chat["caption_copypaste"] = r_cap.get("ok", False)
+        else:
+            res_chat["caption_copypaste"] = False
         delivery_report[cid] = res_chat
         print(f"✅ [@songtraibot Teslimat -> {cid}]: {res_chat}")
 
-    # Sıfır-Tekrar Çift Kilidini (Yerel + GitHub API) kilitle
-    mark_song_used(song, sync_github=True)
+    # Sıfır-Tekrar Çift Kilidini (Yerel + GitHub API) yalnızca video başarıyla ulaştıysa kilitle
+    if any(r.get("video") for r in delivery_report.values()):
+        mark_song_used(song, sync_github=True)
     return delivery_report
