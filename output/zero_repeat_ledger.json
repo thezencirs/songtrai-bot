@@ -1,8 +1,8 @@
 {
-  "updated_at": "2026-11-15T21:51:45.605468Z",
-  "total_used": 39,
-  "last_song_id": "ar_elissa_aa_bali_habibi",
-  "last_language": "arapca",
+  "updated_at": "2026-11-15T21:52:04.229687Z",
+  "total_used": 40,
+  "last_song_id": "en_coldplay_yellow",
+  "last_language": "ingilizce",
   "used_ids": [
     "fr_indila_derniere_danse",
     "ru_rauf_faik_detstvo",
@@ -42,6 +42,7 @@
     "hi_arijit_singh_chaleya",
     "en_hozier_take_me_to_church",
     "ja_yoasobi_idol",
-    "ar_elissa_aa_bali_habibi"
+    "ar_elissa_aa_bali_habibi",
+    "en_coldplay_yellow"
   ]
 }
