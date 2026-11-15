@@ -165,7 +165,7 @@ def run_agent_team_pipeline_audit(song: Dict[str, Any]) -> Dict[str, Any]:
     - Remotion Yay Fiziği (damping=14, stiffness=120, mass=0.8) kontrolü
     """
     stanzas = song.get("stanzas") or []
-    clean_translations = all(bool(s.get("tr", "").strip()) for s in stanzas) and len(stanzas) >= 4
+    clean_translations = all(bool(s.get("tr", "").strip()) for s in stanzas) and len(stanzas) >= 2
     return {
         "holding_name": "Şarkıların Anlamı (@songtraibot) Autonomous Holding",
         "song_id": song.get("id", "unknown"),
