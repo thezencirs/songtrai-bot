@@ -1,8 +1,8 @@
 {
-  "updated_at": "2026-11-15T21:52:04.229687Z",
-  "total_used": 40,
-  "last_song_id": "en_coldplay_yellow",
-  "last_language": "ingilizce",
+  "updated_at": "2026-11-15T21:56:13.338700Z",
+  "total_used": 41,
+  "last_song_id": "it_maneskin_zitti_e_buoni",
+  "last_language": "italyanca",
   "used_ids": [
     "fr_indila_derniere_danse",
     "ru_rauf_faik_detstvo",
@@ -43,6 +43,7 @@
     "en_hozier_take_me_to_church",
     "ja_yoasobi_idol",
     "ar_elissa_aa_bali_habibi",
-    "en_coldplay_yellow"
+    "en_coldplay_yellow",
+    "it_maneskin_zitti_e_buoni"
   ]
 }
