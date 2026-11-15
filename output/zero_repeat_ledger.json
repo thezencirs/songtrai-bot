@@ -1,8 +1,8 @@
 {
-  "updated_at": "2026-11-15T22:01:12.966363Z",
-  "total_used": 43,
-  "last_song_id": "ru_polina_gagarina_kukushka",
-  "last_language": "rusca",
+  "updated_at": "2026-11-15T22:05:37.266626Z",
+  "total_used": 44,
+  "last_song_id": "es_rosalia_despecha",
+  "last_language": "ispanyolca",
   "used_ids": [
     "fr_indila_derniere_danse",
     "ru_rauf_faik_detstvo",
@@ -46,6 +46,7 @@
     "en_coldplay_yellow",
     "it_maneskin_zitti_e_buoni",
     "fr_stromae_pomme_ma_meilleure_ennemie",
-    "ru_polina_gagarina_kukushka"
+    "ru_polina_gagarina_kukushka",
+    "es_rosalia_despecha"
   ]
 }
