@@ -1725,6 +1725,1098 @@ SONG_MASTER_CATALOG: List[Dict[str, Any]] = [
             },
         ],
     },
+    # =========================================================================
+    # YENİ DALGA 11 DİL GLOBAL VİRAL HİT KATALOĞU (30+ YENİ ŞARKI)
+    # =========================================================================
+    {
+        "id": "en_hozier_take_me_to_church",
+        "language": "ingilizce",
+        "language_code": "EN",
+        "language_tr": "İngilizce",
+        "flag": "🇬🇧",
+        "artist": "Hozier",
+        "title": "Take Me To Church",
+        "release_year": "2013",
+        "itunes_query": "Hozier Take Me To Church",
+        "artwork_url": "",
+        "chorus_timestamp": "0:58 - 1:25 (Efsanevi Nakarat Zirvesi)",
+        "social_audio_search": "Hozier - Take Me To Church",
+        "cover_kicker": "🇬🇧 İNGİLİZCE EFSANE HİT • TÜRKÇE ÇEVİRİ",
+        "cover_headline": "SEVGİYİ KUTSAL BİR İBADET GİBİ ANLATAN EFSANE ŞARKI",
+        "viral_hook": "Hozier'in dünyayı sarsan başyapıtı 'Take Me To Church', insanın sevdiği kişiye duyduğu tutkuyu ve koşulsuz teslimiyeti şiirsel bir dille anlatır.",
+        "stanzas": [
+            {
+                "orig": "Take me to church, I'll worship like a dog at the shrine of your lies",
+                "pron": "Teyk mi tu çörç, ayl vörşip layk e dog et dı şrayn of yor layz",
+                "tr": "Beni mabedine götür; göz göre göre söylediğin sözlerin önünde bile sadakatle eğilirim.",
+                "highlight": "sadakatle eğilirim",
+                "note": "Aşkta mantığın sustuğu ve teslimiyetin başladığı an.",
+            },
+            {
+                "orig": "I'll tell you my sins and you can sharpen your knife",
+                "pron": "Ayl tel yu may sinz end yu ken şarpın yor nayf",
+                "tr": "Sana tüm günahlarımı ve zaaflarımı anlatacağım; istersen yaralarımı daha da derinleştirebilirsin.",
+                "highlight": "tüm günahlarımı ve zaaflarımı",
+                "note": "Sevdiği insana karşı tamamen savunmasız kalmak.",
+            },
+            {
+                "orig": "Offer me that deathless death, good God, let me give you my life",
+                "pron": "Ofır mi det detles det, gud gad, let mi giv yu may layf",
+                "tr": "Bana o ölümsüz aşkı bahşet; bırak tüm ömrümü senin kollarında feda edeyim.",
+                "highlight": "tüm ömrümü senin kollarında",
+                "note": "Nakaratın en sarsıcı zirve cümlesi.",
+            },
+        ],
+    },
+    {
+        "id": "en_lana_del_rey_summertime_sadness",
+        "language": "ingilizce",
+        "language_code": "EN",
+        "language_tr": "İngilizce",
+        "flag": "🇬🇧",
+        "artist": "Lana Del Rey",
+        "title": "Summertime Sadness",
+        "release_year": "2012",
+        "itunes_query": "Lana Del Rey Summertime Sadness",
+        "artwork_url": "",
+        "chorus_timestamp": "0:52 - 1:19 (Melankolik Nakarat Zirvesi)",
+        "social_audio_search": "Lana Del Rey - Summertime Sadness",
+        "cover_kicker": "🇬🇧 İNGİLİZCE MELANKOLİ KLASİĞİ • TÜRKÇE ÇEVİRİ",
+        "cover_headline": "'GİTMEDEN ÖNCE BENİ SON KEZ ÖP': YAZ HÜZNÜNÜN ŞARKISI",
+        "viral_hook": "Lana Del Rey'in zamansız klasiği 'Summertime Sadness', en parlak yaz günlerinde bile insanın içini kaplayan ayrılık korkusunu ve vedayı anlatır.",
+        "stanzas": [
+            {
+                "orig": "Kiss me hard before you go, summertime sadness",
+                "pron": "Kis mi hard bifor yu go, samırtaym sednıs",
+                "tr": "Beni bırakıp gitmeden önce son kez sımsıkı öp; içimde derin bir yaz hüznü var.",
+                "highlight": "gitmeden önce son kez sımsıkı öp",
+                "note": "Vedalaşma anındaki çaresiz tutku.",
+            },
+            {
+                "orig": "I just wanted you to know, that baby, you the best",
+                "pron": "Ay cast vontıd yu tu nov, det beybi yu dı best",
+                "tr": "Sadece şunu bilmeni istedim sevgilim; hayatıma giren en güzel şey sendin.",
+                "highlight": "hayatıma giren en güzel şey sendin",
+                "note": "Ayrılıkta bile değişmeyen minnet ve sevgi.",
+            },
+            {
+                "orig": "I got my red dress on tonight, dancing in the dark in the pale moonlight",
+                "pron": "Ay gat may red dres on tunayt, densing in dı dark in dı peyl munlayt",
+                "tr": "Bu gece senin için kırmızı elbisemi giydim; solgun ay ışığında karanlıkla dans ediyorum.",
+                "highlight": "solgun ay ışığında karanlıkla",
+                "note": "Sinematik yalnızlık sahnesi.",
+            },
+        ],
+    },
+    {
+        "id": "en_coldplay_yellow",
+        "language": "ingilizce",
+        "language_code": "EN",
+        "language_tr": "İngilizce",
+        "flag": "🇬🇧",
+        "artist": "Coldplay",
+        "title": "Yellow",
+        "release_year": "2000",
+        "itunes_query": "Coldplay Yellow",
+        "artwork_url": "",
+        "chorus_timestamp": "0:50 - 1:17 (Yıldızların Parladığı Nakarat)",
+        "social_audio_search": "Coldplay - Yellow",
+        "cover_kicker": "🇬🇧 İNGİLİZCE ROMANTİK BAŞYAPIT • TÜRKÇE ÇEVİRİ",
+        "cover_headline": "'YILDIZLARA BAK, SENİN İÇİN NASIL DA PARLIYORLAR'",
+        "viral_hook": "Coldplay'in milyarlarca kalbe dokunan 'Yellow' şarkısı, gece gökyüzündeki tüm yıldızların sevilen insan için parladığını anlatan en saf aşk ilanıdır.",
+        "stanzas": [
+            {
+                "orig": "Look at the stars, look how they shine for you",
+                "pron": "Luk et dı starz, luk hav dey şayn for yu",
+                "tr": "Başını kaldırıp gökyüzündeki yıldızlara bak; senin için nasıl da ışıldadıklarını gör.",
+                "highlight": "senin için nasıl da ışıldadıklarını gör",
+                "note": "Müzik tarihinin en unutulmaz açılış dizelerinden biri.",
+            },
+            {
+                "orig": "And everything you do, yeah, they were all yellow",
+                "pron": "End evriting yu du, ye, dey vör ol yelov",
+                "tr": "Ve senin dokunduğun, yaptığın her şey karanlığı aydınlatan sıcak bir altın sarısıydı.",
+                "highlight": "karanlığı aydınlatan sıcak bir altın sarısıydı",
+                "note": "Sevginin hayatı aydınlatma metaforu.",
+            },
+            {
+                "orig": "Your skin, oh yeah, your skin and bones, turn into something beautiful",
+                "pron": "Yor skin, o ye, yor skin end bonz, törn intu samting biyutiful",
+                "tr": "Senin varlığın ve her bir zerren, gözlerimin önünde eşsiz bir mucizeye dönüşüyor.",
+                "highlight": "eşsiz bir mucizeye dönüşüyor",
+                "note": "Saf hayranlık ve bağlılık.",
+            },
+        ],
+    },
+    {
+        "id": "en_ed_sheeran_perfect",
+        "language": "ingilizce",
+        "language_code": "EN",
+        "language_tr": "İngilizce",
+        "flag": "🇬🇧",
+        "artist": "Ed Sheeran",
+        "title": "Perfect",
+        "release_year": "2017",
+        "itunes_query": "Ed Sheeran Perfect",
+        "artwork_url": "",
+        "chorus_timestamp": "0:55 - 1:22 (Karanlıkta Dans Nakaratı)",
+        "social_audio_search": "Ed Sheeran - Perfect",
+        "cover_kicker": "🇬🇧 İNGİLİZCE AŞK KLASİĞİ • TÜRKÇE ÇEVİRİ",
+        "cover_headline": "GERÇEK AŞKI BULANLARIN İLK DANS ŞARKISI: PERFECT",
+        "viral_hook": "Ed Sheeran'ın çocukluk aşkı olan eşine yazdığı 'Perfect', kusurlu bir dünyada iki insanın birbirinde kusursuz huzuru bulmasını anlatır.",
+        "stanzas": [
+            {
+                "orig": "Baby, I'm dancing in the dark, with you between my arms",
+                "pron": "Beybi, aym densing in dı dark, vit yu bitvin may armz",
+                "tr": "Sevgilim, seni kollarımın arasına almış gecenin karanlığında huzurla dans ediyorum.",
+                "highlight": "kollarımın arasına almış",
+                "note": "Romantik nakaratın kalbi.",
+            },
+            {
+                "orig": "Barefoot on the grass, listening to our favourite song",
+                "pron": "Berfut on dı gres, lısıning tu aur feyvrit song",
+                "tr": "Çimlerin üzerinde yalınayak, ikimizin en sevdiği o şarkıyı dinleyerek...",
+                "highlight": "ikimizin en sevdiği o şarkıyı",
+                "note": "Sadelik içindeki mutluluk.",
+            },
+            {
+                "orig": "I have faith in what I see, now I know I have met an angel in person",
+                "pron": "Ay hev feyt in vot ay si, nav ay nov ay hev met en eyncıl in pörsın",
+                "tr": "Gözlerimin gördüğü bu güzelliğe inanıyorum; artık yeryüzünde gerçek bir melekle tanıştığımı biliyorum.",
+                "highlight": "gerçek bir melekle tanıştığımı biliyorum",
+                "note": "Şarkının duygusal zirvesi.",
+            },
+        ],
+    },
+    {
+        "id": "en_lewis_capaldi_someone_you_loved",
+        "language": "ingilizce",
+        "language_code": "EN",
+        "language_tr": "İngilizce",
+        "flag": "🇬🇧",
+        "artist": "Lewis Capaldi",
+        "title": "Someone You Loved",
+        "release_year": "2018",
+        "itunes_query": "Lewis Capaldi Someone You Loved",
+        "artwork_url": "",
+        "chorus_timestamp": "0:50 - 1:17 (Yürek Burkan Nakarat)",
+        "social_audio_search": "Lewis Capaldi - Someone You Loved",
+        "cover_kicker": "🇬🇧 İNGİLİZCE DUYGUSAL ZİRVE • TÜRKÇE ÇEVİRİ",
+        "cover_headline": "YOKLUĞUNA ALIŞAMADIĞIMIZ İNSANLARA YAZILAN EN AĞIR ŞARKI",
+        "viral_hook": "Lewis Capaldi'nin milyonları ağlatan 'Someone You Loved' şarkısı, hayatımızdaki en büyük dayanağı kaybettikten sonra kalan boşluğu anlatır.",
+        "stanzas": [
+            {
+                "orig": "Now the day bleeds into nightfall, and you're not here to get me through it all",
+                "pron": "Nav dı dey blidz intu naytfol, end yor nat hir tu get mi tru it ol",
+                "tr": "Şimdi gün kanayarak geceye karışıyor ve bu karanlığı aşmam için artık yanımda sen yoksun.",
+                "highlight": "artık yanımda sen yoksun",
+                "note": "Yalnızlığın en ağır çöktüğü akşam saati.",
+            },
+            {
+                "orig": "I let my guard down and then you pulled the rug",
+                "pron": "Ay let may gard davn end den yu puld dı rag",
+                "tr": "Sana güvenip tüm savunmamı indirdim; sense ayağımın altındaki zemini bir anda çektin.",
+                "highlight": "tüm savunmamı indirdim",
+                "note": "Güven kırıklığı ve beklenmedik veda.",
+            },
+            {
+                "orig": "I was getting kinda used to being someone you loved",
+                "pron": "Ay voz geting kaynda yuzd tu biing samvan yu lavd",
+                "tr": "Senin tarafından sevilen biri olma hissine daha yeni alışmaya başlamıştım.",
+                "highlight": "senin tarafından sevilen biri",
+                "note": "Unutulmaz nakarat cümlesi.",
+            },
+        ],
+    },
+    {
+        "id": "en_imagine_dragons_believer",
+        "language": "ingilizce",
+        "language_code": "EN",
+        "language_tr": "İngilizce",
+        "flag": "🇬🇧",
+        "artist": "Imagine Dragons",
+        "title": "Believer",
+        "release_year": "2017",
+        "itunes_query": "Imagine Dragons Believer",
+        "artwork_url": "",
+        "chorus_timestamp": "0:42 - 1:09 (Patlayıcı Nakarat)",
+        "social_audio_search": "Imagine Dragons - Believer",
+        "cover_kicker": "🇬🇧 İNGİLİZCE GÜÇ & MOTİVASYON • TÜRKÇE ÇEVİRİ",
+        "cover_headline": "'ACI BENİ YIKMADI, İNANAN BİRİNE DÖNÜŞTÜRDÜ'",
+        "viral_hook": "Imagine Dragons'ın milyarlarca kez dinlenen 'Believer' marşı, insanın çektiği acıların ve kırgınlıkların onu nasıl yenilmez bir karaktere dönüştürdüğünü anlatır.",
+        "stanzas": [
+            {
+                "orig": "Pain! You made me a, you made me a believer, believer",
+                "pron": "Peyn! Yu meyd mi e, yu meyd mi e bilivır, bilivır",
+                "tr": "Çektiğim acılar! Beni yıkmak yerine küllerimden doğan inançlı bir savaşçıya dönüştürdünüz.",
+                "highlight": "küllerimden doğan inançlı bir savaşçıya",
+                "note": "Acıyı güce dönüştüren nakarat.",
+            },
+            {
+                "orig": "Pain! You break me down and build me up, believer, believer",
+                "pron": "Peyn! Yu breyk mi davn end bild mi ap, bilivır, bilivır",
+                "tr": "Hayatın darbeleri beni önce parçaladı ama her seferinde çok daha güçlü inşa etti.",
+                "highlight": "çok daha güçlü inşa etti",
+                "note": "Pes etmeyenlerin mottosu.",
+            },
+            {
+                "orig": "My life, my love, my drive, it came from pain",
+                "pron": "May layf, may lav, may drayv, it keym from peyn",
+                "tr": "Bugünkü hayatım, sevdam ve içimdeki bu durdurulamaz azim; hepsi çektiğim acılardan doğdu.",
+                "highlight": "hepsi çektiğim acılardan doğdu",
+                "note": "Şarkının felsefesini özetleyen kapanış.",
+            },
+        ],
+    },
+    {
+        "id": "en_harry_styles_as_it_was",
+        "language": "ingilizce",
+        "language_code": "EN",
+        "language_tr": "İngilizce",
+        "flag": "🇬🇧",
+        "artist": "Harry Styles",
+        "title": "As It Was",
+        "release_year": "2022",
+        "itunes_query": "Harry Styles As It Was",
+        "artwork_url": "",
+        "chorus_timestamp": "0:38 - 1:05 (Nostaljik Ritim & Nakarat)",
+        "social_audio_search": "Harry Styles - As It Was",
+        "cover_kicker": "🇬🇧 İNGİLİZCE GLOBAL REKOR • TÜRKÇE ÇEVİRİ",
+        "cover_headline": "NEŞELİ MELODİNİN ARKASINDAKİ HÜZÜN: 'ARTIK HİÇBİR ŞEY ESKİSİ GİBİ DEĞİL'",
+        "viral_hook": "Harry Styles'ın tüm dünya listelerini altüst eden 'As It Was' şarkısı, hareketli ritminin altında geçmişe duyulan özlemi ve değişen hayatın yalnızlığını gizler.",
+        "stanzas": [
+            {
+                "orig": "In this world, it's just us, you know it's not the same as it was",
+                "pron": "İn dis vörld, its cast as, yu nov its nat dı seym ez it voz",
+                "tr": "Bu koca dünyada sadece ikimiz kaldık; ama biliyorsun ki artık hiçbir şey eskisi gibi değil.",
+                "highlight": "artık hiçbir şey eskisi gibi değil",
+                "note": "Zamanın değiştirdiği duygular.",
+            },
+            {
+                "orig": "Answer the phone, Harry, you're no good alone, why are you sitting at home on the floor?",
+                "pron": "Ensır dı fon, Heri, yor no gud elon, vay ar yu siting et hom on dı flor?",
+                "tr": "Telefonu aç artık; yalnızlık sana hiç iyi gelmiyor, neden evde tek başına yerde oturuyorsun?",
+                "highlight": "yalnızlık sana hiç iyi gelmiyor",
+                "note": "Kalabalıklar içindeki yalnızlık.",
+            },
+        ],
+    },
+    {
+        "id": "en_miley_cyrus_flowers",
+        "language": "ingilizce",
+        "language_code": "EN",
+        "language_tr": "İngilizce",
+        "flag": "🇬🇧",
+        "artist": "Miley Cyrus",
+        "title": "Flowers",
+        "release_year": "2023",
+        "itunes_query": "Miley Cyrus Flowers",
+        "artwork_url": "",
+        "chorus_timestamp": "0:40 - 1:07 (Özgürlük Nakaratı)",
+        "social_audio_search": "Miley Cyrus - Flowers",
+        "cover_kicker": "🇬🇧 İNGİLİZCE ÖZGÜVEN MARŞI • TÜRKÇE ÇEVİRİ",
+        "cover_headline": "'BENİ SENİN SEVDİĞİNDEN ÇOK DAHA GÜZEL SEVEBİLİRİM'",
+        "viral_hook": "Miley Cyrus'a Grammy kazandıran 'Flowers', bir ayrılıktan sonra insanın kendi değerini fark edip kendi ayakları üzerinde çiçek açmasını anlatır.",
+        "stanzas": [
+            {
+                "orig": "I can buy myself flowers, write my name in the sand",
+                "pron": "Ay ken bay mayself flavırz, rayt may neym in dı send",
+                "tr": "Kendi çiçeklerimi kendim alabilirim; kumsala kendi adımı gururla yazabilirim.",
+                "highlight": "Kendi çiçeklerimi kendim alabilirim",
+                "note": "Mutluluğu başkasında aramaktan vazgeçiş.",
+            },
+            {
+                "orig": "I can take myself dancing, and I can hold my own hand",
+                "pron": "Ay ken teyk mayself densing, end ay ken hold may ovn hend",
+                "tr": "Kendimi dansa çıkarabilir ve en zor anımda kendi elimi kendim tutabilirim.",
+                "highlight": "kendi elimi kendim tutabilirim",
+                "note": "İçsel güç ve öz yeterlilik.",
+            },
+            {
+                "orig": "Yeah, I can love me better than you can",
+                "pron": "Ye, ay ken lav mi betır den yu ken",
+                "tr": "Evet, ben kendimi senin beni sevebileceğinden çok daha güzel sevebilirim.",
+                "highlight": "çok daha güzel sevebilirim",
+                "note": "Şarkının ikonik vurucu dizesi.",
+            },
+        ],
+    },
+    {
+        "id": "en_benson_boone_beautiful_things",
+        "language": "ingilizce",
+        "language_code": "EN",
+        "language_tr": "İngilizce",
+        "flag": "🇬🇧",
+        "artist": "Benson Boone",
+        "title": "Beautiful Things",
+        "release_year": "2024",
+        "itunes_query": "Benson Boone Beautiful Things",
+        "artwork_url": "",
+        "chorus_timestamp": "0:50 - 1:17 (Çığlık Zirvesi Nakarat)",
+        "social_audio_search": "Benson Boone - Beautiful Things",
+        "cover_kicker": "🇬🇧 İNGİLİZCE VİRAL ZİRVE • TÜRKÇE ÇEVİRİ",
+        "cover_headline": "MUTLUYKEN BİLE KAYBETME KORKUSU YAŞAYANLARIN ŞARKISI",
+        "viral_hook": "Benson Boone'un sosyal medyayı kasıp kavuran 'Beautiful Things' şarkısı, insanın hayatında her şey yolundayken bile sevdiklerini kaybetme korkusunu haykırır.",
+        "stanzas": [
+            {
+                "orig": "Please stay, I want you, I need you, oh God",
+                "pron": "Pliz stey, ay vont yu, ay nid yu, o gad",
+                "tr": "Lütfen yanımda kal; sana ihtiyacım var, seni her şeyden çok istiyorum Tanrım.",
+                "highlight": "Lütfen yanımda kal",
+                "note": "Vokalin zirveye çıktığı yakarış anı.",
+            },
+            {
+                "orig": "Don't take these beautiful things that I've got",
+                "pron": "Dont teyk diz biyutiful tingz det ayv gat",
+                "tr": "Ne olur elimdeki bu güzel duyguları ve sevdiğim insanı benden geri alma.",
+                "highlight": "bu güzel duyguları ve sevdiğim insanı",
+                "note": "Kaybetme korkusunun en saf hali.",
+            },
+        ],
+    },
+    # --- YENİ ARAPÇA HİTLER ---
+    {
+        "id": "ar_elissa_aa_bali_habibi",
+        "language": "arapca",
+        "language_code": "AR",
+        "language_tr": "Arapça",
+        "flag": "🇸🇦",
+        "artist": "Elissa (إليسا)",
+        "title": "Aa Bali Habibi (ع بالي حبيبي)",
+        "release_year": "2009",
+        "itunes_query": "Elissa Aa Bali Habibi",
+        "artwork_url": "",
+        "chorus_timestamp": "1:02 - 1:29 (Duygusal Nakarat)",
+        "social_audio_search": "Elissa - Aa Bali Habibi",
+        "cover_kicker": "🇸🇦 ARAPÇA ROMANTİK EFSANE • TÜRKÇE ÇEVİRİ",
+        "cover_headline": "ARAP DÜNYASININ EN UNUTULMAZ AŞK İTİRAFI: 'AA BALI HABIBI'",
+        "viral_hook": "Elissa'nın başyapıtı 'Aa Bali Habibi', bir insanın sevdiğiyle tüm ömrünü birleştirme hayalini ve kalbindeki en mahrem dilekleri anlatır.",
+        "stanzas": [
+            {
+                "orig": "ع بالي حبيبي، ع بالي حبيبي",
+                "pron": "A bali habibi, a bali habibi",
+                "tr": "Aklımdasın sevgilim; tüm hayallerimin ve dualarımın tam merkezindesin.",
+                "highlight": "hayallerimin ve dualarımın tam merkezindesin",
+                "note": "Şarkının kalplere kazınan açılışı.",
+            },
+            {
+                "orig": "أغمرك ما أتركك، أسرقك ما أرجعك",
+                "pron": "Ağmurak ma etrukak, esrıkak ma erciak",
+                "tr": "Sana öyle bir sarılayım ki hiç bırakmayayım; seni bu dünyadan çalıp bir daha kimseye geri vermeyeyim.",
+                "highlight": "seni bu dünyadan çalıp",
+                "note": "Tutkulu Arap şiirselliğinin zirvesi.",
+            },
+            {
+                "orig": "أحبسك ما أطلعك من قلبي ولا يوم",
+                "pron": "Ahbisak ma atlaak min kalbi vela yevm",
+                "tr": "Seni kalbimin en derin köşesine saklayayım ve oradan tek bir gün bile çıkarmayayım.",
+                "highlight": "kalbimin en derin köşesine saklayayım",
+                "note": "Sonsuz bağlılık yemini.",
+            },
+        ],
+    },
+    {
+        "id": "ar_saad_lamjarred_lm3allem",
+        "language": "arapca",
+        "language_code": "AR",
+        "language_tr": "Arapça",
+        "flag": "🇸🇦",
+        "artist": "Saad Lamjarred (سعد لمجرد)",
+        "title": "Lm3allem (المعلم)",
+        "release_year": "2015",
+        "itunes_query": "Saad Lamjarred Lm3allem",
+        "artwork_url": "",
+        "chorus_timestamp": "0:35 - 1:02 (Enerjik Nakarat)",
+        "social_audio_search": "Saad Lamjarred - Lm3allem",
+        "cover_kicker": "🇸🇦 ARAPÇA MİLYARLIK REKOR • TÜRKÇE ÇEVİRİ",
+        "cover_headline": "1 MİLYAR İZLENMEYİ AŞAN İLK ARAPÇA ŞARKININ GERÇEK ANLAMI",
+        "viral_hook": "Saad Lamjarred'in Guinness rekoru kıran 'Lm3allem' şarkısı, gülüşüyle ve duruşuyla herkesi kendine hayran bırakan karizmatik bir aşkı anlatır.",
+        "stanzas": [
+            {
+                "orig": "انت معلم واحنا منك نتعلم",
+                "pron": "Enta muallem ve ihna minnak netallem",
+                "tr": "Sen aşkın ve zarafetin gerçek ustasısın; biz sevmeyi senden öğreniyoruz.",
+                "highlight": "biz sevmeyi senden öğreniyoruz",
+                "note": "Milyonların ezbere bildiği ikonik nakarat.",
+            },
+            {
+                "orig": "نسكت وانت موجود ما نرضى نتكلم",
+                "pron": "Neskut ve enta mevcud ma nerda netkellem",
+                "tr": "Sen bir ortama girdiğinde hepimiz susarız; senin varlığının yanında tek kelime etmeye kıyamayız.",
+                "highlight": "senin varlığının yanında",
+                "note": "Hayranlık ve büyülenme ifadesi.",
+            },
+        ],
+    },
+    {
+        "id": "ar_hussain_al_jassmi_bel_bont_el_areed",
+        "language": "arapca",
+        "language_code": "AR",
+        "language_tr": "Arapça",
+        "flag": "🇸🇦",
+        "artist": "Hussain Al Jassmi (حسين الجسمي)",
+        "title": "Bel Bont El Areed (بالبنط العريض)",
+        "release_year": "2020",
+        "itunes_query": "Hussain Al Jassmi Bel Bont El Areed",
+        "artwork_url": "",
+        "chorus_timestamp": "0:32 - 0:59 (Ritim & Manşet Nakarat)",
+        "social_audio_search": "Hussain Al Jassmi - Bel Bont El Areed",
+        "cover_kicker": "🇸🇦 ARAPÇA VİRAL HİT • TÜRKÇE ÇEVİRİ",
+        "cover_headline": "'KALBİMİN MANŞETİNE BÜYÜK HARFLERLE ADINI YAZDIM'",
+        "viral_hook": "Hussain Al Jassmi'nin sosyal medyada fırtınalar estiren 'Bel Bont El Areed' şarkısı, gizlenemeyen büyük bir aşkı manşetlere taşıyan neşeli bir itiraftır.",
+        "stanzas": [
+            {
+                "orig": "حبيبي بالبنط العريض، غالي وأقرب م الوريد",
+                "pron": "Habibi bil bont el arid, ğali ve akrab mil verid",
+                "tr": "Sevgilim, büyük puntolarla ilan ediyorum: Sen benim için çok değerlisin ve bana şah damarımdan daha yakınsın.",
+                "highlight": "bana şah damarımdan daha yakınsın",
+                "note": "Arap edebiyatının en güçlü yakınlık metaforu.",
+            },
+            {
+                "orig": "لقيت في قربك كل ما يسر النظر",
+                "pron": "Lakayt fi kurbak kul ma yesurr en-nazar",
+                "tr": "Senin yanı başında, gözlerimi ve ruhumu mutlu eden her şeyi eksiksiz buldum.",
+                "highlight": "ruhumu mutlu eden her şeyi",
+                "note": "Huzur ve tamamlanmışlık hissi.",
+            },
+        ],
+    },
+    # --- YENİ FRANSIZCA HİTLER ---
+    {
+        "id": "fr_stromae_pomme_ma_meilleure_ennemie",
+        "language": "fransizca",
+        "language_code": "FR",
+        "language_tr": "Fransızca",
+        "flag": "🇫🇷",
+        "artist": "Stromae & Pomme",
+        "title": "Ma Meilleure Ennemie",
+        "release_year": "2024",
+        "itunes_query": "Stromae Pomme Ma Meilleure Ennemie",
+        "artwork_url": "",
+        "chorus_timestamp": "0:45 - 1:12 (Arcane Viral Nakarat)",
+        "social_audio_search": "Stromae & Pomme - Ma Meilleure Ennemie",
+        "cover_kicker": "🇫🇷 FRANSIZCA GLOBAL REKOR • TÜRKÇE ÇEVİRİ",
+        "cover_headline": "'SEN BAŞIMA GELEN EN GÜZEL ŞEY VE EN BÜYÜK ACISIN'",
+        "viral_hook": "Stromae ve Pomme'un rekorlar kıran 'Ma Meilleure Ennemie' düeti, hem vazgeçemediğimiz en yakın dostumuz hem de kalbimizi en çok yaralayan aşkları anlatır.",
+        "stanzas": [
+            {
+                "orig": "T'es la meilleure chose qui m'est arrivée, mais aussi la pire chose qui m'est arrivée",
+                "pron": "Te la meyör şoz ki me tarive, me osi la pir şoz ki me tarive",
+                "tr": "Sen hayatımda başıma gelen en güzel mucizesin; ama aynı zamanda başıma gelen en büyük felaketsin.",
+                "highlight": "başıma gelen en güzel mucizesin",
+                "note": "İmkansız ve zıt kutuplu aşkların özeti.",
+            },
+            {
+                "orig": "Mais ma meilleure ennemie c'est toi, fuis-moi, le pire c'est toi et moi",
+                "pron": "Me ma meyör enmi se tua, füi mua, lö pir se tua e mua",
+                "tr": "Benim en tatlı düşmanım sensin; benden uzaklaş, çünkü en tehlikelisi ikimizin yan yana gelmesi.",
+                "highlight": "Benim en tatlı düşmanım sensin",
+                "note": "Sosyal medyada milyonlarca kez paylaşılan nakarat.",
+            },
+        ],
+    },
+    {
+        "id": "fr_edith_piaf_non_je_ne_regrette_rien",
+        "language": "fransizca",
+        "language_code": "FR",
+        "language_tr": "Fransızca",
+        "flag": "🇫🇷",
+        "artist": "Édith Piaf",
+        "title": "Non, je ne regrette rien",
+        "release_year": "1960",
+        "itunes_query": "Edith Piaf Non je ne regrette rien",
+        "artwork_url": "",
+        "chorus_timestamp": "0:30 - 0:57 (Ölümsüz Chanson Zirvesi)",
+        "social_audio_search": "Édith Piaf - Non, je ne regrette rien",
+        "cover_kicker": "🇫🇷 FRANSIZCA ÖLÜMSÜZ EFSANE • TÜRKÇE ÇEVİRİ",
+        "cover_headline": "'HAYIR, HİÇBİR ŞEYDEN PİŞMAN DEĞİLİM, GEÇMİŞİ SÜPÜRDÜM!'",
+        "viral_hook": "Édith Piaf'ın sinema ve müzik tarihine geçen 'Non, je ne regrette rien' başyapıtı, geçmişin tüm acılarını silip hayata sıfırdan başlama cesaretini anlatır.",
+        "stanzas": [
+            {
+                "orig": "Non, rien de rien, non, je ne regrette rien",
+                "pron": "Non, riyen dö riyen, non, jö nö rögret riyen",
+                "tr": "Hayır, kesinlikle hiçbir şeyden; yaşadığım hiçbir acıdan ve mutluluktan pişman değilim.",
+                "highlight": "hiçbir acıdan ve mutluluktan pişman değilim",
+                "note": "Tarihin en güçlü meydan okuma dizelerinden biri.",
+            },
+            {
+                "orig": "Balayés les amours, avec leurs trémolos, balayés pour toujours, je repars à zéro",
+                "pron": "Baleye le zamur, avek lör tremolo, baleye pur tujur, jö röpar a zero",
+                "tr": "Eski aşkları ve tüm o titrek hüzünleri sonsuza dek süpürüp attım; şimdi hayata sıfırdan başlıyorum.",
+                "highlight": "şimdi hayata sıfırdan başlıyorum",
+                "note": "Yeniden doğuş manifestosu.",
+            },
+        ],
+    },
+    {
+        "id": "fr_gims_est_ce_que_tu_maimes",
+        "language": "fransizca",
+        "language_code": "FR",
+        "language_tr": "Fransızca",
+        "flag": "🇫🇷",
+        "artist": "Gims",
+        "title": "Est-ce que tu m'aimes ?",
+        "release_year": "2015",
+        "itunes_query": "Gims Est ce que tu m aimes",
+        "artwork_url": "",
+        "chorus_timestamp": "0:48 - 1:15 (Dev Nakarat)",
+        "social_audio_search": "Gims - Est-ce que tu m'aimes",
+        "cover_kicker": "🇫🇷 FRANSIZCA MODERN KLASİK • TÜRKÇE ÇEVİRİ",
+        "cover_headline": "'SENİ SEVMEKTEN KENDİMİ KAYBETTİM: BENİ GERÇEKTEN SEVİYOR MUSUN?'",
+        "viral_hook": "Gims'in güçlü vokaliyle devleşen 'Est-ce que tu m'aimes ?', bir ilişkide her şeyini veren insanın karşısındakinin sevgisinden duyduğu derin şüpheyi sorgular.",
+        "stanzas": [
+            {
+                "orig": "J'avais trouvé le sens de la raison qui m'entraînait à chaque pas sur le devant",
+                "pron": "Jave truve lö sans dö la rezon ki mantrene a şak pa sür lö dövan",
+                "tr": "Attığım her adımda beni ileriye taşıyan yaşam sevincimi senin gözlerinde bulmuştum.",
+                "highlight": "yaşam sevincimi senin gözlerinde bulmuştum",
+                "note": "Aşkın insana verdiği yön duygusu.",
+            },
+            {
+                "orig": "Je ne sais pas si je t'aime ou si je t'aime plus, j'suis perdu",
+                "pron": "Jö nö se pa si jö tem u si jö tem plü, jüi perdü",
+                "tr": "Seni hâlâ deli gibi seviyor muyum yoksa artık tükendim mi bilmiyorum; tamamen kayboldum.",
+                "highlight": "yoksa artık tükendim mi bilmiyorum",
+                "note": "Nakaratın duygusal kırılma noktası.",
+            },
+        ],
+    },
+    # --- YENİ RUSÇA HİTLER ---
+    {
+        "id": "ru_polina_gagarina_kukushka",
+        "language": "rusca",
+        "language_code": "RU",
+        "language_tr": "Rusça",
+        "flag": "🇷🇺",
+        "artist": "Polina Gagarina",
+        "title": "Кукушка (Kukushka)",
+        "release_year": "2015",
+        "itunes_query": "Polina Gagarina Kukushka",
+        "artwork_url": "",
+        "chorus_timestamp": "0:55 - 1:22 (Sarsıcı Vokal Zirvesi)",
+        "social_audio_search": "Polina Gagarina - Kukushka",
+        "cover_kicker": "🇷🇺 RUSÇA EFSANE BAŞYAPIT • TÜRKÇE ÇEVİRİ",
+        "cover_headline": "TÜYLERİ DİKEN DİKEN EDEN RUSÇA ŞARKI: 'KADERİMİ SÖYLE GUGUK KUŞU'",
+        "viral_hook": "Viktor Tsoi'un efsanevi şiirini Polina Gagarina'nın dev vokaliyle buluşturan 'Kukushka', insanın kaderle, yalnızlıkla ve iradeyle mücadelesini anlatır.",
+        "stanzas": [
+            {
+                "orig": "Солнце моё — взгляни на меня, моя ладонь превратилась в кулак",
+                "pron": "Solntse moyo — vzglyani na menya, moya ladon prevratilas v kulak",
+                "tr": "Benim güneşim, dön de bir bak bana; açık avucum artık savaşmaya hazır sıkılı bir yumruğa dönüştü.",
+                "highlight": "sıkılı bir yumruğa dönüştü",
+                "note": "Zorluklara karşı direnişin simgesi.",
+            },
+            {
+                "orig": "И если есть порох — дай огня, вот так",
+                "pron": "İ yesli yest poroh — day ognya, vot tak",
+                "tr": "Eğer içimizde hâlâ bir kıvılcım ve barut kaldıysa, ateşle gitsin; işte tam böyle!",
+                "highlight": "ateşle gitsin; işte tam böyle",
+                "note": "Patlayıcı vokal zirvesi.",
+            },
+        ],
+    },
+    {
+        "id": "ru_hammali_navai_ptichka",
+        "language": "rusca",
+        "language_code": "RU",
+        "language_tr": "Rusça",
+        "flag": "🇷🇺",
+        "artist": "HammAli & Navai",
+        "title": "Птичка (Ptichka)",
+        "release_year": "2021",
+        "itunes_query": "HammAli Navai Ptichka",
+        "artwork_url": "",
+        "chorus_timestamp": "0:40 - 1:07 (Melankolik Nakarat)",
+        "social_audio_search": "HammAli & Navai - Ptichka",
+        "cover_kicker": "🇷🇺 RUSÇA VİRAL HİT • TÜRKÇE ÇEVİRİ",
+        "cover_headline": "'UÇUP GİTTİN KÜÇÜK KUŞUM AMA KALBİN HÂLÂ BENDE KALDI'",
+        "viral_hook": "HammAli & Navai'nin duygusal başyapıtı 'Ptichka', gurur yüzünden biten ama iki tarafın da geceleri gizlice ağladığı yarım kalmış bir aşkı anlatır.",
+        "stanzas": [
+            {
+                "orig": "Ты же не спишь опять, сидишь тут до утра",
+                "pron": "Tı je ne spiş opyat, sidiş tut do utra",
+                "tr": "Yine gözüne uyku girmiyor değil mi; sabaha kadar pencerenin önünde oturup düşünüyorsun.",
+                "highlight": "sabaha kadar pencerenin önünde",
+                "note": "Ayrılık sonrası uykusuz geceler.",
+            },
+            {
+                "orig": "Улетела птичка, оставив пустое гнездо",
+                "pron": "Uletela ptiçka, ostaviv pustoye gnezdo",
+                "tr": "Küçük kuşum uçup gitti ve ardında sadece buz gibi, bomboş bir yuva bıraktı.",
+                "highlight": "bomboş bir yuva bıraktı",
+                "note": "Şarkıya adını veren hüzünlü metafor.",
+            },
+        ],
+    },
+    # --- YENİ İSPANYOLCA HİTLER ---
+    {
+        "id": "es_rosalia_despecha",
+        "language": "ispanyolca",
+        "language_code": "ES",
+        "language_tr": "İspanyolca",
+        "flag": "🇪🇸",
+        "artist": "Rosalía",
+        "title": "DESPECHÁ",
+        "release_year": "2022",
+        "itunes_query": "Rosalia Despecha",
+        "artwork_url": "",
+        "chorus_timestamp": "0:35 - 1:02 (Dans & Ritmik Nakarat)",
+        "social_audio_search": "Rosalía - DESPECHÁ",
+        "cover_kicker": "🇪🇸 İSPANYOLCA VİRAL HİT • TÜRKÇE ÇEVİRİ",
+        "cover_headline": "'ARTIK BENİ ARAMA, BANA YAŞATTIĞIN KIRGINLIKLARI UNUTTUM!'",
+        "viral_hook": "Rosalía'nın yaz hiti 'DESPECHÁ', kalp kırıklığını hüzünle değil dans ederek, eğlenerek ve geçmişi tamamen silerek atlatmanın enerjisini taşır.",
+        "stanzas": [
+            {
+                "orig": "Baby, no me llames, que yo estoy ocupá' olvidando tus males",
+                "pron": "Beybi, no me yames, ke yo estoy okupa olvidando tus males",
+                "tr": "Artık beni sakın arama; çünkü bana yaşattığın tüm kırgınlıkları unutmakla meşgulüm.",
+                "highlight": "kırgınlıkları unutmakla meşgulüm",
+                "note": "Eski sevgiliye en net kapı kapatma cümlesi.",
+            },
+            {
+                "orig": "Ya decidí que esta noche se sale, con todas mis motomamis",
+                "pron": "Ya desidi ke esta noçe se sale, kon todas mis motomamis",
+                "tr": "Kararımı çoktan verdim; bu gece tüm kederi geride bırakıp dostlarımla hayata karışıyorum.",
+                "highlight": "tüm kederi geride bırakıp",
+                "note": "Özgürlük ve neşe vurgusu.",
+            },
+        ],
+    },
+    {
+        "id": "es_karol_g_shakira_tqg",
+        "language": "ispanyolca",
+        "language_code": "ES",
+        "language_tr": "İspanyolca",
+        "flag": "🇪🇸",
+        "artist": "Karol G & Shakira",
+        "title": "TQG (Te Quedó Grande)",
+        "release_year": "2023",
+        "itunes_query": "Karol G Shakira TQG",
+        "artwork_url": "",
+        "chorus_timestamp": "0:48 - 1:15 (İkonik Düet Nakarat)",
+        "social_audio_search": "Karol G & Shakira - TQG",
+        "cover_kicker": "🇪🇸 İSPANYOLCA DEV DÜET • TÜRKÇE ÇEVİRİ",
+        "cover_headline": "TQG NE DEMEK? 'BENİM SEVGİM SANA FAZLA BÜYÜK GELDİ!'",
+        "viral_hook": "Karol G ve Shakira'nın tarihi düeti 'TQG (Te Quedó Grande)', kıymet bilmeyen birinin ardından çok daha güçlü ve parlak bir hayata geçişi anlatır.",
+        "stanzas": [
+            {
+                "orig": "Verte con la nueva me dolió, pero ya estoy puesta pa' lo mío",
+                "pron": "Verte kon la nueva me dolyo, pero ya estoy puesta pa lo mio",
+                "tr": "Seni yeni biriyle görmek ilk başta canımı yaktı; ama artık tamamen kendi hayatıma ve zaferime odaklandım.",
+                "highlight": "kendi hayatıma ve zaferime odaklandım",
+                "note": "Samimi itiraf ve güçlü dönüş.",
+            },
+            {
+                "orig": "Lo que vivimos se me olvidó, y eso es lo que te tiene ofendido",
+                "pron": "Lo ke vivimos se me olvido, i eso es lo ke te tiyene ofendido",
+                "tr": "Yaşadığımız her şeyi çoktan unuttum gitti; senin asıl zoruna giden şey de tam olarak bu.",
+                "highlight": "senin asıl zoruna giden şey de tam olarak bu",
+                "note": "Nakaratın en keskin cümlesi.",
+            },
+        ],
+    },
+    # --- YENİ KORECE HİTLER ---
+    {
+        "id": "ko_jung_kook_seven",
+        "language": "korece",
+        "language_code": "KO",
+        "language_tr": "Korece",
+        "flag": "🇰🇷",
+        "artist": "Jung Kook (정국)",
+        "title": "Seven",
+        "release_year": "2023",
+        "itunes_query": "Jung Kook Seven",
+        "artwork_url": "",
+        "chorus_timestamp": "0:42 - 1:09 (Haftanın 7 Günü Nakaratı)",
+        "social_audio_search": "Jung Kook - Seven",
+        "cover_kicker": "🇰🇷 KORECE / GLOBAL REKOR HİT • TÜRKÇE ÇEVİRİ",
+        "cover_headline": "'HAFTANIN YEDİ GÜNÜ, GÜNÜN HER SAATİ SENİ SEVECEĞİM'",
+        "viral_hook": "BTS üyesi Jung Kook'un Spotify tarihinde en hızlı 1 milyar dinlenmeye ulaşan 'Seven' şarkısı, zamanın her anını sevdiği insana adama sözüdür.",
+        "stanzas": [
+            {
+                "orig": "Monday, Tuesday, Wednesday, Thursday, Friday, Saturday, Sunday",
+                "pron": "Mandey, Tuzdey, Venzdey, Törzdey, Fraydey, Satırdey, Sandey",
+                "tr": "Pazartesi, Salı, Çarşamba, Perşembe, Cuma, Cumartesi ve Pazar; haftanın her bir günü...",
+                "highlight": "haftanın her bir günü",
+                "note": "Akıldan çıkmayan ritmik nakarat.",
+            },
+            {
+                "orig": "Seven days a week, every hour, every minute, every second",
+                "pron": "Sevın deyz e vik, evri auır, evri minit, evri sekınd",
+                "tr": "Haftanın yedi günü; her saat, her dakika ve her saniye kalbim yalnızca seninle atıyor.",
+                "highlight": "kalbim yalnızca seninle atıyor",
+                "note": "Kesintisiz bağlılık vurgusu.",
+            },
+        ],
+    },
+    {
+        "id": "ko_fifty_fifty_cupid",
+        "language": "korece",
+        "language_code": "KO",
+        "language_tr": "Korece",
+        "flag": "🇰🇷",
+        "artist": "FIFTY FIFTY",
+        "title": "Cupid",
+        "release_year": "2023",
+        "itunes_query": "FIFTY FIFTY Cupid",
+        "artwork_url": "",
+        "chorus_timestamp": "0:38 - 1:05 (Viral Nakarat)",
+        "social_audio_search": "FIFTY FIFTY - Cupid",
+        "cover_kicker": "🇰🇷 KORECE VİRAL FENOMEN • TÜRKÇE ÇEVİRİ",
+        "cover_headline": "'AŞK TANRISI CUPID'E İKİNCİ BİR ŞANS VERDİM AMA YİNE YALNIZIM'",
+        "viral_hook": "Reels ve TikTok'ta milyarlarca videoya fon olan 'Cupid', aşka tekrar inanmak isteyen ama hayal kırıklığından korkan tatlı bir serzeniştir.",
+        "stanzas": [
+            {
+                "orig": "I gave a second chance to Cupid, but now I'm left here feeling stupid",
+                "pron": "Ay geyv e sekınd çens tu Kyupid, bat nav aym left hir filing stupid",
+                "tr": "Aşka ve kaderime ikinci bir şans verdim; ama şimdi yine tek başıma hayal kırıklığıyla kaldım.",
+                "highlight": "ikinci bir şans verdim",
+                "note": "Dünyanın ezbere söylediği viral dize.",
+            },
+            {
+                "orig": "Oh, the way he makes me feel that love isn't real, Cupid is so dumb",
+                "pron": "O, dı vey hi meyks mi fil det lav izınt riyıl, Kyupid iz so dam",
+                "tr": "Bana gerçek aşkın bir masal olduğunu hissettiriyor; aşk meleği bazen gerçekten çok acımasız.",
+                "highlight": "gerçek aşkın bir masal olduğunu",
+                "note": "Tatlı-hüzünlü nakarat kapanışı.",
+            },
+        ],
+    },
+    # --- YENİ JAPONCA HİTLER ---
+    {
+        "id": "ja_yoasobi_idol",
+        "language": "japonca",
+        "language_code": "JA",
+        "language_tr": "Japonca",
+        "flag": "🇯🇵",
+        "artist": "YOASOBI",
+        "title": "アイドル (Idol)",
+        "release_year": "2023",
+        "itunes_query": "YOASOBI Idol",
+        "artwork_url": "",
+        "chorus_timestamp": "0:45 - 1:12 (Rekor Kıran Nakarat)",
+        "social_audio_search": "YOASOBI - Idol",
+        "cover_kicker": "🇯🇵 JAPONCA GLOBAL ZİRVE • TÜRKÇE ÇEVİRİ",
+        "cover_headline": "KUSURSUZ GÖRÜNÜMÜN ARKASINDAKİ YALNIZLIK: YOASOBI - IDOL",
+        "viral_hook": "Billboard Global listesinde 1 numaraya yerleşen ilk Japonca şarkı olan 'Idol', sahnede herkesin hayran olduğu kusursuz bir yıldızın gerçek sevgiyi arayışını anlatır.",
+        "stanzas": [
+            {
+                "orig": "誰もが目を奪われていく、君は完璧で究極のアイドル",
+                "pron": "Daremo ga me o ubavarete iku, kimi va kanpeki de kyukyoku no aydoru",
+                "tr": "Seni gören herkesin nefesi kesiliyor; sen göz kamaştıran, kusursuz ve eşsiz bir yıldızsın.",
+                "highlight": "kusursuz ve eşsiz bir yıldızsın",
+                "note": "Işıltılı sahne imajı.",
+            },
+            {
+                "orig": "いつかきっと全部手に入れる、私はそう欲張りなアイドル",
+                "pron": "İtsuka kitto zenbu te ni ireru, vataşi va so yokubari na aydoru",
+                "tr": "Bir gün mutlaka gerçek sevgiyi de kalbimde hissedeceğim; tüm sırlarımla parlamaya devam ediyorum.",
+                "highlight": "gerçek sevgiyi de kalbimde hissedeceğim",
+                "note": "Maskenin ardındaki insani dilek.",
+            },
+        ],
+    },
+    {
+        "id": "ja_lisa_gurenge",
+        "language": "japonca",
+        "language_code": "JA",
+        "language_tr": "Japonca",
+        "flag": "🇯🇵",
+        "artist": "LiSA",
+        "title": "紅蓮華 (Gurenge)",
+        "release_year": "2019",
+        "itunes_query": "LiSA Gurenge",
+        "artwork_url": "",
+        "chorus_timestamp": "0:50 - 1:17 (Güçlü Rock Nakarat)",
+        "social_audio_search": "LiSA - Gurenge",
+        "cover_kicker": "🇯🇵 JAPONCA EFSANE MARŞ • TÜRKÇE ÇEVİRİ",
+        "cover_headline": "'GÜÇLÜ OLMAK İSTİYORUM ÇÜNKÜ KORUMAM GEREKEN BİRİ VAR!'",
+        "viral_hook": "Japon müziğinin modern efsanesi 'Gurenge (Kızıl Nilüfer)', çamurun ve acının içinden filizlenip sevdiklerini korumak için ayağa kalkanların marşıdır.",
+        "stanzas": [
+            {
+                "orig": "強くなれる理由を知った、僕を連れて進め",
+                "pron": "Tsuyoku nareru riyu o şitta, boku o tsurete susume",
+                "tr": "Artık neden daha güçlü olmam gerektiğini çok iyi biliyorum; elimden tut ve karanlığın içinden ilerleyelim.",
+                "highlight": "neden daha güçlü olmam gerektiğini",
+                "note": "Milyonlara ilham veren açılış dizesi.",
+            },
+            {
+                "orig": "守りたいものがあるから、紅蓮の華よ咲き誇れ",
+                "pron": "Mamoritai mono ga aru kara, guren no hana yo sakihokore",
+                "tr": "Hayatta korumam gereken değerli kalpler var; şimdi fırtınalara inat gururla çiçek aç kızıl nilüfer!",
+                "highlight": "fırtınalara inat gururla çiçek aç",
+                "note": "Sarsıcı nakarat zirvesi.",
+            },
+        ],
+    },
+    # --- YENİ İTALYANCA HİTLER ---
+    {
+        "id": "it_maneskin_zitti_e_buoni",
+        "language": "italyanca",
+        "language_code": "IT",
+        "language_tr": "İtalyanca",
+        "flag": "🇮🇹",
+        "artist": "Måneskin",
+        "title": "Zitti e buoni",
+        "release_year": "2021",
+        "itunes_query": "Maneskin Zitti e buoni",
+        "artwork_url": "",
+        "chorus_timestamp": "0:48 - 1:15 (Eurovision Şampiyonu Nakarat)",
+        "social_audio_search": "Måneskin - Zitti e buoni",
+        "cover_kicker": "🇮🇹 İTALYANCA ROCK ZAFERİ • TÜRKÇE ÇEVİRİ",
+        "cover_headline": "'İNSANLAR HİÇ BİLMEDİKLERİ HAYATLAR HAKKINDA KONUŞUP DURUYOR'",
+        "viral_hook": "Måneskin'i dünya zirvesine taşıyan 'Zitti e buoni', toplumun kalıplarına sığmayan özgür ruhların ön yargılara karşı başkaldırısıdır.",
+        "stanzas": [
+            {
+                "orig": "Siamo fuori di testa, ma diversi da loro",
+                "pron": "Siyamo fuori di testa, ma diversi da loro",
+                "tr": "Belki biraz çılgınız ve kurallara uymuyoruz; ama sahte maskeler takan onlardan tamamen farklıyız.",
+                "highlight": "onlardan tamamen farklıyız",
+                "note": "Özgünlük ve cesaret manifestosu.",
+            },
+            {
+                "orig": "Parla, la gente purtroppo parla, non sa di che cosa parla",
+                "pron": "Parla, la cente purtroppo parla, non sa di ke koza parla",
+                "tr": "İnsanlar ne yazık ki durmadan konuşuyor; üstelik hakkında hiçbir şey bilmedikleri hayatları yargılıyorlar.",
+                "highlight": "hiçbir şey bilmedikleri hayatları yargılıyorlar",
+                "note": "Nakaratın en vurucu toplumsal eleştirisi.",
+            },
+        ],
+    },
+    {
+        "id": "it_mahmood_soldi",
+        "language": "italyanca",
+        "language_code": "IT",
+        "language_tr": "İtalyanca",
+        "flag": "🇮🇹",
+        "artist": "Mahmood",
+        "title": "Soldi",
+        "release_year": "2019",
+        "itunes_query": "Mahmood Soldi",
+        "artwork_url": "",
+        "chorus_timestamp": "0:42 - 1:09 (Alkışlı İkonik Nakarat)",
+        "social_audio_search": "Mahmood - Soldi",
+        "cover_kicker": "🇮🇹 İTALYANCA MODERN KLASİK • TÜRKÇE ÇEVİRİ",
+        "cover_headline": "'SANIRSIN Kİ SADECE PARAYI DÜŞÜNÜYOR AMA KALBİ BOMBOŞ'",
+        "viral_hook": "Sanremo şampiyonu Mahmood'un 'Soldi' şarkısı, maddiyatı sevginin önüne koyan bir babanın çocukta bıraktığı duygusal izleri anlatır.",
+        "stanzas": [
+            {
+                "orig": "volevi solo soldi, soldi, come se avessi avuto soldi, soldi",
+                "pron": "Volevi solo soldi, soldi, kome se avessi avuto soldi, soldi",
+                "tr": "Benden sevgi değil, sadece para ve güç istedin; sanki para kırılan bir kalbi onarabilirmiş gibi.",
+                "highlight": "sanki para kırılan bir kalbi onarabilirmiş gibi",
+                "note": "Şarkının kalbine inen nakarat.",
+            },
+            {
+                "orig": "Dimmi se ti manco o te ne fotti, mi chiedevi come va, come va, come va",
+                "pron": "Dimmi se ti manko o te ne fotti, mi kiyedevi kome va, kome va, kome va",
+                "tr": "Doğruyu söyle, beni gerçekten özlüyor musun yoksa umurunda bile değil miyim? Sadece adetten 'nasılsın' diye soruyorsun.",
+                "highlight": "beni gerçekten özlüyor musun",
+                "note": "Yüzeysel ilişkilere sitem.",
+            },
+        ],
+    },
+    # --- YENİ ALMANCA HİTLER ---
+    {
+        "id": "de_cro_traum",
+        "language": "almanca",
+        "language_code": "DE",
+        "language_tr": "Almanca",
+        "flag": "🇩🇪",
+        "artist": "Cro",
+        "title": "Traum",
+        "release_year": "2014",
+        "itunes_query": "Cro Traum",
+        "artwork_url": "",
+        "chorus_timestamp": "0:40 - 1:07 (Ritim & Melodik Nakarat)",
+        "social_audio_search": "Cro - Traum",
+        "cover_kicker": "🇩🇪 ALMANCA POP KLASİĞİ • TÜRKÇE ÇEVİRİ",
+        "cover_headline": "HENÜZ TANIŞMADIĞI RUH EŞİNİ ARAYANLARIN ŞARKISI: 'TRAUM'",
+        "viral_hook": "Alman müziğinin en sevilen hitlerinden 'Traum', hayallerindeki o doğru insanla bir gün bir yerde mutlaka karşılaşacağına inananların şarkısıdır.",
+        "stanzas": [
+            {
+                "orig": "Denn du bist, was ich суche, schon seit Jahren",
+                "pron": "Den du bist, vas ih zuhe, şon zayt yaren",
+                "tr": "Çünkü sen, yıllardır her yerde aradığım ama henüz adını bile bilmediğim o mucizesin.",
+                "highlight": "yıllardır her yerde aradığım",
+                "note": "Ruh eşine duyulan özlem.",
+            },
+            {
+                "orig": "Hey, falls du dich erkennst, ruf mich an, sag mir, wo du bist",
+                "pron": "Hey, fals du dih erkenst, ruf mih an, zag mir vo du bist",
+                "tr": "Eğer bu sözlerde kendini buluyorsan lütfen bana ses ver ve dünyanın neresinde olduğunu söyle.",
+                "highlight": "bu sözlerde kendini buluyorsan",
+                "note": "Samimi ve sıcak çağrı.",
+            },
+        ],
+    },
+    {
+        "id": "de_ayliva_haesslich",
+        "language": "almanca",
+        "language_code": "DE",
+        "language_tr": "Almanca",
+        "flag": "🇩🇪",
+        "artist": "AYLIVA",
+        "title": "Hässlich",
+        "release_year": "2023",
+        "itunes_query": "AYLIVA Haesslich",
+        "artwork_url": "",
+        "chorus_timestamp": "0:45 - 1:12 (Duygusal Zirve Nakarat)",
+        "social_audio_search": "AYLIVA - Hässlich",
+        "cover_kicker": "🇩🇪 ALMANCA VİRAL HİT • TÜRKÇE ÇEVİRİ",
+        "cover_headline": "'DIŞIN NE KADAR GÜZELSE KALBİN VE YALANLARIN O KADAR ÇİRKİN'",
+        "viral_hook": "Almanya listelerini domine eden AYLIVA'nın 'Hässlich' şarkısı, güzel sözlerin arkasına saklanan ihaneti fark eden bir kadının güçlü yüzleşmesini anlatır.",
+        "stanzas": [
+            {
+                "orig": "Du bist so hässlich, so hässlich von innen, ich kann es kaum fassen",
+                "pron": "Du bist zo heslıh, zo heslıh fon innen, ih kan es kaum fassen",
+                "tr": "Ruhun ve kalbinin içi o kadar karanlık ki; sana nasıl bu kadar safça inandığıma hâlâ inanamıyorum.",
+                "highlight": "sana nasıl bu kadar safça inandığıma",
+                "note": "Hayal kırıklığının uyanışa dönüştüğü an.",
+            },
+            {
+                "orig": "Wie konnte ich dich nur so sehr lieben?",
+                "pron": "Vi konte ih dih nur zo zer liben?",
+                "tr": "Bana bunca acıyı yaşatırken seni nasıl kendimden bile çok sevebildim?",
+                "highlight": "seni nasıl kendimden bile çok sevebildim",
+                "note": "Nakaratın en sarsıcı sorusu.",
+            },
+        ],
+    },
+    # --- YENİ ÇİNCE HİTLER ---
+    {
+        "id": "zh_eric_chou_ni_hao_bu_hao",
+        "language": "cince",
+        "language_code": "ZH",
+        "language_tr": "Çince",
+        "flag": "🇨🇳",
+        "artist": "Eric Chou (周兴哲)",
+        "title": "你，好不好？ (Nǐ, Hǎo Bù Hǎo?)",
+        "release_year": "2016",
+        "itunes_query": "Eric Chou How Have You Been",
+        "artwork_url": "",
+        "chorus_timestamp": "1:00 - 1:27 (Piyano & Vokal Zirvesi)",
+        "social_audio_search": "Eric Chou - How Have You Been",
+        "cover_kicker": "🇨🇳 ÇİNCE DUYGUSAL BAŞYAPIT • TÜRKÇE ÇEVİRİ",
+        "cover_headline": "'BENDEN SONRA GERÇEKTEN İYİ MİSİN?': MİLYONLARI AĞLATAN ÇİNCE ŞARKI",
+        "viral_hook": "Eric Chou'nun Asya'da yüz milyonlarca kez dinlenen 'Nǐ, Hǎo Bù Hǎo?' baladı, ayrıldıktan sonra bile eski sevgilinin mutluluğunu uzaktan merak etmenin hüznünü anlatır.",
+        "stanzas": [
+            {
+                "orig": "能不能继续，对我哭，对我笑，对我好",
+                "pron": "Nıng bu nıng cışü, duey vo ku, duey vo şyao, duey vo hao",
+                "tr": "Eskisi gibi yine benim omzumda ağlamaya, bana gülümsemeye ve yanımda kalmaya devam edemez misin?",
+                "highlight": "benim omzumda ağlamaya",
+                "note": "Geçmişin sıcaklığına duyulan özlem.",
+            },
+            {
+                "orig": "别融化了眼泪，你，好不好？",
+                "pron": "Biye rong hua lı yen ley, ni, hao bu hao?",
+                "tr": "Gözyaşların sessizliğe karışıp kaybolmasın; söyle bana, benden uzakta gerçekten iyi misin?",
+                "highlight": "benden uzakta gerçekten iyi misin",
+                "note": "Şarkının kalbe dokunan ana sorusu.",
+            },
+        ],
+    },
+    {
+        "id": "zh_gem_guang_nian_zhi_wai",
+        "language": "cince",
+        "language_code": "ZH",
+        "language_tr": "Çince",
+        "flag": "🇨🇳",
+        "artist": "G.E.M. (邓紫棋)",
+        "title": "光年之外 (Light Years Away)",
+        "release_year": "2016",
+        "itunes_query": "G.E.M. Light Years Away",
+        "artwork_url": "",
+        "chorus_timestamp": "0:52 - 1:19 (Sinematik Nakarat)",
+        "social_audio_search": "G.E.M. - Light Years Away",
+        "cover_kicker": "🇨🇳 ÇİNCE REKOR HİT • TÜRKÇE ÇEVİRİ",
+        "cover_headline": "'IŞIK YILLARI ÖTEDE BİLE OLSAK KALBİM SENİN YÖRÜNGENDE'",
+        "viral_hook": "Passengers filminin resmi müziği olan ve YouTube'da en çok izlenen Çince şarkı rekorunu kıran 'Light Years Away', mesafeleri ve zamanı aşan kader aşkını anlatır.",
+        "stanzas": [
+            {
+                "orig": "缘分让我们相遇乱世以外，命运却要我们危难中相爱",
+                "pron": "Yüen fın rang vo mın şyang yü luan şı yi vay, ming yün çüe yao vo mın vey nan cong şyang ay",
+                "tr": "Kader bizi bu kaotik dünyanın ötesinde karşılaştırdı ve en imkansız fırtınaların ortasında birbirimize aşık etti.",
+                "highlight": "en imkansız fırtınaların ortasında",
+                "note": "Sinematik kader teması.",
+            },
+            {
+                "orig": "也许未来遥远在光年之外，我愿守候未知里为你等待",
+                "pron": "Ye şü vey lay yao yüen zay guang niyen cı vay, vo yüen şou hou vey cı li vey ni dıng day",
+                "tr": "Gelecek bizden ışık yılları kadar uzakta olsa bile; bilinmezliğin içinde sonsuza dek seni beklemeye razıyım.",
+                "highlight": "sonsuza dek seni beklemeye razıyım",
+                "note": "Dev nakaratın duygusal zirvesi.",
+            },
+        ],
+    },
+    # --- YENİ HİNTÇE HİTLER ---
+    {
+        "id": "hi_jubin_nautiyal_raataan_lambiyan",
+        "language": "hintce",
+        "language_code": "HI",
+        "language_tr": "Hintçe",
+        "flag": "🇮🇳",
+        "artist": "Jubin Nautiyal & Asees Kaur",
+        "title": "Raataan Lambiyan (रातां लम्बियां)",
+        "release_year": "2021",
+        "itunes_query": "Jubin Nautiyal Raataan Lambiyan",
+        "artwork_url": "",
+        "chorus_timestamp": "0:38 - 1:05 (Romantik Bollywood Nakaratı)",
+        "social_audio_search": "Jubin Nautiyal - Raataan Lambiyan",
+        "cover_kicker": "🇮🇳 HİNTÇE ROMANTİK REKOR • TÜRKÇE ÇEVİRİ",
+        "cover_headline": "'BU UZUN GECELERİ YALNIZCA SENİNLE KONUŞARAK GEÇİRMEK İSTİYORUM'",
+        "viral_hook": "Milyarlarca kez dinlenen 'Raataan Lambiyan', aşık olduğu insanın gözlerine bakarak sabaha kadar sohbet etmenin verdiği saf mutluluğu anlatır.",
+        "stanzas": [
+            {
+                "orig": "काटूँ कैसे रातां ओ साँवरे, जिया नहीं जाता सुन बावरे",
+                "pron": "Katu keyse raatan o savre, ciya nahi cata sun bavre",
+                "tr": "Sen yanımda olmadan bu upuzun geceleri nasıl geçireyim sevgilim; sensiz nefes bile alınmıyor.",
+                "highlight": "sensiz nefes bile alınmıyor",
+                "note": "Özlemin en içten ifadesi.",
+            },
+            {
+                "orig": "के रातां लम्बियां लम्बियां रे, कटे तेरे संगियां संगियां रे",
+                "pron": "Ke raatan lambiyan lambiyan re, kate tere sangiyan sangiyan re",
+                "tr": "Geceler ne kadar uzun olursa olsun; yeter ki her bir dakikası senin yanı başında, seninle geçsin.",
+                "highlight": "senin yanı başında, seninle geçsin",
+                "note": "Milyonların ezbere bildiği ikonik nakarat.",
+            },
+        ],
+    },
+    {
+        "id": "hi_arijit_singh_chaleya",
+        "language": "hintce",
+        "language_code": "HI",
+        "language_tr": "Hintçe",
+        "flag": "🇮🇳",
+        "artist": "Arijit Singh & Shilpa Rao",
+        "title": "Chaleya (चलेया)",
+        "release_year": "2023",
+        "itunes_query": "Arijit Singh Chaleya",
+        "artwork_url": "",
+        "chorus_timestamp": "0:42 - 1:09 (Modern Bollywood Hit Nakarat)",
+        "social_audio_search": "Arijit Singh - Chaleya",
+        "cover_kicker": "🇮🇳 HİNTÇE GLOBAL LİSTE HİTİ • TÜRKÇE ÇEVİRİ",
+        "cover_headline": "'KALBİM KENDİ İRADESİNİ BIRAKTI, SADECE SENİN İZİNDEN YÜRÜYOR'",
+        "viral_hook": "Jawan filminin dünya çapında viral olan şarkısı 'Chaleya', Arijit Singh'in büyüleyici sesiyle aşkın insanı nasıl pusulasız bırakıp peşinden sürüklediğini anlatır.",
+        "stanzas": [
+            {
+                "orig": "इश्क़ में दिल बना है, इश्क़ में दिल फ़ना है",
+                "pron": "İşk me dil bana he, işk me dil fana he",
+                "tr": "Bu kalp senin aşkınla yeniden var oldu ve yine yalnızca senin aşkında eriyip kaybolmaya hazır.",
+                "highlight": "senin aşkınla yeniden var oldu",
+                "note": "Tasavvufi derinlik taşıyan romantik dize.",
+            },
+            {
+                "orig": "तेरी ओर चलेया, हुआ मैं तेरा",
+                "pron": "Teri or çaleya, hua me tera",
+                "tr": "Ruhum sadece senin olduğun yöne doğru yürüyor; ben artık bütünüyle sana aidim.",
+                "highlight": "bütünüyle sana aidim",
+                "note": "Akıcı ve büyüleyici nakarat.",
+            },
+        ],
+    },
 ]
 
 
@@ -1833,28 +2925,182 @@ def _translate_to_clean_turkish(text: str, src_lang_code: str = "auto") -> str:
     return clean_in
 
 
+EXTENDED_GLOBAL_HIT_QUERIES_BY_LANG: Dict[str, List[str]] = {
+    "ingilizce": [
+        "Taylor Swift Cruel Summer",
+        "The Neighbourhood Sweater Weather",
+        "Lord Huron The Night We Met",
+        "Sabrina Carpenter Espresso",
+        "Teddy Swims Lose Control",
+        "Djo End of Beginning",
+        "Rihanna Diamonds",
+        "Adele Rolling in the Deep",
+        "Bruno Mars Locked Out of Heaven",
+        "OneRepublic Counting Stars",
+        "Passenger Let Her Go",
+        "John Legend All of Me",
+        "Sam Smith Stay With Me",
+        "Shawn Mendes Senorita",
+        "Dua Lipa Levitating",
+        "Post Malone Circles",
+        "Linkin Park In the End",
+        "Eminem Lose Yourself",
+        "Vance Joy Riptide",
+        "Glass Animals Heat Waves",
+        "JVKE Golden Hour",
+        "Stephen Sanchez Until I Found You",
+        "Tate McRae Greedy",
+        "Chappell Roan Good Luck Babe",
+        "SZA Kill Bill",
+    ],
+    "arapca": [
+        "Amr Diab Nour El Ain",
+        "Fairuz Li Beirut",
+        "Wael Kfoury El Bint El Awiye",
+        "Assala Ghaban",
+        "Tamer Hosny Come Back To Me",
+        "Sherine Sabry Aalil",
+        "Nassif Zeytoun Mich Aam Tezbat Maii",
+        "Zuhair Bahaoui Decapotable",
+        "kadim Al Sahir Zidini Ishqan",
+        "Mohamed Hamaki Ya Sattar",
+    ],
+    "fransizca": [
+        "Indila Love Story",
+        "Stromae Alors on danse",
+        "Zaz Je veux",
+        "Aya Nakamura Djadja",
+        "Indila Tourner dans le vide",
+        "Lomepal Trop beau",
+        "Videoclub Amour plastique",
+        "Pomme Ceux qui revent",
+        "Dadju Reine",
+        "Lara Fabian Je t'aime",
+    ],
+    "rusca": [
+        "Miyagi Andy Panda Kosandra",
+        "JONY Alleia",
+        "Rauf Faik Ya lyublyu tebya",
+        "Xcho Ты и Я",
+        "Basta Sansara",
+        "Zivert Life",
+        "Jah Khalib Medina",
+        "Mot Kapkan",
+        "MACAN Asphalt 8",
+        "ANIVAR Lyubimiy chelovek",
+    ],
+    "ispanyolca": [
+        "Bad Bunny Ojitos Lindos",
+        "Luis Fonsi Despacito",
+        "Enrique Iglesias Bailando",
+        "Maluma Hawái",
+        "Peso Pluma Ella Baila Sola",
+        "Feid Classy 101",
+        "Quevedo Bzrp Music Sessions 52",
+        "Rauw Alejandro Todo De Ti",
+        "J Balvin Mi Gente",
+        "Camilo Vida de Rico",
+    ],
+    "korece": [
+        "BTS Dynamite",
+        "BLACKPINK How You Like That",
+        "IVE I AM",
+        "NewJeans Hype Boy",
+        "Jimin Like Crazy",
+        "LE SSERAFIM Smart",
+        "Stray Kids God's Menu",
+        "TWICE Feel Special",
+        "aespa Supernova",
+        "IU Love wins all",
+    ],
+    "japonca": [
+        "YOASOBI Yoru ni Kakeru",
+        "Kenshi Yonezu Kick Back",
+        "Ado Usseewa",
+        "Vaundy Odoriko",
+        "Official HIGE DANdism Pretender",
+        "King Gnu Specialz",
+        "imase NIGHT DANCER",
+        "Radwimps Sparkle",
+        "Mrs. GREEN APPLE Que Sera Sera",
+        "Eve Kaikai Kitan",
+    ],
+    "italyanca": [
+        "Måneskin I Wanna Be Your Slave",
+        "Annalisa Mon Amour",
+        "Blanco Mi fai impazzire",
+        "Ultimo Piccola stella",
+        "Eros Ramazzotti Più bella cosa",
+        "Tananai Tango",
+        "Lazza Cenere",
+        "Angelina Mango La noia",
+        "Fedez Chiaroscuro",
+        "Laura Pausini La solitudine",
+    ],
+    "almanca": [
+        "Rammstein Sonne",
+        "Peter Fox Zukunft Pink",
+        "Apache 207 Roller",
+        "RAF Camora 500 PS",
+        "Nina Chuba Wildberry Lillet",
+        "Pashanim Sommergewitter",
+        "Bausa Was du Liebe nennst",
+        "Mark Forster Chöre",
+        "Lea Treppenhaus",
+        "Sido Bilder im Kopf",
+    ],
+    "cince": [
+        "Jay Chou Mojito",
+        "JJ Lin Twilight",
+        "Mayday Suddenly Missing You",
+        "Mao Buyi People Like Me",
+        "Ronghao Li Sparrow",
+        "Faye Wong Red Bean",
+        "LBI LBI跳楼机",
+        "Cheng Xiang Maybe",
+        "Eason Chan Ten Years",
+        "Lay Zhang Lit",
+    ],
+    "hintce": [
+        "Arijit Singh Apna Bana Le",
+        "Atif Aslam Tera Hone Laga Hoon",
+        "Shreya Ghoshal Teri Ore",
+        "Pritam Kesariya",
+        "Diljit Dosanjh Lover",
+        "AR Rahman Kun Faya Kun",
+        "Vishal Mishra Pehle Bhi Main",
+        "Anuv Jain Husn",
+        "Badshah Jugnu",
+        "King Maan Meri Jaan",
+    ],
+}
+
+
 def build_live_song_concept_from_query(
     query_text: str,
     forced_lang: str = "otomatik",
     requester_chat_id: str = "",
+    skip_catalog_match: bool = False,
 ) -> Dict[str, Any]:
     """
-    Kullanıcı Telegram'dan (@songtraibot) özel bir şarkı adı / sanatçı gönderdiğinde:
-    1) Önce küratörlü 10 dil kataloğunda eşleşme var mı kontrol eder.
+    Kullanıcı Telegram'dan (@songtraibot) özel bir şarkı adı / sanatçı gönderdiğinde
+    veya genişletilmiş global hit havuzundan yeni şarkı keşfedildiğinde:
+    1) Önce küratörlü katalogda eşleşme var mı kontrol eder (`skip_catalog_match=False` ise).
     2) Yoksa iTunes Search API + LRCLIB API üzerinden gerçek şarkıyı, albüm kapağını ve nakarat sözlerini
        çekip tertemiz Türkçe çevirisiyle canlı olarak oluşturur.
     """
     q_low = (query_text or "").strip().lower()
-    for item in SONG_MASTER_CATALOG:
-        if (
-            item["title"].lower() in q_low
-            or item["artist"].lower() in q_low
-            or q_low in f"{item['artist']} {item['title']}".lower()
-        ):
-            cloned = json.loads(json.dumps(item))
-            if requester_chat_id:
-                cloned["requester_chat_id"] = requester_chat_id
-            return cloned
+    if not skip_catalog_match:
+        for item in SONG_MASTER_CATALOG:
+            if (
+                item["title"].lower() in q_low
+                or item["artist"].lower() in q_low
+                or q_low in f"{item['artist']} {item['title']}".lower()
+            ):
+                cloned = json.loads(json.dumps(item))
+                if requester_chat_id:
+                    cloned["requester_chat_id"] = requester_chat_id
+                return cloned
 
     # Canlı iTunes + LRCLIB araması
     artist_name = "Global Artist"
@@ -1930,9 +3176,9 @@ def build_live_song_concept_from_query(
             "note": f"{artist_name} bu dizede şarkının duygusal kırılma noktasını vurguluyor.",
         })
 
-    short_hash = hashlib.md5(f"{artist_name}_{track_title}".encode("utf-8")).hexdigest()[:6]
+    q_hash = hashlib.md5(q_low.encode("utf-8")).hexdigest()[:6]
     return {
-        "id": f"custom_{lmeta['code'].lower()}_{short_hash}",
+        "id": f"custom_{lmeta['code'].lower()}_{q_hash}",
         "language": lang_key,
         "language_code": lmeta["code"],
         "language_tr": lmeta["name_tr"],
@@ -1942,7 +3188,7 @@ def build_live_song_concept_from_query(
         "release_year": release_year,
         "itunes_query": f"{artist_name} {track_title}",
         "artwork_url": artwork_url,
-        "chorus_timestamp": "0:42 - 0:57 (Nakarat / En Popüler Kısım)",
+        "chorus_timestamp": "0:42 - 1:08 (Nakarat / En Vurucu Kısım)",
         "social_audio_search": f"{artist_name} - {track_title}",
         "cover_kicker": f"{lmeta['flag']} {lmeta['name_tr'].upper()} POPÜLER ŞARKI • TÜRKÇE ÇEVİRİ",
         "cover_headline": f"{artist_name.upper()} — {track_title.upper()} TÜRKÇE ANLAMI",
@@ -1952,13 +3198,23 @@ def build_live_song_concept_from_query(
     }
 
 
+def _discover_unused_extended_hit(lang_key: str, used_ids: List[str]) -> Optional[Dict[str, Any]]:
+    lmeta = LANGUAGE_META.get(lang_key, LANGUAGE_META["ingilizce"])
+    for q in EXTENDED_GLOBAL_HIT_QUERIES_BY_LANG.get(lang_key, []):
+        q_hash = hashlib.md5(q.strip().lower().encode("utf-8")).hexdigest()[:6]
+        cand_id = f"custom_{lmeta['code'].lower()}_{q_hash}"
+        if cand_id not in used_ids:
+            return build_live_song_concept_from_query(q, forced_lang=lang_key, skip_catalog_match=True)
+    return None
+
+
 def select_next_song_concept(
     force_language: str = "otomatik",
     custom_song: Optional[Dict[str, Any]] = None,
 ) -> Dict[str, Any]:
     """
-    Sıfır-Tekrar Çift Kilit defterini kontrol ederek 10 dil arasında dengeli rotasyonla
-    sıradaki popüler şarkıyı seçer.
+    Sıfır-Tekrar Çift Kilit defterini kontrol ederek 11 dil arasında (%50 popüler İngilizce ağırlıklı)
+    dengeli rotasyonla sıradaki YENİ popüler şarkıyı seçer.
     """
     if custom_song is not None:
         return custom_song
@@ -1966,32 +3222,29 @@ def select_next_song_concept(
     used_ids = load_used_song_ids()
     norm_lang = normalize_language_key(force_language)
 
-    candidates = SONG_MASTER_CATALOG
     if norm_lang != "otomatik":
-        lang_filtered = [s for s in SONG_MASTER_CATALOG if s["language"] == norm_lang]
-        if lang_filtered:
-            candidates = lang_filtered
-
-    unused = [s for s in candidates if s["id"] not in used_ids]
-    if not unused:
-        # Tüm katalog tamamlandıysa ilgili filtrede en baştan temiz rotasyon başlat
-        unused = candidates
+        lang_unused = [s for s in SONG_MASTER_CATALOG if s["language"] == norm_lang and s["id"] not in used_ids]
+        if lang_unused:
+            return json.loads(json.dumps(lang_unused[0]))
+        ext_hit = _discover_unused_extended_hit(norm_lang, used_ids)
+        if ext_hit is not None:
+            return ext_hit
+        lang_all = [s for s in SONG_MASTER_CATALOG if s["language"] == norm_lang]
+        if lang_all:
+            return json.loads(json.dumps(lang_all[len(used_ids) % len(lang_all)]))
 
     # Otomatik modda İngilizce ağırlıklı (%50 popüler İngilizce + Arapça dahil 11 dil) rotasyon sırasını uygula
-    chosen = unused[0]
-    if norm_lang == "otomatik":
-        try:
-            start_idx = len(used_ids) % len(LANGUAGE_ROTATION_ORDER)
-            for offset in range(len(LANGUAGE_ROTATION_ORDER)):
-                target_l = LANGUAGE_ROTATION_ORDER[(start_idx + offset) % len(LANGUAGE_ROTATION_ORDER)]
-                match_l = [s for s in unused if s["language"] == target_l]
-                if match_l:
-                    chosen = match_l[0]
-                    break
-        except Exception:
-            pass
+    start_idx = len(used_ids) % len(LANGUAGE_ROTATION_ORDER)
+    for offset in range(len(LANGUAGE_ROTATION_ORDER)):
+        target_l = LANGUAGE_ROTATION_ORDER[(start_idx + offset) % len(LANGUAGE_ROTATION_ORDER)]
+        match_l = [s for s in SONG_MASTER_CATALOG if s["language"] == target_l and s["id"] not in used_ids]
+        if match_l:
+            return json.loads(json.dumps(match_l[0]))
+        ext_hit = _discover_unused_extended_hit(target_l, used_ids)
+        if ext_hit is not None:
+            return ext_hit
 
-    return json.loads(json.dumps(chosen))
+    return json.loads(json.dumps(SONG_MASTER_CATALOG[len(used_ids) % len(SONG_MASTER_CATALOG)]))
 
 
 def build_explanatory_music_guide(song: Dict[str, Any]) -> str:
