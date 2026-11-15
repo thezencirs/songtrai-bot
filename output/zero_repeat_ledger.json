@@ -1,7 +1,7 @@
 {
-  "updated_at": "2026-11-15T19:49:47.970599Z",
-  "total_used": 32,
-  "last_song_id": "en_arctic_monkeys_i_wanna_be_yours",
+  "updated_at": "2026-11-15T20:52:08.817627Z",
+  "total_used": 34,
+  "last_song_id": "en_lana_del_rey_summertime_sadness",
   "last_language": "ingilizce",
   "used_ids": [
     "fr_indila_derniere_danse",
@@ -35,6 +35,8 @@
     "en_sia_unstoppable",
     "ar_sherine_kalam_eineh",
     "ar_amr_diab_tamally_maak",
-    "ar_nancy_ajram_ya_tabtab"
+    "ar_nancy_ajram_ya_tabtab",
+    "hi_jubin_nautiyal_raataan_lambiyan",
+    "en_lana_del_rey_summertime_sadness"
   ]
 }
