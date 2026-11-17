@@ -181,6 +181,74 @@ CURATED_POETIC_TRANSLATIONS: Dict[str, str] = {
     "e tu sei fuori di testa ma diversa da loro": "Sen de kalıplara sığmıyorsun, herkesten çok farklısın",
     "parla la gente purtroppo parla non sa di che cosa parla": "İnsanlar ne yazık ki hiç bilmedikleri hayatlar hakkında konuşup duruyor",
     "tu portami dove sto a galla che qui mi manca l'aria": "Beni nefes alabileceğim bir kıyıya götür; burada havam daralıyor",
+    # Polina Gagarina - Kukushka (Кукушка)
+    "песен ещё не написанных сколько": "Henüz yazılmamış daha kaç şarkım kaldı",
+    "скажи кукушка пропой": "Söyle bana guguk kuşu, kaderimi fısılda",
+    "в городе мне жить или на выселках": "Kalabalık şehirlerde mi yoksa ıssız sürgünlerde mi yaşayacağım",
+    "камнем лежать или гореть звездой звездой": "Soğuk bir taş gibi sessizce yatacak mıyım, yoksa bir yıldız gibi parlayarak mı yanacağım",
+    # FIFTY FIFTY - Cupid
+    "a hopeless romantic all my life": "Hayatım boyunca hep umutsuz bir romantik oldum",
+    "surrounded by couples all the time": "Etrafım her zaman birbirini seven çiftlerle sarılı",
+    "i guess i should take it as a sign": "Sanırım artık bunu kaderin bir işareti saymalıyım",
+    "i'm feeling lonely": "Kendimi bu gece çok yalnız hissediyorum",
+    "oh i wish i'd find a lover that could hold me": "Keşke beni sımsıkı saracak gerçek bir sevgili bulabilseydim",
+    "now i'm crying in my room": "Şimdi odamda tek başıma gözyaşı döküyorum",
+    "so skeptical of love": "Aşka karşı artık o kadar şüpheciyim ki",
+    "but still i want it more more more": "Ama yine de kalbim onu her şeyden çok istiyor",
+    "i gave a second chance to cupid": "Aşka ve kaderime ikinci bir şans verdim",
+    "but now i'm left here feeling stupid": "Ama şimdi yine tek başıma hayal kırıklığıyla kaldım",
+    "oh the way he makes me feel that love isn't real": "Bana gerçek aşkın sadece bir masal olduğunu hissettiriyor",
+    "cupid is so dumb": "Aşk meleği bazen gerçekten çok acımasız",
+    "i look for his arrows every day": "Her gün kalbime değecek o aşk oklarını arıyorum",
+    # AYLIVA - Hässlich
+    "auch wenn du jetzt mit ihr bist": "Şimdi onun yanında olsan bile",
+    "sie liebst und küsst siehst du dabei hässlich aus": "Onu sevdiğini söylesen de yalanlarınla çok çirkin görünüyorsun",
+    "du siehst hässlich aus babe": "Ruhunun karanlığı artık yüzüne vurmuş",
+    "du siehst mich ich sag bye bye": "Gözlerimin içine bakıyorsun; sana sadece elveda diyorum",
+    "lauf an dir vorbei weil": "Hiç arkama bakmadan yanından geçip gidiyorum, çünkü",
+    "ich fühl mich seitdem du weg bist endlich wieder so frei": "Sen hayatımdan çıktığından beri nihayet yeniden özgür hissediyorum",
+    "endlich wieder frei oh yeah": "Nihayet yeniden tamamen özgürüm",
+    "hab dich so geliebt aber ich": "Seni kendimden bile çok sevmiştim ama",
+    "find ohne mich siehst du einfach so hässlich aus": "Bensiz kaldığında masken düştü ve gerçek yüzün ortaya çıktı",
+    # Jung Kook - Seven
+    "every hour every minute every second": "Her saat, her dakika ve her saniye",
+    "you know night after night": "Biliyorsun, geceler boyu her gece",
+    "i'll be lovin' you right seven days a week": "Haftanın yedi günü seni tüm kalbimle seveceğim",
+    "you love when i jump right in": "Hiç tereddüt etmeden senin dünyana adım atmamı seviyorsun",
+    "all of me i'm offering": "Bütün kalbimi ve varlığımı yalnızca sana adıyorum",
+    "show you what devotion is": "Sana gerçek bağlılığın ve sadakatin ne olduğunu göstereceğim",
+    "deeper than the ocean is": "En derin okyanuslardan bile çok daha derin bir sevgiyle",
+    "wind it back i'll take it slow": "Zamanı geri saralım, her anı sindire sindire yaşayalım",
+    "leave you with that afterglow": "Seni gün batımının o büyüleyici ışıltısıyla baş başa bırakacağım",
+    # KAROL G & Shakira - TQG
+    "estoy más dura dicen lo' reporte'": "Herkes eskisinden çok daha güçlü döndüğümü konuşuyor",
+    "ahora tú quiere' volver se te nota mm sí": "Şimdi pişman olup geri dönmek istiyorsun, gözlerinden okunuyor",
+    "espérame ahí que yo soy idiota": "Orada bekle bakalım; sanki sana tekrar inanacak kadar safmışım gibi",
+    "se te olvidó que estoy en otra": "Benim artık bambaşka bir hayatta olduğumu unuttun",
+    "y que te quedó grande la bichota": "Ve benim sevgimin sana ne kadar büyük geldiğini şimdi anladın",
+    "bebé qué fue": "Söyle bakalım, ne oldu şimdi",
+    "no pues que muy tragaíto": "Hani yeni hayatında çok mutlu ve aşıktın",
+    "qué haces buscándome el lao": "Öyleyse neden hâlâ benim etrafımda dolanıp duruyorsun",
+    "si sabes que yo errores no repito": "Benim aynı hatayı iki kez tekrarlamadığımı çok iyi biliyorsun",
+    "dile a tu nueva bebé": "Git ve o yeni sevgiline de açıkça söyle",
+    "que por hombre' no compito": "Ben hiçbir erkek için kimseyle yarışa girmem",
+    # Benson Boone - Beautiful Things
+    "for a while there it was rough": "Bir zamanlar hayat benim için gerçekten çok zorluydu",
+    "but lately i've been doin' better": "Ama son günlerde yaralarımı sarıp çok daha iyi hissediyorum",
+    "than the last four cold decembers": "Geride bıraktığım o dört soğuk ve yalnız kıştan sonra",
+    "i recall": "Her birini dün gibi hatırlıyorum",
+    "and i see my family every month": "Artık sevdiklerime ve aileme her ay sarılabiliyorum",
+    "i found a girl my parents love": "Ailemin de çok sevdiği, kalbimi ısıtan o insanı buldum",
+    "she'll come and stay the night": "Bu gece yanıma gelecek ve karanlığı birlikte paylaşacağız",
+    "and i think i might have it all": "Ve sanırım hayatta hayalini kurduğum her şeye nihayet sahibim",
+    # Taylor Swift - Cruel Summer
+    "killing me slow out the window": "Pencereden dışarı bakarken bu bekleyiş beni yavaşça tüketiyor",
+    "i'm always waiting for you to be waiting below": "Her gece kapımın önünde beni bekliyor olmanı umut ediyorum",
+    "devils roll the dice angels roll their eyes": "Kader zarlarını atıyor, melekler bile bu fırtınalı aşka şaşırıyor",
+    "what doesn't kill me makes me want you more": "Beni yıkmayan bu sızı, seni her geçen gün daha çok istememe sebep oluyor",
+    "and it's new the shape of your body": "Senin varlığın ve dokunuşun kalbim için yepyeni bir heyecan",
+    "it's blue the feeling i've got": "İçimdeki bu derin duygu gece mavisi bir hüzne büründü",
+    "it's a cruel summer": "Bu yaz ikimiz için de hem büyüleyici hem çok acımasız",
 }
 
 
@@ -342,8 +410,25 @@ def _parse_lrc_lines(synced_lrc: str) -> List[Dict[str, Any]]:
         txt = m.group(3).strip()
         if not txt or txt.startswith("["):
             continue
-        # Sadece mırıldanma/efekt içeren ('Hm-mm-mm', 'Oh-oh-oh', 'Mm-mm') satırları atla
-        if re.match(r"^[\s\-\,\.\!\?hmoaeyuHMOAEYU♪♫]+$", txt) and len(txt.replace("-", "").strip()) <= 16:
+        # Tamamı parantez içi vokal/arka vokal olan ('(Oh, why? Oh, why?)') satırları atla
+        if txt.startswith("(") and txt.endswith(")"):
+            continue
+        # Satır sonundaki parantez içi saf vokal efektlerini ('(oh-oh)', '(mh-mh)', '(yeah)') temizle
+        txt = re.sub(
+            r"\s*\(\s*(?:oh|ah|ooh|uh|mm|mh|yeah|whoa|la|na|hey)[\s\-\,\w\?\!]*\)",
+            "",
+            txt,
+            flags=re.IGNORECASE,
+        ).strip()
+        if not txt:
+            continue
+        # Sadece mırıldanma/efekt içeren ('Hm-mm-mm', 'Oh-oh-oh', 'La, la, la', 'And it's ooh, whoa-oh') satırları atla
+        if re.match(r"^[\s\-\,\.\!\?hmoaeyulndHMOAEYULND♪♫]+$", txt) and len(txt.replace("-", "").strip()) <= 24:
+            continue
+        if re.search(r"\b(?:ooh|whoa|la-la|na-na)\b", txt, flags=re.IGNORECASE) and len(txt.split()) <= 5:
+            continue
+        # Kekeleme/tekrar efektli girişleri ('Mit-mit-mit-mit-mit...') atla
+        if re.search(r"(\b\w{1,4}-)\1{3,}", txt, flags=re.IGNORECASE):
             continue
         # Explicit / sansürsüz kelimeleri resmi Radyo/Clean versiyonuna dönüştür (Instagram algoritması güvenliği)
         txt = re.sub(r"\bfuckin'?\s+you\s+right\b", "lovin' you right", txt, flags=re.IGNORECASE)
@@ -360,10 +445,19 @@ def _parse_lrc_lines(synced_lrc: str) -> List[Dict[str, Any]]:
 
 
 def _fetch_lrclib_synced_lines(song: Dict[str, Any]) -> List[Dict[str, Any]]:
-    queries = [
-        f"{song.get('artist', '')} {song.get('title', '')}".strip(),
+    raw_artist = str(song.get("artist", "")).strip()
+    raw_title = str(song.get("title", "")).strip()
+    clean_artist = re.sub(r"\s*\([^)]*\)", "", raw_artist).strip()
+    clean_title = re.sub(r"\s*\([^)]*\)", "", raw_title).strip()
+
+    queries = []
+    for cand_q in [
         str(song.get("itunes_query", "")).strip(),
-    ]
+        f"{clean_artist} {clean_title}".strip(),
+        f"{raw_artist} {raw_title}".strip(),
+    ]:
+        if cand_q and cand_q not in queries:
+            queries.append(cand_q)
     for q in queries:
         if not q:
             continue
@@ -632,7 +726,7 @@ def synchronize_song_karaoke_timeline(
         seen_orig = set()
         for s_item in base_stanzas + lrc_climax:
             k_o = _normalize_lyric_key(s_item.get("orig", ""))
-            if k_o and k_o not in seen_orig:
+            if k_o and not any(k_o == ex or (len(k_o) >= 12 and (k_o in ex or ex in k_o)) for ex in seen_orig):
                 seen_orig.add(k_o)
                 combined_stanzas.append(s_item)
 
@@ -647,8 +741,8 @@ def synchronize_song_karaoke_timeline(
 
         actual_duration = round(min(target_duration, max(24.0, 29.4 - audio_trim_start)), 2)
 
-        # Vokal pencerelerini belirle (26.5sn boyunca 6-7 vurucu dize)
-        n_lines = max(5, min(7, len(combined_stanzas)))
+        # Vokal pencerelerini belirle (aynı dizeyi tekrar etmemek için len(combined_stanzas) ile sınırla)
+        n_lines = max(1, min(7, len(combined_stanzas)))
         usable_dur = actual_duration - 0.9
         slot_dur = usable_dur / float(n_lines)
 
