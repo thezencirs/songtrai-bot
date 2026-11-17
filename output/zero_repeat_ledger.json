@@ -1,8 +1,8 @@
 {
-  "updated_at": "2026-11-17T17:37:44.682925Z",
-  "total_used": 45,
-  "last_song_id": "ru_polina_gagarina_kukushka",
-  "last_language": "rusca",
+  "updated_at": "2026-11-17T17:41:45.097167Z",
+  "total_used": 46,
+  "last_song_id": "es_karol_g_shakira_tqg",
+  "last_language": "ispanyolca",
   "used_ids": [
     "fr_indila_derniere_danse",
     "ru_rauf_faik_detstvo",
@@ -48,6 +48,7 @@
     "ru_polina_gagarina_kukushka",
     "ko_fifty_fifty_cupid",
     "de_ayliva_haesslich",
-    "ko_jung_kook_seven"
+    "ko_jung_kook_seven",
+    "es_karol_g_shakira_tqg"
   ]
 }
