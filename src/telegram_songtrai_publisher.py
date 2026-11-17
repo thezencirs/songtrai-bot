@@ -196,6 +196,10 @@ def deliver_songtrai_package_to_telegram(
     guide_msg = build_explanatory_music_guide(song)
     pure_caption = build_pure_copy_paste_caption(song)
 
+    # PRE-PUBLISH KALİTE KAPISI: Tek bir dize bile Türkçe değilse Telegram gönderimini ve Ledger kilidini durdur!
+    from qa_translation_guardian import audit_package_before_telegram_publish
+    audit_package_before_telegram_publish(song, pure_caption)
+
     (out_p / "1_music_sync_guide.txt").write_text(guide_msg, encoding="utf-8")
     (out_p / "2_social_caption_copypaste.txt").write_text(pure_caption, encoding="utf-8")
     (out_p / "song_concept_metadata.json").write_text(
