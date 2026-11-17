@@ -2919,35 +2919,13 @@ def normalize_language_key(raw_lang: str) -> str:
 
 def _translate_to_clean_turkish(text: str, src_lang_code: str = "auto") -> str:
     """
-    Canlı kullanıcı şarkı isteklerinde satırları Türkçe'ye çevirir ve robotik ifadeleri
-    doğal/şiirsel Türkçe akışına göre temizler.
+    Canlı kullanıcı şarkı isteklerinde ve genişletilmiş global hitlerde satırları
+    4 katmanlı çoklu çeviri motoruyla (`qa_translation_guardian`) Türkçe'ye çevirir.
+    Çeviri başarısızsa asla yabancı metni Türkçe diye döndürmez (`""` döner).
     """
-    clean_in = (text or "").strip()
-    if not clean_in:
-        return ""
-    try:
-        r = requests.get(
-            "https://translate.googleapis.com/translate_a/single",
-            params={
-                "client": "gtx",
-                "sl": src_lang_code.lower() if src_lang_code != "auto" else "auto",
-                "tl": "tr",
-                "dt": "t",
-                "q": clean_in,
-            },
-            timeout=8,
-        )
-        if r.status_code == 200:
-            arr = r.json()
-            if isinstance(arr, list) and arr and isinstance(arr[0], list):
-                out = "".join(seg[0] for seg in arr[0] if seg and seg[0]).strip()
-                # Doğal Türkçe rötuşları
-                out = out.replace("Bebeğim", "Sevgilim").replace("bebeğim", "sevgilim")
-                out = re.sub(r"\s+", " ", out).strip()
-                return out
-    except Exception:
-        pass
-    return clean_in
+    from qa_translation_guardian import resilient_translate_to_turkish
+
+    return resilient_translate_to_turkish(text, src_lang_code=src_lang_code)
 
 
 EXTENDED_GLOBAL_HIT_QUERIES_BY_LANG: Dict[str, List[str]] = {
@@ -3178,26 +3156,52 @@ def build_live_song_concept_from_query(
     except Exception:
         pass
 
-    selected_lines = raw_lines[2:6] if len(raw_lines) >= 6 else raw_lines[:4]
-    while len(selected_lines) < 4:
-        fallback_defaults = [
-            f"Every time I hear '{track_title}', the memories come alive",
-            "Even across the distance, your voice stays in my heart",
-            "Words cannot describe the feeling hidden in this melody",
-            "Stay with me tonight before the music fades away",
-        ]
-        selected_lines.append(fallback_defaults[len(selected_lines)])
+    from qa_translation_guardian import verify_line_is_turkish
 
+    candidate_lines = raw_lines[2:14] + raw_lines[:2] if len(raw_lines) >= 3 else list(raw_lines)
     stanzas: List[Dict[str, str]] = []
-    for idx, orig_ln in enumerate(selected_lines[:4], start=1):
+    for orig_ln in candidate_lines:
         tr_ln = _translate_to_clean_turkish(orig_ln, src_lang_code=lmeta["code"])
+        ok, _ = verify_line_is_turkish(orig_ln, tr_ln)
+        if not ok:
+            continue
         words = tr_ln.split()
         hl = " ".join(words[:3]) if len(words) >= 3 else tr_ln
         stanzas.append({
             "orig": orig_ln,
-            "pron": orig_ln,
+            "pron": "",
             "tr": tr_ln,
             "highlight": hl,
+            "note": f"{artist_name} bu dizede şarkının duygusal kırılma noktasını vurguluyor.",
+        })
+        if len(stanzas) >= 5:
+            break
+
+    verified_fallback_pairs = [
+        (
+            f"Every time I hear '{track_title}', the memories come alive",
+            f"Ne zaman '{track_title}' melodisini duysam, içimdeki tüm anılar yeniden canlanıyor.",
+        ),
+        (
+            "Even across the distance, your voice stays in my heart",
+            "Aramızda ne kadar mesafe olursa olsun, sesin hâlâ kalbimin en derininde yankılanıyor.",
+        ),
+        (
+            "Words cannot describe the feeling hidden in this melody",
+            "Bu melodinin içine gizlenen o derin duyguyu anlatmaya kelimeler bile yetmiyor.",
+        ),
+        (
+            "Stay with me tonight before the music fades away",
+            "Bu gece müzik tamamen susmadan önce biraz daha yanımda kal.",
+        ),
+    ]
+    while len(stanzas) < 4:
+        fb_orig, fb_tr = verified_fallback_pairs[len(stanzas) % len(verified_fallback_pairs)]
+        stanzas.append({
+            "orig": fb_orig,
+            "pron": "",
+            "tr": fb_tr,
+            "highlight": " ".join(fb_tr.split()[:3]),
             "note": f"{artist_name} bu dizede şarkının duygusal kırılma noktasını vurguluyor.",
         })
 
