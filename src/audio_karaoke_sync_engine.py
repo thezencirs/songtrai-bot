@@ -240,47 +240,29 @@ def translate_line_to_poetic_turkish(orig_line: str, src_lang_code: str = "auto"
     """
     Orijinal şarkı dizesini:
     1) Önce küratörlü şiirsel Türkçe çeviri hafızasında ve `SONG_MASTER_CATALOG` içinde arar,
-    2) Bulamazsa çevirip doğal/edebi Türkçe akışına göre rötuşlar.
+    2) Bulamazsa `qa_translation_guardian.resilient_translate_to_turkish` (4 katmanlı çoklu motor)
+       ile çevirip Türkçe doğrulamasından geçirir.
+    3) Çeviri başarısızsa ASLA yabancı cümleyi Türkçe diye döndürmez (`""` döner).
     """
+    from qa_translation_guardian import resilient_translate_to_turkish, verify_line_is_turkish
+
     _ensure_catalog_translations_loaded()
     norm_k = _normalize_lyric_key(orig_line)
     if norm_k in CURATED_POETIC_TRANSLATIONS:
-        return CURATED_POETIC_TRANSLATIONS[norm_k]
+        cand = CURATED_POETIC_TRANSLATIONS[norm_k]
+        ok, _ = verify_line_is_turkish(orig_line, cand)
+        if ok:
+            return cand
 
     for k, v in CURATED_POETIC_TRANSLATIONS.items():
         if len(k) > 10 and len(norm_k) > 8:
             ratio = float(len(k)) / float(max(1, len(norm_k)))
             if 0.68 <= ratio <= 1.38 and (k in norm_k or norm_k in k):
-                return v
+                ok, _ = verify_line_is_turkish(orig_line, v)
+                if ok:
+                    return v
 
-    clean_in = (orig_line or "").strip()
-    if not clean_in:
-        return ""
-
-    try:
-        r = requests.get(
-            "https://translate.googleapis.com/translate_a/single",
-            params={
-                "client": "gtx",
-                "sl": src_lang_code.lower() if src_lang_code != "auto" else "auto",
-                "tl": "tr",
-                "dt": "t",
-                "q": clean_in,
-            },
-            timeout=8,
-        )
-        if r.status_code == 200:
-            arr = r.json()
-            if isinstance(arr, list) and arr and isinstance(arr[0], list):
-                out = "".join(seg[0] for seg in arr[0] if seg and seg[0]).strip()
-                # Robotik kelimeleri edebi Türkçe karşılıklarıyla yumuşat
-                out = out.replace("Bebeğim", "Sevgilim").replace("bebeğim", "sevgilim")
-                out = out.replace("Kahretsin", "").replace("Lanet olsun", "")
-                out = re.sub(r"\s+", " ", out).strip()
-                return out
-    except Exception:
-        pass
-    return clean_in
+    return resilient_translate_to_turkish(orig_line, src_lang_code=src_lang_code)
 
 
 def fetch_real_song_preview_file(song: Dict[str, Any]) -> Optional[Path]:
@@ -493,6 +475,9 @@ def _extract_chorus_climax_lines_from_lrc(
             tr_txt = translate_line_to_poetic_turkish(orig_txt, src_lang_code=lang_code)
             pron_txt = ""
 
+        if not tr_txt:
+            continue
+
         picked.append({
             "orig": orig_txt,
             "pron": pron_txt if pron_txt.lower() != orig_txt.lower() else "",
@@ -515,8 +500,13 @@ def synchronize_song_karaoke_timeline(
     3) Her dize için:
        - Orijinal kelimeler (`orig_words`: `[{word, start, end}]`)
        - Şiirsel Türkçe çeviri kelimeleri (`tr_words`: `[{word, start, end}]`)
-       üretir.
+       üretir ve `qa_translation_guardian` ile %100 Türkçe doğrulamasından geçirir.
     """
+    from qa_translation_guardian import audit_and_repair_sync_events_before_render
+
+    if not song.get("curated_stanzas") and song.get("stanzas"):
+        song["curated_stanzas"] = list(song["stanzas"])
+
     SYNC_CACHE_DIR.mkdir(parents=True, exist_ok=True)
     sid = str(song.get("id", "default_song")).strip()
     raw_audio_path = fetch_real_song_preview_file(song)
@@ -615,6 +605,8 @@ def synchronize_song_karaoke_timeline(
                             orig_txt,
                             src_lang_code=song.get("language_code", "auto"),
                         )
+                        if not tr_txt:
+                            continue
                         matched_events.append({
                             "start": round(s_clamped, 3),
                             "end": round(e_clamped, 3),
@@ -704,12 +696,13 @@ def synchronize_song_karaoke_timeline(
                 matched_events[i]["end"],
             )
 
-    return {
+    sync_result = {
         "raw_audio_path": str(raw_audio_path) if raw_audio_path else "",
         "audio_trim_start": round(audio_trim_start, 3),
         "duration": actual_duration,
         "events": matched_events,
     }
+    return audit_and_repair_sync_events_before_render(song, sync_result, _build_word_timings)
 
 
 def prepare_trimmed_song_wav_and_telemetry(
