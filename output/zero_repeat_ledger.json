@@ -1,8 +1,8 @@
 {
-  "updated_at": "2026-11-17T17:45:52.709266Z",
-  "total_used": 47,
-  "last_song_id": "en_benson_boone_beautiful_things",
-  "last_language": "ingilizce",
+  "updated_at": "2026-11-17T20:10:11.091755Z",
+  "total_used": 48,
+  "last_song_id": "ja_lisa_gurenge",
+  "last_language": "japonca",
   "used_ids": [
     "fr_indila_derniere_danse",
     "ru_rauf_faik_detstvo",
@@ -50,6 +50,7 @@
     "de_ayliva_haesslich",
     "ko_jung_kook_seven",
     "es_karol_g_shakira_tqg",
-    "en_benson_boone_beautiful_things"
+    "en_benson_boone_beautiful_things",
+    "ja_lisa_gurenge"
   ]
 }
