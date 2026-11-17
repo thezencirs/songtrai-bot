@@ -99,9 +99,28 @@ def _polish_poetic_turkish(text: str) -> str:
     out = (text or "").strip()
     if not out:
         return ""
-    out = out.replace("Bebeğim", "Sevgilim").replace("bebeğim", "sevgilim")
-    out = out.replace("Kahretsin", "").replace("Lanet olsun", "")
-    out = re.sub(r"\s+", " ", out).strip()
+    # Edebi ve sosyal medya (Instagram/TikTok) güvenli dil rötuşları
+    replacements = [
+        ("Bebeğim", "Sevgilim"),
+        ("bebeğim", "sevgilim"),
+        ("seni beceriyorum", "seni tutkuyla seviyorum"),
+        ("Seni beceriyorum", "Seni tutkuyla seviyorum"),
+        ("beceriyorum", "seviyorum"),
+        ("sikiyorum", "seviyorum"),
+        ("Kahretsin", ""),
+        ("kahretsin", ""),
+        ("Lanet olsun", ""),
+        ("lanet olsun", ""),
+        ("siktir", ""),
+        ("Siktir", ""),
+        ("orospu", "kadın"),
+        ("kaltak", "kadın"),
+    ]
+    for old_w, new_w in replacements:
+        out = out.replace(old_w, new_w)
+    # Parantez içi saf vokal efektlerini ('(oh-oh, oh-oh)', '(yeah, yeah)') Türkçe satırdan temizle
+    out = re.sub(r"\(\s*(?:oh|ah|ooh|uh|mm|yeah|la|na)[\s\-\,\w]*\)", "", out, flags=re.IGNORECASE)
+    out = re.sub(r"\s+", " ", out).strip(" ,;-")
     if out and out[0].islower():
         out = out[0].upper() + out[1:]
     return out
