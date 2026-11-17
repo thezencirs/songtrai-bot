@@ -345,6 +345,9 @@ def _parse_lrc_lines(synced_lrc: str) -> List[Dict[str, Any]]:
         # Sadece mırıldanma/efekt içeren ('Hm-mm-mm', 'Oh-oh-oh', 'Mm-mm') satırları atla
         if re.match(r"^[\s\-\,\.\!\?hmoaeyuHMOAEYU♪♫]+$", txt) and len(txt.replace("-", "").strip()) <= 16:
             continue
+        # Explicit / sansürsüz kelimeleri resmi Radyo/Clean versiyonuna dönüştür (Instagram algoritması güvenliği)
+        txt = re.sub(r"\bfuckin'?\s+you\s+right\b", "lovin' you right", txt, flags=re.IGNORECASE)
+        txt = re.sub(r"\bfucking\s+you\s+right\b", "loving you right", txt, flags=re.IGNORECASE)
         t_sec = mins * 60.0 + secs
         parsed.append({"time": t_sec, "text": txt})
 
