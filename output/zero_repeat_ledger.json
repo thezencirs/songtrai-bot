@@ -1,8 +1,8 @@
 {
-  "updated_at": "2026-11-17T17:41:45.097167Z",
-  "total_used": 46,
-  "last_song_id": "es_karol_g_shakira_tqg",
-  "last_language": "ispanyolca",
+  "updated_at": "2026-11-17T17:45:52.709266Z",
+  "total_used": 47,
+  "last_song_id": "en_benson_boone_beautiful_things",
+  "last_language": "ingilizce",
   "used_ids": [
     "fr_indila_derniere_danse",
     "ru_rauf_faik_detstvo",
@@ -49,6 +49,7 @@
     "ko_fifty_fifty_cupid",
     "de_ayliva_haesslich",
     "ko_jung_kook_seven",
-    "es_karol_g_shakira_tqg"
+    "es_karol_g_shakira_tqg",
+    "en_benson_boone_beautiful_things"
   ]
 }
