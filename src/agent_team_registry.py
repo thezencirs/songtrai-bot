@@ -133,9 +133,9 @@ SONGTRAI_AGENT_TEAM_ROSTER: List[Dict[str, Any]] = [
         "role_en": "24/7 @songtraibot Multilingual Command & Pure Copy-Paste Publisher Agent",
         "department": "Autonomous Telegram Command Center & Distribution",
         "mission": (
-            "@songtraibot üzerinden gelen 10 dil komutunu (/ingilizce, /rusca, /japonca, /almanca, "
+            "@songtraibot üzerinden gelen 11 dil komutunu (/ingilizce, /arapca, /rusca, /japonca, /almanca, "
             "/ispanyolca, /korece, /cince, /italyanca, /fransizca, /hintce, /uret) veya şarkı adı/link "
-            "isteklerini yakalar; 2K Video + Nakarat Ekleme Rehberi + %100 Saf Kopyala-Yapıştır Açıklama sunar."
+            "isteklerini yakalar; 9:16 Dikey Kapak + 2K Video + %100 Saf Kopyala-Yapıştır Açıklama sunar."
         ),
         "tools_and_skills": [
             "universal-reels-telegram-engine",
@@ -143,13 +143,32 @@ SONGTRAI_AGENT_TEAM_ROSTER: List[Dict[str, Any]] = [
         ],
         "status": "ACTIVE",
     },
+    {
+        "agent_id": "qa-turkish-translation-circuit-breaker",
+        "role_tr": "Türkçe Çeviri Doğrulama & Hatalı Üretim Durdurucu Denetim Ajanı (Circuit Breaker)",
+        "role_en": "Turkish Translation Verification & Pre-Render Circuit Breaker Agent",
+        "department": "Zero-Waste Quality Assurance & Translation Verification Gate",
+        "mission": (
+            "2K video kareleri henüz çizilmeden ÖNCE (Pre-Render Gate) ve Telegram'a yüklenmeden ÖNCE "
+            "(Pre-Publish Gate) tüm dizeleri tek tek denetler: çevrilmeden kalmış (orig == tr), yabancı "
+            "alfabe sızmış veya yabancı kelimeler içeren tek bir satır bile varsa önce 4 katmanlı çeviri "
+            "motoru ve küratörlü hafızayla onarır; onarılamazsa boşa CPU, zaman ve karbon harcamamak için "
+            "üretimi anında durdurur (TranslationQAGateError)."
+        ),
+        "tools_and_skills": [
+            "qa-translation-guardian",
+            "multi-engine-4layer-turkish-translator",
+            "pre-render-circuit-breaker",
+        ],
+        "status": "ACTIVE",
+    },
 ]
 
 
 def get_active_agent_team_summary() -> str:
-    """8 aktif ajanın durum özetini döndürür."""
+    """9 aktif ajanın durum özetini döndürür."""
     lines = [
-        "🏛️ <b>ŞARKILARIN ANLAMI (@songtraibot) — 8 AJANLI OTONOM KADRO (AKTİF):</b>"
+        "🏛️ <b>ŞARKILARIN ANLAMI (@songtraibot) — 9 AJANLI OTONOM KADRO (AKTİF):</b>"
     ]
     for idx, agent in enumerate(SONGTRAI_AGENT_TEAM_ROSTER, start=1):
         icon = "🟢" if agent.get("status") == "ACTIVE" else "⚪"
@@ -159,23 +178,55 @@ def get_active_agent_team_summary() -> str:
 
 def run_agent_team_pipeline_audit(song: Dict[str, Any]) -> Dict[str, Any]:
     """
-    Seçilen şarkı ve Türkçe çeviri paketini 8 ajanın kalite kapılarından geçirir:
+    Seçilen şarkı ve Türkçe çeviri paketini 9 ajanın kalite kapılarından geçirir:
     - Saf Beyaz Fon (#FFFFFF) ve Sıfır Uzay/AI İzi kontrolü
-    - 4 Nakarat Dizesi ve Tertemiz Edebi Türkçe Çeviri kontrolü
-    - Remotion Yay Fiziği (damping=14, stiffness=120, mass=0.8) kontrolü
+    - Nakarat Dizeleri ve %100 Gerçek Türkçe Çeviri Doğrulama kontrolü (`verify_line_is_turkish`)
+    - Çevrilmemiş tek bir satır varsa üretimi durdurur (`TranslationQAGateError`).
     """
+    from qa_translation_guardian import (
+        TranslationQAGateError,
+        resilient_translate_to_turkish,
+        verify_line_is_turkish,
+    )
+
     stanzas = song.get("stanzas") or []
-    clean_translations = all(bool(s.get("tr", "").strip()) for s in stanzas) and len(stanzas) >= 2
+    lang_code = song.get("language_code", "auto")
+    verified_count = 0
+    failures: List[str] = []
+
+    for idx, s in enumerate(stanzas, start=1):
+        orig_txt = (s.get("orig") or "").strip()
+        tr_txt = (s.get("tr") or "").strip()
+        ok, reason = verify_line_is_turkish(orig_txt, tr_txt)
+        if not ok:
+            repaired_tr = resilient_translate_to_turkish(orig_txt, src_lang_code=lang_code)
+            ok_rep, reason_rep = verify_line_is_turkish(orig_txt, repaired_tr)
+            if ok_rep:
+                s["tr"] = repaired_tr
+                verified_count += 1
+            else:
+                failures.append(f"Stanza #{idx}: {reason_rep}")
+        else:
+            verified_count += 1
+
+    clean_translations = (len(failures) == 0) and (verified_count >= 2)
+    if not clean_translations:
+        raise TranslationQAGateError(
+            f"🛑 [QA ÇEVİRİ AJANI — ÜRETİM DURDURULDU] "
+            f"Şarkı ({song.get('id')}) başlangıç Türkçe çeviri denetiminden geçemedi: {' | '.join(failures)}"
+        )
+
     return {
         "holding_name": "Şarkıların Anlamı (@songtraibot) Autonomous Holding",
         "song_id": song.get("id", "unknown"),
         "language_code": song.get("language_code", "en"),
         "language_tr": song.get("language_tr", "İngilizce"),
         "active_agents_count": len(SONGTRAI_AGENT_TEAM_ROSTER),
-        "overall_status": "READY" if clean_translations else "WARNING",
+        "overall_status": "READY",
         "studio_backdrop": "PURE_WHITE_EDITORIAL_STUDIO_#FFFFFF",
         "zero_space_zero_ai_slop": True,
-        "clean_literary_turkish": clean_translations,
+        "clean_literary_turkish": True,
+        "verified_stanzas_count": verified_count,
         "spring_physics": {"damping": 14, "stiffness": 120, "mass": 0.8},
         "summary_tr": get_active_agent_team_summary(),
     }
