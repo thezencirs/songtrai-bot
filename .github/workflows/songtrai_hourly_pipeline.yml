@@ -85,7 +85,7 @@ jobs:
           GH_TOKEN: ${{ secrets.GH_PAT || secrets.GITHUB_TOKEN }}
           SONGTRAI_LANGUAGE: ${{ github.event.inputs.language || 'otomatik' }}
           SONGTRAI_QUERY: ${{ github.event.inputs.custom_query || '' }}
-          SONGTRAI_BATCH_COUNT: ${{ github.event.inputs.batch_count || '3' }}
+          SONGTRAI_BATCH_COUNT: ${{ github.event.inputs.batch_count || '1' }}
           EVENT_NAME: ${{ github.event_name }}
         run: |
           # GitHub Actions schedule tetiklemeleri dakikayı kaydırabildiği için her zamanlanmış
