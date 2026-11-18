@@ -1,8 +1,8 @@
 {
-  "updated_at": "2026-11-18T02:25:19.894313Z",
-  "total_used": 49,
-  "last_song_id": "en_ed_sheeran_perfect",
-  "last_language": "ingilizce",
+  "updated_at": "2026-11-18T10:26:43.336048Z",
+  "total_used": 50,
+  "last_song_id": "it_mahmood_soldi",
+  "last_language": "italyanca",
   "used_ids": [
     "fr_indila_derniere_danse",
     "ru_rauf_faik_detstvo",
@@ -52,6 +52,7 @@
     "es_karol_g_shakira_tqg",
     "en_benson_boone_beautiful_things",
     "ja_lisa_gurenge",
-    "en_ed_sheeran_perfect"
+    "en_ed_sheeran_perfect",
+    "it_mahmood_soldi"
   ]
 }
