@@ -1,8 +1,8 @@
 {
-  "updated_at": "2026-11-19T01:25:32.663589Z",
-  "total_used": 52,
-  "last_song_id": "de_cro_traum",
-  "last_language": "almanca",
+  "updated_at": "2026-11-19T08:38:59.876485Z",
+  "total_used": 53,
+  "last_song_id": "zh_gem_guang_nian_zhi_wai",
+  "last_language": "cince",
   "used_ids": [
     "fr_indila_derniere_danse",
     "ru_rauf_faik_detstvo",
@@ -55,6 +55,7 @@
     "en_ed_sheeran_perfect",
     "it_mahmood_soldi",
     "en_lewis_capaldi_someone_you_loved",
-    "de_cro_traum"
+    "de_cro_traum",
+    "zh_gem_guang_nian_zhi_wai"
   ]
 }
