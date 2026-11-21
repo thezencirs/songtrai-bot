@@ -1,8 +1,8 @@
 {
-  "updated_at": "2026-11-21T02:13:30.310749Z",
-  "total_used": 59,
-  "last_song_id": "en_miley_cyrus_flowers",
-  "last_language": "ingilizce",
+  "updated_at": "2026-11-21T09:48:02.767210Z",
+  "total_used": 60,
+  "last_song_id": "ru_hammali_navai_ptichka",
+  "last_language": "rusca",
   "used_ids": [
     "fr_indila_derniere_danse",
     "ru_rauf_faik_detstvo",
@@ -62,6 +62,7 @@
     "ar_saad_lamjarred_lm3allem",
     "en_harry_styles_as_it_was",
     "fr_stromae_pomme_ma_meilleure_ennemie",
-    "en_miley_cyrus_flowers"
+    "en_miley_cyrus_flowers",
+    "ru_hammali_navai_ptichka"
   ]
 }
