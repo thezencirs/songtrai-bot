@@ -568,14 +568,14 @@ def publish_song_to_youtube_gufteai(
                 "Runtime.evaluate",
                 {
                     "expression": """(() => {
-                        const nextBtn = document.querySelector('#next-button');
+                        const nextBtn = document.querySelector('#next-button button') || document.querySelector('#next-button');
                         if (nextBtn) nextBtn.click();
                     })()"""
                 },
             )
             pump(2.2)
 
-        # 6) Yayınlanan Shorts URL'sini (#done-button tıklamadan hemen önce ve sonra) yakala
+        # 6) Yayınlanan Shorts URL'sini (#done-button tıklamadan hemen önce) yakala
         short_url = json.loads(
             cdp(
                 "Runtime.evaluate",
@@ -589,14 +589,29 @@ def publish_song_to_youtube_gufteai(
             ).get("result", {}).get("value", '""')
         )
 
-        # 7) Herkese Açık (PUBLIC) seç ve Yayınla (#done-button) tıkla
+        # 7) Herkese Açık (PUBLIC) radyo butonunu seç, Polymer'in 'Yayınla' butonunu aktif etmesi için 2sn bekle
+        cdp(
+            "Runtime.evaluate",
+            {
+                "expression": """(function() {
+                    const pub = document.querySelector('tp-yt-paper-radio-button[name="PUBLIC"]');
+                    if (pub) {
+                        pub.click();
+                        const rc = pub.querySelector('#radioContainer, #offRadio, #onRadio');
+                        if (rc) rc.click();
+                    }
+                })()""",
+                "returnByValue": True,
+            },
+        )
+        pump(2.0)
+
+        # 8) 'Yayınla' (#done-button) butonuna tıkla
         pub_res = cdp(
             "Runtime.evaluate",
             {
                 "expression": """(function() {
-                    const pubRadio = document.querySelector('tp-yt-paper-radio-button[name="PUBLIC"]');
-                    if (pubRadio) pubRadio.click();
-                    const doneBtn = document.querySelector('#done-button');
+                    const doneBtn = document.querySelector('#done-button button') || document.querySelector('#done-button');
                     if (doneBtn) {
                         doneBtn.click();
                         return "CLICKED_DONE_PUBLISH";
