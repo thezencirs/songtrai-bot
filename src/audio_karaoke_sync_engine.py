@@ -249,6 +249,31 @@ CURATED_POETIC_TRANSLATIONS: Dict[str, str] = {
     "and it's new the shape of your body": "Senin varlığın ve dokunuşun kalbim için yepyeni bir heyecan",
     "it's blue the feeling i've got": "İçimdeki bu derin duygu gece mavisi bir hüzne büründü",
     "it's a cruel summer": "Bu yaz ikimiz için de hem büyüleyici hem çok acımasız",
+    # Billie Eilish - BIRDS OF A FEATHER
+    "well i want you to stay": "Bütün kalbimle hep yanımda kalmanı istiyorum",
+    "i want you to stay": "Hep yanımda kalmanı istiyorum",
+    "until i'm in the grave": "Son nefesimi verip bu dünyadan göçene kadar",
+    "until i rot away dead and buried": "Toprağa karışıp tamamen yok olana dek",
+    "'til i'm the casket you carry": "Omuzlarında taşıdığın son vedam sen olana kadar",
+    "if you go i'm goin' too uh": "Eğer bir gün gidersen bil ki ben de seninle gelirim",
+    "'cause it was always you alright": "Çünkü başından beri kalbimin tek sahibi hep sendin",
+    # Stromae & Pomme - Ma Meilleure Ennemie
+    "fuis moi le pire c'est toi et moi": "Benden uzaklaş; çünkü en tehlikeli fırtına ikimizin yan yana gelmesi",
+    "mais si tu cherches encore ma voix": "Ama eğer geceleri hâlâ benim sesimi arıyorsan",
+    "oublie moi le pire c'est toi et moi": "Beni unut; çünkü en büyük yangın ikimizin bir araya gelmesi",
+    "pourquoi ton prénom me blesse": "Neden sadece adının geçmesi bile kalbimi bu kadar acıtıyor",
+    "quand il se cache juste là dans l'espace": "Tam da burada, aramızdaki bu sessiz boşlukta yankılanırken",
+    # Lana Del Rey - Summertime Sadness
+    "kiss me hard before you go": "Beni bırakıp gitmeden önce son kez sımsıkı öp",
+    "summertime sadness": "İçimde tarifsiz ve derin bir yaz hüznü var",
+    "i just wanted you to know": "Sadece tek bir gerçeği bilmeni istedim",
+    "that baby you the best": "Hayatıma giren en güzel mucize sendin sevgilim",
+    "i got that summertime summertime sadness": "Güneşin altında bile içimi saran o derin yaz hüznü benimle",
+    "su su summertime summertime sadness": "Bu unutulmaz yaz hüznü kalbimin her köşesinde",
+    # Sherine - Kalam Eineh
+    "لما يميل قلبي أنا وياه يميل": "Kalbim ona doğru eğildiğinde bütün dünyam onunla birlikte dönüyor",
+    "تفديه عيوني وعمري كله مش قليل": "Gözlerim ve bütün ömrüm ona feda olsun; onun aşkı için hiçbir şey çok değil",
+    "ليلي يا ليل يا ليلي": "Bu büyüleyici gecelerimiz hiç bitmesin sevgilim",
 }
 
 
@@ -425,7 +450,7 @@ def _parse_lrc_lines(synced_lrc: str) -> List[Dict[str, Any]]:
         # Sadece mırıldanma/efekt içeren ('Hm-mm-mm', 'Oh-oh-oh', 'La, la, la', 'And it's ooh, whoa-oh') satırları atla
         if re.match(r"^[\s\-\,\.\!\?hmoaeyulndHMOAEYULND♪♫]+$", txt) and len(txt.replace("-", "").strip()) <= 24:
             continue
-        if re.search(r"\b(?:ooh|whoa|la-la|na-na)\b", txt, flags=re.IGNORECASE) and len(txt.split()) <= 5:
+        if re.search(r"\b(?:ooh|whoa|la-la|na-na|ta-da)\b", txt, flags=re.IGNORECASE) and len(txt.split()) <= 5:
             continue
         # Kekeleme/tekrar efektli girişleri ('Mit-mit-mit-mit-mit...') atla
         if re.search(r"(\b\w{1,4}-)\1{3,}", txt, flags=re.IGNORECASE):
@@ -615,7 +640,9 @@ def synchronize_song_karaoke_timeline(
         model = _get_whisper_model()
         if model is not None:
             try:
-                segs, _ = model.transcribe(str(raw_audio_path), word_timestamps=True)
+                lang_hint = (song.get("language_code") or "").strip().lower()
+                w_lang = lang_hint if lang_hint in {"en", "fr", "es", "de", "it", "ru", "ja", "zh", "hi"} else None
+                segs, _ = model.transcribe(str(raw_audio_path), language=w_lang, word_timestamps=True)
                 for s in segs:
                     txt = (s.text or "").strip()
                     if len(txt) >= 3:
@@ -648,55 +675,113 @@ def synchronize_song_karaoke_timeline(
         except Exception:
             fuzz = None
 
+        def _line_sim(a_norm: str, b_norm: str) -> float:
+            if not a_norm or not b_norm:
+                return 0.0
+            if fuzz is not None:
+                # Uzunluk duyarlı benzerlik: kısa tekrar satırlarının ('Like it's the last night')
+                # uzun satırların ('So I'ma love you every night like it's the last night') içine
+                # hatalı eşleşip 4-5 saniye kayma yaratmasını kesin olarak engeller!
+                return 0.65 * fuzz.ratio(a_norm, b_norm) + 0.35 * fuzz.token_sort_ratio(a_norm, b_norm)
+            return 85.0 if a_norm == b_norm else (60.0 if a_norm[:8] in b_norm else 15.0)
+
+        # Whisper bazen tek bir LRC dizesini 2 parçaya böler ('If the world was ending' + 'I'd wanna be next to you').
+        # Hem tekil hem ardışık birleştirilmiş Whisper pencerelerini hazırla:
+        whisper_spans: List[Dict[str, Any]] = []
+        for idx_w, ws in enumerate(whisper_segs):
+            wn = _normalize_lyric_key(ws["text"])
+            if len(wn) >= 3:
+                whisper_spans.append({"start": ws["start"], "end": ws["end"], "norm": wn, "is_first": idx_w == 0})
+            if idx_w + 1 < len(whisper_segs):
+                ws2 = whisper_segs[idx_w + 1]
+                if (ws2["start"] - ws["end"]) <= 1.2:
+                    wn2 = _normalize_lyric_key(ws["text"] + " " + ws2["text"])
+                    whisper_spans.append({"start": ws["start"], "end": ws2["end"], "norm": wn2, "is_first": idx_w == 0})
+
+        # Aday offsetleri topla (hem satır başlangıcı hem de ilk satırın bitiş/ikinci satır başlangıcı çapası)
+        cand_offsets: List[float] = []
+        for sp in whisper_spans:
+            for idx_l, l_item in enumerate(lrc_lines):
+                ln = _normalize_lyric_key(l_item["text"])
+                sim = _line_sim(sp["norm"], ln)
+                if sim >= 52.0:
+                    c1 = l_item["time"] - sp["start"]
+                    cand_offsets.append(c1)
+                    # Eğer ilk segment 0.0sn'de enstrümantal giriş içeriyorsa bitiş çapasını da ekle
+                    if idx_l + 1 < len(lrc_lines):
+                        c2 = lrc_lines[idx_l + 1]["time"] - sp["end"]
+                        cand_offsets.append(c2)
+
         best_offset = None
         best_score = -1.0
 
-        for w_seg in whisper_segs[:6]:
-            w_norm = _normalize_lyric_key(w_seg["text"])
-            if len(w_norm) < 4:
-                continue
-            for l_item in lrc_lines:
-                l_norm = _normalize_lyric_key(l_item["text"])
-                if not l_norm:
+        # Her aday offset için TÜM Whisper segmentlerinin çoklu konsensüs uyumunu puanla
+        for cand_off in cand_offsets:
+            consensus_score = 0.0
+            matched_anchors: List[float] = []
+            for idx_l, l_item in enumerate(lrc_lines):
+                rel_t = l_item["time"] - cand_off
+                if not (-1.8 <= rel_t <= target_duration + 3.0):
                     continue
-                if fuzz is not None:
-                    sim = max(
-                        fuzz.partial_ratio(w_norm, l_norm),
-                        fuzz.token_set_ratio(w_norm, l_norm),
-                    )
-                else:
-                    sim = 80.0 if (w_norm[:6] in l_norm) else 20.0
+                ln = _normalize_lyric_key(l_item["text"])
+                best_sp_score = 0.0
+                best_sp_anchor = None
+                for sp in whisper_spans:
+                    dt = abs(rel_t - sp["start"])
+                    if dt <= 2.4:
+                        s_val = _line_sim(sp["norm"], ln)
+                        if s_val >= 48.0:
+                            # Zaman yakınlığı bonusu
+                            t_bonus = max(0.0, 24.0 - dt * 10.0)
+                            tot = s_val + t_bonus
+                            if tot > best_sp_score:
+                                best_sp_score = tot
+                                if s_val >= 62.0 and sp["start"] >= 0.4:
+                                    best_sp_anchor = l_item["time"] - sp["start"]
+                                elif s_val >= 62.0 and sp["is_first"] and idx_l + 1 < len(lrc_lines):
+                                    best_sp_anchor = lrc_lines[idx_l + 1]["time"] - sp["end"]
+                consensus_score += best_sp_score
+                if best_sp_anchor is not None:
+                    matched_anchors.append(best_sp_anchor)
 
-                if sim >= 58.0:
-                    cand_offset = l_item["time"] - w_seg["start"]
-                    # Bu offset ile pencere içindeki diğer satırların uyumunu puanla
-                    window_lines = [
-                        x for x in lrc_lines
-                        if (cand_offset - 0.8) <= x["time"] <= (cand_offset + target_duration + 3.0)
-                    ]
-                    score = sim + len(window_lines) * 4.5
-                    if score > best_score and len(window_lines) >= 4:
-                        best_score = score
-                        best_offset = cand_offset
+            if consensus_score > best_score and len(matched_anchors) >= 1:
+                best_score = consensus_score
+                # Eşleşen yüksek güvenilirlikli çapaların medyanını alarak milisaniyelik offseti kilitle
+                matched_anchors.sort()
+                best_offset = matched_anchors[len(matched_anchors) // 2]
 
         if best_offset is not None:
-            # İlk vokal cümlesinin 0.5sn öncesinden sesi başlat ki başında boşluk olmasın
             window_lrc = [
                 x for x in lrc_lines
-                if (best_offset - 0.5) <= x["time"] <= (best_offset + 29.2)
+                if (best_offset - 1.2) <= x["time"] <= (best_offset + 29.2)
             ]
             if window_lrc:
                 first_lrc_in_clip = max(0.0, window_lrc[0]["time"] - best_offset)
-                audio_trim_start = max(0.0, min(3.5, first_lrc_in_clip - 0.50))
+                audio_trim_start = max(0.0, min(3.2, first_lrc_in_clip - 0.85))
                 actual_duration = round(min(target_duration, max(24.0, 29.4 - audio_trim_start)), 2)
                 clip_start_in_full_song = best_offset + audio_trim_start
 
                 for x in lrc_lines:
                     rel_s = x["time"] - clip_start_in_full_song
                     rel_e = x["end_time"] - clip_start_in_full_song
-                    if -0.2 <= rel_s <= (actual_duration - 0.8):
-                        s_clamped = max(0.25, rel_s)
-                        e_clamped = min(actual_duration - 0.15, max(s_clamped + 1.6, rel_e))
+                    if -1.2 <= rel_s <= (actual_duration - 0.8):
+                        ln = _normalize_lyric_key(x["text"])
+                        # Eğer Whisper segmenti bu dizeyle eşleşiyorsa gerçek vokal başlangıç/bitişine mıknatısla
+                        snapped_s = rel_s
+                        snapped_e = rel_e
+                        best_m_sim = 0.0
+                        for sp in whisper_spans:
+                            sp_rel_s = sp["start"] - audio_trim_start
+                            sp_rel_e = sp["end"] - audio_trim_start
+                            if abs(sp_rel_s - rel_s) <= 1.6:
+                                m_sim = _line_sim(sp["norm"], ln)
+                                if m_sim >= 55.0 and m_sim > best_m_sim:
+                                    best_m_sim = m_sim
+                                    snapped_s = sp_rel_s
+                                    snapped_e = max(snapped_s + 1.8, sp_rel_e)
+
+                        s_clamped = max(0.25, snapped_s)
+                        e_clamped = min(actual_duration - 0.15, max(s_clamped + 1.6, snapped_e))
                         orig_txt = x["text"]
                         tr_txt = translate_line_to_poetic_turkish(
                             orig_txt,
