@@ -34,6 +34,14 @@ from telegram_songtrai_ingestor import pop_next_telegram_song_request
 from telegram_songtrai_publisher import (
     configure_songtrai_bot_profile,
     deliver_songtrai_package_to_telegram,
+    load_target_chat_ids,
+    tg_api,
+)
+from youtube_songtrai_automator import (
+    format_youtube_telegram_control_report,
+    publish_song_to_youtube_gufteai,
+    run_gufteai_channel_analytics,
+    select_next_youtube_viral_song,
 )
 
 
@@ -43,6 +51,8 @@ def main() -> None:
     parser.add_argument("--query", default=os.environ.get("SONGTRAI_QUERY", ""))
     parser.add_argument("--batch-count", type=int, default=int(os.environ.get("SONGTRAI_BATCH_COUNT", "1")))
     parser.add_argument("--output", default="output/songtrai_reel_final.mp4")
+    parser.add_argument("--slot", default=os.environ.get("SONGTRAI_SLOT", "20:00"))
+    parser.add_argument("--youtube-publish", action="store_true")
     parser.add_argument("--only-if-telegram-pending", action="store_true")
     parser.add_argument("--setup-bot", action="store_true")
     parser.add_argument("--no-telegram-publish", action="store_true")
@@ -53,7 +63,7 @@ def main() -> None:
 
     if args.setup_bot:
         cfg = configure_songtrai_bot_profile()
-        print(f"🤖 [@songtraibot Profil & 10 Dil Komut Yapılandırması]: {cfg}")
+        print(f"🤖 [@songtraibot Profil & 11 Dil Komut Yapılandırması]: {cfg}")
 
     pending_song = pop_next_telegram_song_request()
     if args.only_if_telegram_pending and pending_song is None:
@@ -66,6 +76,8 @@ def main() -> None:
             song = pending_song
         elif b_idx == 0 and args.query.strip():
             song = build_live_song_concept_from_query(args.query.strip(), forced_lang=args.language)
+        elif args.youtube_publish:
+            song = select_next_youtube_viral_song(force_language=args.language if b_idx == 0 else "otomatik")
         else:
             song = select_next_song_concept(force_language=args.language if b_idx == 0 else "otomatik")
 
@@ -76,7 +88,7 @@ def main() -> None:
 
         audit = run_agent_team_pipeline_audit(song)
         print(
-            f"🤝 [8-Ajanlı Otonom Şarkı Çeviri Kadrosu]: {audit['active_agents_count']}/8 Ajan Aktif | "
+            f"🤝 [9-Ajanlı Otonom Şarkı Çeviri Kadrosu]: {audit['active_agents_count']}/9 Ajan Aktif | "
             f"Stüdyo: {audit['studio_backdrop']} | Durum: {audit['overall_status']}"
         )
 
@@ -86,6 +98,21 @@ def main() -> None:
 
         if not args.no_telegram_publish:
             deliver_songtrai_package_to_telegram(song, video_mp4_path=mp4_path, out_dir=out_dir)
+
+        if args.youtube_publish:
+            yt_res = publish_song_to_youtube_gufteai(song, video_path=mp4_path, slot_label=args.slot)
+            print(f"📺 [YouTube (@gufteai) Yayın Sonucu]: {yt_res}")
+            analytics = run_gufteai_channel_analytics(last_upload_result=yt_res)
+            report_html = format_youtube_telegram_control_report(song, yt_res, analytics)
+            (os.path.join(out_dir, "5_youtube_analytics_report.txt"))
+            with open(os.path.join(out_dir, "5_youtube_analytics_report.txt"), "w", encoding="utf-8") as rf:
+                rf.write(report_html)
+            if not args.no_telegram_publish:
+                for cid in load_target_chat_ids(song):
+                    tg_api(
+                        "sendMessage",
+                        data={"chat_id": cid, "text": report_html[:4000], "parse_mode": "HTML"},
+                    )
 
 
 if __name__ == "__main__":
