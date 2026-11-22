@@ -198,10 +198,15 @@ def deliver_songtrai_package_to_telegram(
 
     # PRE-PUBLISH KALİTE KAPISI: Tek bir dize bile Türkçe değilse Telegram gönderimini ve Ledger kilidini durdur!
     from qa_translation_guardian import audit_package_before_telegram_publish
+    from youtube_songtrai_automator import build_songtrai_youtube_package
+
     audit_package_before_telegram_publish(song, pure_caption)
+    yt_pkg = build_songtrai_youtube_package(song)
 
     (out_p / "1_music_sync_guide.txt").write_text(guide_msg, encoding="utf-8")
     (out_p / "2_social_caption_copypaste.txt").write_text(pure_caption, encoding="utf-8")
+    (out_p / "3_youtube_title_copypaste.txt").write_text(yt_pkg["title"], encoding="utf-8")
+    (out_p / "4_youtube_ordered_description_copypaste.txt").write_text(yt_pkg["description"], encoding="utf-8")
     (out_p / "song_concept_metadata.json").write_text(
         json.dumps(song, ensure_ascii=False, indent=2),
         encoding="utf-8",
@@ -275,6 +280,25 @@ def deliver_songtrai_package_to_telegram(
                 token=tok,
             )
             res_chat["caption_copypaste"] = r_cap.get("ok", False)
+
+            # Mesaj 4: YouTube (@gufteai) Harf Sayılı Başlık (<=100) + Sıralı Açıklama (1..N)
+            yt_copy_msg = (
+                f"📺 <b>YOUTUBE (@gufteai) BAŞLIK ({yt_pkg['title_char_count']} harf):</b>\n"
+                f"<code>{yt_pkg['title']}</code>\n\n"
+                f"📝 <b>YOUTUBE SIRALI AÇIKLAMA ({yt_pkg['description_char_count']} harf):</b>\n"
+                f"<pre>{yt_pkg['description'][:3400]}</pre>"
+            )
+            r_yt_msg = tg_api(
+                "sendMessage",
+                data={
+                    "chat_id": cid,
+                    "text": yt_copy_msg,
+                    "parse_mode": "HTML",
+                    "disable_web_page_preview": True,
+                },
+                token=tok,
+            )
+            res_chat["youtube_copypaste_box"] = r_yt_msg.get("ok", False)
         else:
             res_chat["caption_copypaste"] = False
         delivery_report[cid] = res_chat
