@@ -32,7 +32,11 @@ description: 2K QHD+ (1440x2560 @ 30fps) Pure White Studio (#FFFFFF), +20% Large
 ---
 
 ## 4. Zorunlu Teknik Koruma Kuralları, +20% Punto, 9:16 Dikey Kapak & Kısa SEO Açıklama
-- **Uzun Vurucu Nakarat Zirvesi (`target_duration = 26.5s`) & Mırıldanma Filtresi:** Şarkının en vurucu `26.5s` nakarat/zirve penceresi işlenir. LRCLIB'den gelen `"Hm-mm-mm"`, `"Oh-oh"` gibi anlamsız mırıldanma satırları (`_parse_lrc_lines`) otomatik filtrelenir.
+- **Uzun Vurucu Nakarat Zirvesi (`target_duration = 26.5s`) & Mırıldanma Filtresi:** Şarkının en vurucu `26.5s` nakarat/zirve penceresi işlenir. LRCLIB'den gelen `"Hm-mm-mm"`, `"Oh-oh"`, `"La, la, la"`, `"Uh, ta-da"` ve kekeleme (`"Mit-mit-mit..."`) satırları (`_parse_lrc_lines`) otomatik filtrelenir; LRCLIB aramasında sanatçı/şarkı adındaki parantez içi yan alfabeler (`_fetch_lrclib_synced_lines`) temizlenir.
+- **Milisaniyelik Ses-Söz Vokal Mıknatısı (`0.00 sn` Senkron Kilidi):**
+  - Kısa tekrar satırlarının uzun satırların içine hatalı eşleşip 4–5 saniye kayma yaratmasını önlemek için asla tek başına `fuzz.partial_ratio` kullanılmaz; **Uzunluk Duyarlı Benzerlik (`0.65 * fuzz.ratio + 0.35 * fuzz.token_sort_ratio`)** kullanılır.
+  - `faster-whisper` (`model.transcribe`) çağrısına şarkının dil kodu (`language=w_lang`) verilir; tekil ve 2'li birleşik Whisper pencereleri (`whisper_spans`) üzerinden **Çoklu Konsensüs Medyan Çapası** (`matched_anchors`) hesaplanır.
+  - Her dizenin başlangıç ve bitiş saniyesi (`snapped_s`, `snapped_e`) doğrudan eşleşen Whisper vokal dalgasına mıknatıslanır.
 - **+%20 Büyütülmüş Tipografi:** Aktif Türkçe çeviri `46pt` (`S(46)`), aktif orijinal söz `34pt` (`S(34)`), şarkı başlığı `36pt`, sanatçı `25pt`, önceki Türkçe dize `29pt`, sonraki Türkçe dize `30pt` ölçeğinde çizilir.
 - **Şarkıya Özel Farklı 9:16 Dikey Kapak Resmi (`output/vertical_cover_9x16.jpg`):** Her şarkı için video karesinden bağımsız, albüm kılıfı + yarı çıkan plak/CD, başlık manşeti ve en anlamlı Türkçe dizeyi (`curated_stanzas`) içeren `1440x2560` dikey kapak (`render_songtrai_vertical_cover_9x16`) üretilir; tüm öğeler `S(200)..S(1710)` (4:5 güvenli alan) içinde tutulur ve Telegram'a `sendPhoto` ile ayrıca iletilir.
 - **Kısa ve SEO Uyumlu Saf Kopyala-Yapıştır Açıklama (`build_pure_copy_paste_caption`):** 5–6 satırlık vurucu format (Başlık + en anlamlı Türkçe dize alıntısı + tek cümlelik anlam özeti + etkileşim çağrısı + temiz SEO etiketleri) kullanılır.
