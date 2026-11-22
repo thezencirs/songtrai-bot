@@ -2,11 +2,9 @@ name: "🎵 Şarkıların Anlamı (@songtraibot) — 11 Dil (%50 Popüler İngil
 
 on:
   schedule:
-    # 1) Her zamanlanmış çalışmada (%50 popüler İngilizce ağırlıklı + Arapça dahil 11 dil rotasyonuyla)
-    #    2K Saf Beyaz Stüdyo Türkçe Çeviri videosunu ve 9:16 dikey kapak resmini üretip @songtraibot üzerinden Telegram'a stok olarak gönderir.
-    # 2) Ayrıca @songtraibot kuyruğunu kontrol eder; kullanıcı şarkı adı veya dil komutu
-    #    gönderdiyse anında üretip teslim eder.
-    - cron: "*/5 * * * *"
+    # Sabah 2 (09:00, 10:00 TSİ = 06:00, 07:00 UTC) ve Akşam 2 (19:00, 20:00 TSİ = 16:00, 17:00 UTC)
+    # olmak üzere günde 4 sıralı paylaşım üretir.
+    - cron: "0 6,7,16,17 * * *"
   workflow_dispatch:
     inputs:
       language:
