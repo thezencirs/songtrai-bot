@@ -37,10 +37,12 @@ YT_UPLOADED_LEDGER_PATH = OUTPUT_DIR / "youtube_uploaded_ledger.json"
 YT_GROWTH_LEDGER_PATH = OUTPUT_DIR / "youtube_growth_ledger.json"
 
 YOUTUBE_ACCOUNT_EMAIL = "mmehmetofficial@gmail.com"
+YOUTUBE_CHANNEL_ID = "UCYN1vkTazFZ-SZSH9Gn4giA"
 YOUTUBE_CHANNEL_HANDLE = "@gufteai"
 YOUTUBE_CHANNEL_NAME = "Güfte | Şarkı Çevirileri & Lyrics"
 YOUTUBE_CHANNEL_URL = "https://www.youtube.com/@gufteai"
 YOUTUBE_SHORTS_URL = "https://www.youtube.com/@gufteai/shorts"
+YOUTUBE_STUDIO_UPLOAD_URL = f"https://studio.youtube.com/channel/{YOUTUBE_CHANNEL_ID}/videos/upload?d=ud"
 YOUTUBE_CDP_PORT = 9233
 YOUTUBE_PROFILE_DIR = Path(r"C:\Users\zenci\.gemini\antigravity\scratch\youtube_chrome_profile")
 
@@ -355,7 +357,15 @@ def ensure_youtube_chrome_9233(port: int = YOUTUBE_CDP_PORT) -> Optional[str]:
             except Exception:
                 pass
 
-    page_tab = next((t for t in tabs if t.get("type") == "page"), None)
+    page_tab = next(
+        (t for t in tabs if t.get("type") == "page" and YOUTUBE_CHANNEL_ID in t.get("url", "")),
+        next((t for t in tabs if t.get("type") == "page"), None),
+    )
+    if page_tab and page_tab.get("id"):
+        try:
+            requests.get(f"http://127.0.0.1:{port}/json/activate/{page_tab['id']}", timeout=3)
+        except Exception:
+            pass
     return page_tab["webSocketDebuggerUrl"] if page_tab else None
 
 
@@ -373,8 +383,8 @@ def publish_song_to_youtube_gufteai(
 ) -> Dict[str, Any]:
     """
     mmehmetofficial@gmail.com hesabındaki `Güfte | Şarkı Çevirileri & Lyrics (@gufteai)` kanalına
-    Chrome CDP (Port 9233) üzerinden 2K Shorts videosunu, doğrulanmış başlık (<=100) ve
-    sıralı açıklama (<=5000) ile hatasız yükler ve yayınlar.
+    (`UCYN1vkTazFZ-SZSH9Gn4giA`) Chrome CDP (Port 9233) üzerinden 2K Shorts videosunu,
+    doğrulanmış başlık (<=100) ve sıralı açıklama (<=5000) ile hatasız yükler ve yayınlar.
     """
     from qa_translation_guardian import audit_package_before_telegram_publish
 
@@ -416,10 +426,7 @@ def publish_song_to_youtube_gufteai(
                 return resp.get("result", {})
 
     def pump(sec: float = 3.0) -> None:
-        steps = max(1, int(sec * 2))
-        for _ in range(steps):
-            cdp("Page.captureScreenshot", {"format": "jpeg", "quality": 20})
-            time.sleep(0.5)
+        time.sleep(sec)
 
     try:
         cdp("Page.enable")
@@ -428,39 +435,40 @@ def publish_song_to_youtube_gufteai(
         cdp("Input.enable")
         cdp("Page.bringToFront")
 
-        # 1) Önce @gufteai (Güfte | Şarkı Çevirileri & Lyrics) kanalının seçili olduğundan %100 emin ol
-        cdp("Page.navigate", {"url": "https://www.youtube.com/channel_switcher"})
-        pump(3.5)
-        sw_res = cdp(
-            "Runtime.evaluate",
-            {
-                "expression": """(function() {
-                    const items = Array.from(document.querySelectorAll('ytd-account-item-renderer'));
-                    const target = items.find(el => {
-                        const t = (el.innerText || '').toLowerCase();
-                        return t.includes('gufteai') || t.includes('güfte') || t.includes('şarkı çevirileri');
-                    });
-                    if (target) {
-                        target.click();
-                        const inner = target.querySelector('tp-yt-paper-icon-item, a, div');
-                        if (inner) inner.click();
-                        return "SWITCHED_TO_GUFTEAI";
-                    }
-                    return "ALREADY_OR_NOT_FOUND";
-                })()""",
-                "returnByValue": True,
-            },
-        ).get("result", {}).get("value", "")
-        print(f"📺 [YouTube Kanal Seçimi]: {sw_res} -> {YOUTUBE_CHANNEL_NAME} ({YOUTUBE_CHANNEL_HANDLE})")
-        pump(3.5)
-
-        # 2) YouTube Upload sayfasına git
-        cdp("Page.navigate", {"url": "https://www.youtube.com/upload"})
-        pump(5.5)
+        # 1) Doğrudan @gufteai (UCYN1vkTazFZ-SZSH9Gn4giA) kanalının YouTube Studio Yükleme ekranına git
+        print(f"📺 [YouTube Studio @gufteai Yükleme Ekranı Açılıyor]: {YOUTUBE_STUDIO_UPLOAD_URL}")
+        cdp("Page.navigate", {"url": YOUTUBE_STUDIO_UPLOAD_URL})
+        pump(7.0)
 
         curr_url = cdp("Runtime.evaluate", {"expression": "location.href", "returnByValue": True}).get("result", {}).get("value", "")
         if "accounts.google.com" in curr_url or "signin" in curr_url.lower():
             return {"ok": False, "error": f"YouTube oturumu kapalı: {curr_url}"}
+
+        # Eğer kanal farklıysa channel_switcher üzerinden @gufteai seçip tekrar yükleme URL'sine git
+        if YOUTUBE_CHANNEL_ID not in curr_url and "studio.youtube.com" in curr_url:
+            cdp("Page.navigate", {"url": "https://www.youtube.com/channel_switcher"})
+            pump(4.0)
+            cdp(
+                "Runtime.evaluate",
+                {
+                    "expression": """(function() {
+                        const items = Array.from(document.querySelectorAll('ytd-account-item-renderer'));
+                        const target = items.find(el => {
+                            const t = (el.innerText || '').toLowerCase();
+                            return t.includes('gufteai') || t.includes('güfte') || t.includes('şarkı çevirileri');
+                        });
+                        if (target) {
+                            target.click();
+                            const inner = target.querySelector('tp-yt-paper-icon-item, a, div');
+                            if (inner) inner.click();
+                        }
+                    })()""",
+                    "returnByValue": True,
+                },
+            )
+            pump(4.0)
+            cdp("Page.navigate", {"url": YOUTUBE_STUDIO_UPLOAD_URL})
+            pump(7.0)
 
         doc_root = cdp("DOM.getDocument", {"depth": -1})["root"]["nodeId"]
         q_res = cdp("DOM.querySelector", {"nodeId": doc_root, "selector": 'input[type="file"]'})
@@ -495,78 +503,52 @@ def publish_song_to_youtube_gufteai(
 
         cdp("DOM.setFileInputFiles", {"nodeId": node_id, "files": [str(upload_file)]})
         print(f"📤 [YouTube Studio Yükleme Başladı]: {upload_file.name}")
-        pump(8.0)
+        pump(10.0)
 
-        # 3) Başlık ve Sıralı Açıklama kutularını tertemiz sıfırlayıp (`innerText = ''` + `Input.insertText`) doldur
-        #    Böylece asla başta 'E ', 'A ', 'L ' gibi artık harf kalmaz!
-        title_text = yt_pkg["title"]
-        desc_text = yt_pkg["description"]
+        # 3) Başlık ve Sıralı Açıklama kutularını Polymer/Lit uyumlu execCommand('selectAll') + execCommand('insertText') ile doldur
+        title_json = json.dumps(yt_pkg["title"], ensure_ascii=False)
+        desc_json = json.dumps(yt_pkg["description"], ensure_ascii=False)
 
-        set_boxes_js = f"""
+        fill_js = f"""
         (function() {{
             const boxes = Array.from(document.querySelectorAll('#textbox[contenteditable="true"]'));
             if (boxes.length < 1) return JSON.stringify({{ok: false, count: 0}});
 
-            // Başlık kutusunu tamamen temizle ve odakla
             const tb = boxes[0];
             tb.focus();
-            tb.innerHTML = '';
-            tb.textContent = '';
+            document.execCommand('selectAll', false, null);
+            document.execCommand('insertText', false, {title_json});
             tb.dispatchEvent(new Event('input', {{bubbles: true}}));
-            return JSON.stringify({{ok: true, count: boxes.length}});
+
+            if (boxes.length >= 2) {{
+                const db = boxes[1];
+                db.focus();
+                document.execCommand('selectAll', false, null);
+                document.execCommand('insertText', false, {desc_json});
+                db.dispatchEvent(new Event('input', {{bubbles: true}}));
+            }}
+
+            return JSON.stringify({{
+                ok: true,
+                count: boxes.length,
+                title: (boxes[0].innerText || '').trim(),
+                desc_len: boxes[1] ? (boxes[1].innerText || '').trim().length : 0
+            }});
         }})()
         """
-        box_state = json.loads(
-            cdp("Runtime.evaluate", {"expression": set_boxes_js, "returnByValue": True}).get("result", {}).get("value", "{}") or "{}"
-        )
-        if not box_state.get("ok"):
-            pump(4.0)
-            box_state = json.loads(
-                cdp("Runtime.evaluate", {"expression": set_boxes_js, "returnByValue": True}).get("result", {}).get("value", "{}") or "{}"
-            )
-
-        if box_state.get("count", 0) >= 1:
-            cdp("Input.insertText", {"text": title_text})
-            pump(1.0)
-
-        if box_state.get("count", 0) >= 2:
-            clear_desc_js = """
-            (function() {
-                const boxes = Array.from(document.querySelectorAll('#textbox[contenteditable="true"]'));
-                if (boxes.length >= 2) {
-                    const db = boxes[1];
-                    db.focus();
-                    db.innerHTML = '';
-                    db.textContent = '';
-                    db.dispatchEvent(new Event('input', {bubbles: true}));
-                    return true;
-                }
-                return false;
-            })()
-            """
-            cdp("Runtime.evaluate", {"expression": clear_desc_js, "returnByValue": True})
-            time.sleep(0.3)
-            cdp("Input.insertText", {"text": desc_text})
-            pump(1.2)
-
-        # Başlık doğrulama (DOM'dan geri oku, başında/sonunda bozukluk varsa düzelt)
         readback = json.loads(
-            cdp(
-                "Runtime.evaluate",
-                {
-                    "expression": """JSON.stringify((() => {
-                        const boxes = Array.from(document.querySelectorAll('#textbox[contenteditable="true"]'));
-                        return {
-                            title: boxes[0] ? (boxes[0].innerText || '').trim() : '',
-                            desc_len: boxes[1] ? (boxes[1].innerText || '').trim().length : 0
-                        };
-                    })())""",
-                    "returnByValue": True,
-                },
-            ).get("result", {}).get("value", "{}")
-            or "{}"
+            cdp("Runtime.evaluate", {"expression": fill_js, "returnByValue": True}).get("result", {}).get("value", "{}") or "{}"
         )
-        print(f"✍️ [YouTube Studio DOM Doğrulaması]: Başlık='{readback.get('title')}' ({len(readback.get('title', ''))}/100) | Açıklama={readback.get('desc_len')}/5000")
+        if not readback.get("ok"):
+            pump(4.0)
+            readback = json.loads(
+                cdp("Runtime.evaluate", {"expression": fill_js, "returnByValue": True}).get("result", {}).get("value", "{}") or "{}"
+            )
+        print(
+            f"✍️ [YouTube Studio DOM Doğrulaması]: Başlık='{readback.get('title')}' "
+            f"({len(readback.get('title', ''))}/100) | Açıklama={readback.get('desc_len')}/5000"
+        )
+        pump(1.5)
 
         # 4) Çocuklara Özel Değil (NOT_MFK) seç
         cdp(
@@ -591,9 +573,23 @@ def publish_song_to_youtube_gufteai(
                     })()"""
                 },
             )
-            pump(2.0)
+            pump(2.2)
 
-        # 6) Herkese Açık (PUBLIC) seç ve Yayınla (#done-button) tıkla
+        # 6) Yayınlanan Shorts URL'sini (#done-button tıklamadan hemen önce ve sonra) yakala
+        short_url = json.loads(
+            cdp(
+                "Runtime.evaluate",
+                {
+                    "expression": """JSON.stringify((() => {
+                        const a = Array.from(document.querySelectorAll('a')).find(el => (el.href || '').includes('youtu.be/') || (el.href || '').includes('/shorts/'));
+                        return a ? a.href : 'https://www.youtube.com/@gufteai/shorts';
+                    })())""",
+                    "returnByValue": True,
+                },
+            ).get("result", {}).get("value", '""')
+        )
+
+        # 7) Herkese Açık (PUBLIC) seç ve Yayınla (#done-button) tıkla
         pub_res = cdp(
             "Runtime.evaluate",
             {
@@ -610,29 +606,9 @@ def publish_song_to_youtube_gufteai(
                 "returnByValue": True,
             },
         ).get("result", {}).get("value", "")
-        pump(6.0)
+        pump(10.0)
 
-        # Yayınlanan Shorts URL'sini yakala
-        short_url = json.loads(
-            cdp(
-                "Runtime.evaluate",
-                {
-                    "expression": """JSON.stringify((() => {
-                        const a = Array.from(document.querySelectorAll('a')).find(el => (el.href || '').includes('youtu.be/') || (el.href || '').includes('/shorts/'));
-                        return a ? a.href : 'https://www.youtube.com/@gufteai/shorts';
-                    })())""",
-                    "returnByValue": True,
-                },
-            ).get("result", {}).get("value", '""')
-        )
-
-        # Kanıt ekran görüntüsü kaydet
-        shot_b64 = cdp("Page.captureScreenshot", {"format": "png"}).get("data")
         shot_path = OUTPUT_DIR / "youtube_last_publish_proof.png"
-        if shot_b64:
-            import base64
-            shot_path.write_bytes(base64.b64decode(shot_b64))
-
         mark_youtube_song_uploaded(song, yt_url=short_url, slot_label=slot_label)
 
         return {
@@ -706,14 +682,10 @@ def run_gufteai_channel_analytics(
         cdp("Runtime.enable")
         cdp("Page.bringToFront")
         cdp("Page.navigate", {"url": YOUTUBE_SHORTS_URL})
-        for _ in range(7):
-            cdp("Page.captureScreenshot", {"format": "jpeg", "quality": 20})
-            time.sleep(0.5)
+        time.sleep(4.5)
 
         cdp("Runtime.evaluate", {"expression": "window.scrollTo(0, 3000)"})
-        for _ in range(4):
-            cdp("Page.captureScreenshot", {"format": "jpeg", "quality": 20})
-            time.sleep(0.4)
+        time.sleep(2.0)
 
         raw_info = cdp(
             "Runtime.evaluate",
