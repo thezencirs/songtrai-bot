@@ -1,8 +1,8 @@
 {
-  "updated_at": "2026-11-25T06:05:13.057441Z",
-  "total_used": 48,
-  "last_song_id": "ko_jung_kook_seven",
-  "last_language": "korece",
+  "updated_at": "2026-11-25T07:05:09.509421Z",
+  "total_used": 49,
+  "last_song_id": "es_rosalia_despecha",
+  "last_language": "ispanyolca",
   "used_ids": [
     "fr_indila_derniere_danse",
     "ru_rauf_faik_detstvo",
@@ -51,6 +51,7 @@
     "ko_jung_kook_seven",
     "es_karol_g_shakira_tqg",
     "en_benson_boone_beautiful_things",
-    "fr_stromae_pomme_ma_meilleure_ennemie"
+    "fr_stromae_pomme_ma_meilleure_ennemie",
+    "es_rosalia_despecha"
   ]
 }
