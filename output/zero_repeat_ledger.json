@@ -1,8 +1,8 @@
 {
-  "updated_at": "2026-11-27T17:18:20.539887Z",
-  "total_used": 50,
-  "last_song_id": "hi_jubin_nautiyal_raataan_lambiyan",
-  "last_language": "hintce",
+  "updated_at": "2026-11-28T06:09:17.098866Z",
+  "total_used": 51,
+  "last_song_id": "en_harry_styles_as_it_was",
+  "last_language": "ingilizce",
   "used_ids": [
     "fr_indila_derniere_danse",
     "ru_rauf_faik_detstvo",
@@ -53,6 +53,7 @@
     "en_benson_boone_beautiful_things",
     "fr_stromae_pomme_ma_meilleure_ennemie",
     "es_rosalia_despecha",
-    "en_miley_cyrus_flowers"
+    "en_miley_cyrus_flowers",
+    "en_harry_styles_as_it_was"
   ]
 }
